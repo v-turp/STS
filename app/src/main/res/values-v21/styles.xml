@@ -1,0 +1,15 @@
+<resources>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="AppTheme" parent="android:Theme.Material"><!-- ADDED 2/5  step 2 same style name as values folder-->
+        <!-- Customize your theme here. -->
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+    </style>
+</resources>
