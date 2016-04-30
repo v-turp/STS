@@ -26,7 +26,7 @@ public class Landing extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
 
-//        init();
+        init();
     }
 
     public void init(){
