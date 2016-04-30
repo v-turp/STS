@@ -1,9 +1,22 @@
 package com.score.sts.presentation.view.activity;
 
+import android.app.DialogFragment;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import com.score.sts.R;
+import com.score.sts.presentation.view.fragment.ContactFragment;
+import com.score.sts.presentation.view.fragment.CreateAccountFragment;
+import com.score.sts.presentation.view.fragment.LoginFragment;
+import com.score.sts.presentation.view.fragment.MusicFragment;
+import com.score.sts.presentation.view.fragment.ProfileFragment;
+import com.score.sts.presentation.view.fragment.RegisterWorkFragment;
+import com.score.sts.presentation.view.fragment.VideosFragment;
 
 
 public class Landing extends AppCompatActivity {
@@ -16,14 +29,14 @@ public class Landing extends AppCompatActivity {
 //        init();
     }
 
-    /*public void init(){
+    public void init(){
         // TODO attach the fragments here
         FragmentManager supportFragmentMgr = getSupportFragmentManager();
         FragmentTransaction supportFragmentTransaction = supportFragmentMgr.beginTransaction();
 
         MusicFragment mMusicFragment = new MusicFragment();
         ProfileFragment mProfileFragment = new ProfileFragment();
-        ContactFrag mContactFragment = new ContactFrag();
+        ContactFragment mContactFragment = new ContactFragment();
         VideosFragment mVideosFragment = new VideosFragment();
         RegisterWorkFragment mRegisterWorkFragment = new RegisterWorkFragment();
         LoginFragment mLoginFragment = new LoginFragment();
@@ -49,7 +62,7 @@ public class Landing extends AppCompatActivity {
 
     private void showCreateAccountDialog(){
 
-        final DialogFragment createAccountDialog = new CreateAccountFrag();
+        final DialogFragment createAccountDialog = new CreateAccountFragment();
         final FrameLayout mSignUp = (FrameLayout) findViewById(R.id.flProfileFragmentContainer);
         if (mSignUp != null) {
             mSignUp.setOnClickListener(new View.OnClickListener() {
@@ -59,5 +72,5 @@ public class Landing extends AppCompatActivity {
                 }
             });
         }
-    }*/
+    }
 }
