@@ -1,3 +1,25 @@
 <resources>
-    <string name="app_name">STS</string>
+    <string name="app_name">Soundtracks and Scores</string>
+    <string name="title_activity_entry">STS</string>
+
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">Email</string>
+    <string name="first_name_hint">first name</string>
+    <string name="last_name_hint">last name</string>
+    <string name="email_hint">email</string>
+    <string name="btn_save_contact">SAVE CONTACT</string>
+    <string name="btn_search_contact">SEARCH CONTACTS</string>
+    <string name="update_btn_text">UPDATE CONTACT</string>
+    <string name="delete_btn_text">DELETE CONTACT</string>
+    <string name="show_contacts">Show Contacts</string>
+    <string name="test_text">Test Text</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="network_fragment_tag">Network Fragment</string>
+    <string name="video_fragment_tag">Video Fragment</string>
+    <string name="profile_fragment_tag">Profile Fragment</string>
+    <string name="music_fragment_tag">Music Fragment</string>
+    <string name="upload_button_text">UPLOAD</string>
 </resources>
