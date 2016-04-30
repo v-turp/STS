@@ -1,13 +1,7 @@
-package com.score.sts.presentation.view.activity;
+package com.score.sts.presentation;
 
-import android.app.DialogFragment;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.FrameLayout;
 
 import com.score.sts.R;
 

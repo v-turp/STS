@@ -1,4 +1,4 @@
-package com.score.sts.presentation.view.activity.view;
+package com.score.sts.presentation.view;
 
 /**
  * Created by Who Dat on 4/29/2016.

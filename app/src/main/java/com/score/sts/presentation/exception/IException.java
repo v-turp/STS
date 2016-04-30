@@ -1,4 +1,4 @@
-package com.score.sts.presentation.view.activity.exception;
+package com.score.sts.presentation.exception;
 
 /**
  * Created by Who Dat on 4/29/2016.

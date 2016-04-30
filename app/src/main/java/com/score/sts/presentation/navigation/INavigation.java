@@ -1,4 +1,4 @@
-package com.score.sts.presentation.view.activity.navigation;
+package com.score.sts.presentation.navigation;
 
 /**
  * Created by Who Dat on 4/29/2016.

@@ -1,4 +1,4 @@
-package com.score.sts.presentation.view.activity.mapper;
+package com.score.sts.presentation.mapper;
 
 /**
  * Created by Who Dat on 4/29/2016.
