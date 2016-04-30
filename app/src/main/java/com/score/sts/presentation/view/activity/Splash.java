@@ -1,4 +1,4 @@
-package com.score.sts.presentation;
+package com.score.sts.presentation.view.activity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;

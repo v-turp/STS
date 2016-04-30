@@ -1,4 +1,4 @@
-package com.score.sts.presentation;
+package com.score.sts.presentation.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
