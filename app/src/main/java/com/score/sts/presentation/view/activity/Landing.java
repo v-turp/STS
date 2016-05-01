@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 
 import com.score.sts.R;
 import com.score.sts.presentation.view.fragment.ContactFragment;
-import com.score.sts.presentation.view.fragment.CreateAccountFragment;
+import com.score.sts.presentation.view.fragment.CreateAccountDialogFragment;
 import com.score.sts.presentation.view.fragment.LoginFragment;
 import com.score.sts.presentation.view.fragment.MusicFragment;
 import com.score.sts.presentation.view.fragment.ProfileFragment;
@@ -62,7 +62,7 @@ public class Landing extends AppCompatActivity {
 
     private void showCreateAccountDialog(){
 
-        final DialogFragment createAccountDialog = new CreateAccountFragment();
+        final DialogFragment createAccountDialog = new CreateAccountDialogFragment();
         final FrameLayout mSignUp = (FrameLayout) findViewById(R.id.flProfileFragmentContainer);
         if (mSignUp != null) {
             mSignUp.setOnClickListener(new View.OnClickListener() {
