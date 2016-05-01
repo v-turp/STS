@@ -43,9 +43,29 @@
         <item name="android:inputType">textPassword</item>
     </style>
 
-    <style name="style_create_accound_header_text">
+    <style name="style_create_account_header_text">
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:background">@color/deep_orange_900</item>
+    </style>
+
+    <style name="style_login_dialog_header_text">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:background">@color/deep_orange_900</item>
+    </style>
+
+    <style name="style_et_uname_login_dialog">
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+
+    <style name="style_et_pword_login_dialog">
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:inputType">textPassword</item>
     </style>
 
 </resources>

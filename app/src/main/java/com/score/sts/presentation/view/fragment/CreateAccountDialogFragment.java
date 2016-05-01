@@ -31,7 +31,7 @@ public class CreateAccountDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_account, container, false);
+        return inflater.inflate(R.layout.create_account_dialog_fragment, container, false);
     }
 */
 
@@ -40,7 +40,7 @@ public class CreateAccountDialogFragment extends DialogFragment {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
 
-        alertDialog.setView(layoutInflater.inflate(R.layout.fragment_create_account, null))
+        alertDialog.setView(layoutInflater.inflate(R.layout.create_account_dialog_fragment, null))
                     .setPositiveButton(JOIN, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
