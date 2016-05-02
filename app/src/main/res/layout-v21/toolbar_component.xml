@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tbarLanding"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/standard_toolbar_height"
+    tools:showIn="@layout/landing_activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/standard_toolbar_top_margin"
+            android:layout_marginLeft="@dimen/ic_menu_left_margin_portrait"
+            android:src="@drawable/ic_menu_white_24dp" />
+
+        <TextView
+            android:id="@+id/tvToolbarAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="@dimen/app_name_toolbar_margin_right_portrait"
+            android:layout_marginLeft="@dimen/app_name_toolbar_margin_left_land"
+            android:textSize="18sp"
+            android:text="@string/app_name" />
+
+        <ImageView
+            android:id="@+id/ivSearchIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/standard_toolbar_top_margin"
+            android:src="@drawable/ic_search_white_24dp" />
+
+        <ImageView
+            android:id="@+id/ivMoreIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/ic_more_left_margin_portrait"
+            android:layout_marginRight="@dimen/ic_more_right_margin_portrait"
+            android:layout_marginTop="@dimen/standard_toolbar_top_margin"
+            android:src="@drawable/ic_more_vert_white_24dp" />
+
+    </LinearLayout>
+</android.support.v7.widget.Toolbar>

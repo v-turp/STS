@@ -20,12 +20,12 @@ import com.score.sts.presentation.view.fragment.RegisterWorkFragment;
 import com.score.sts.presentation.view.fragment.VideosFragment;
 
 
-public class Landing extends AppCompatActivity {
+public class LandingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_landing);
+        setContentView(R.layout.landing_activity);
 
         init();
     }

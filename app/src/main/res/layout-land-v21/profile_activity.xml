@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:weightSum="3">
 
+    <include layout="@layout/toolbar_component" />
     <!-- fragment containers-->
 
     <FrameLayout
-        android:id="@+id/flLogoFragmentContainer"
+        android:id="@+id/fl_profile_photo"
         android:background="@color/amber_900"
         android:layout_weight="1"
         android:layout_height="match_parent"
@@ -25,7 +26,7 @@
         android:weightSum="2">
 
         <LinearLayout
-            android:id="@+id/llTop"
+            android:id="@+id/linear_layout_profile_top"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -34,7 +35,7 @@
             android:weightSum="4">
 
             <FrameLayout
-                android:id="@+id/flMusicFragmentContainer"
+                android:id="@+id/fl_profile_tbd_fragment"
                 android:background="@color/red_500"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -42,7 +43,7 @@
                 android:layout_weight="1"/>
 
             <FrameLayout
-                android:id="@+id/flProfileFragmentContainer"
+                android:id="@+id/fl_profile_music_fragment"
                 android:background="@color/red_900"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -50,7 +51,7 @@
                 android:layout_weight="2"/>
 
             <FrameLayout
-                android:id="@+id/flContactsFragmentContainer"
+                android:id="@+id/fl_profile_contacts_fragment"
                 android:background="@color/red_200"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -60,14 +61,14 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:id="@+id/llBottom"
+            android:id="@+id/linear_layout_profile_bottom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:weightSum="4">
 
             <FrameLayout
-                android:id="@+id/flLoginFragmentContainer"
+                android:id="@+id/fl_profile_register_work_fragment"
                 android:background="@color/green_900"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -75,7 +76,7 @@
                 android:layout_weight="2"/>
 
             <FrameLayout
-                android:id="@+id/flVideoFragmentContainer"
+                android:id="@+id/fl_profile_videos_fragment"
                 android:background="@color/green_500"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -83,7 +84,7 @@
                 android:layout_weight="1"/>
 
             <FrameLayout
-                android:id="@+id/flRegisterWorksFragmentContainer"
+                android:id="@+id/fl_profile_bio_fragment"
                 android:background="@color/green_200"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
