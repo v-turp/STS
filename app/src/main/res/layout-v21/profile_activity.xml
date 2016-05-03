@@ -1,98 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="3">
 
     <include layout="@layout/toolbar_component" />
+
     <!-- fragment containers-->
-
-    <FrameLayout
-        android:id="@+id/fl_profile_photo"
-        android:background="@color/amber_900"
-        android:layout_weight="1"
-        android:layout_height="match_parent"
-        android:layout_width="0dp"
-        android:layout_marginRight="@dimen/standard_margin_size"
-        android:foreground="@drawable/sts_logo_original"/>
-
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:weightSum="2">
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/linear_layout_profile_top"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <FrameLayout
+            android:id="@+id/fl_profile_photo"
+            android:background="@color/amber_900"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
             android:layout_marginRight="@dimen/standard_margin_size"
-            android:layout_weight="1"
-            android:weightSum="4">
-
-            <FrameLayout
-                android:id="@+id/fl_profile_tbd_fragment"
-                android:background="@color/red_500"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/standard_margin_size"
-                android:layout_weight="1"/>
-
-            <FrameLayout
-                android:id="@+id/fl_profile_music_fragment"
-                android:background="@color/red_900"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/standard_margin_size"
-                android:layout_weight="2"/>
-
-            <FrameLayout
-                android:id="@+id/fl_profile_contacts_fragment"
-                android:background="@color/red_200"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
+            android:foreground="@drawable/default_avatar"/>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:id="@+id/linear_layout_profile_bottom"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:weightSum="4">
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:weightSum="2">
 
-            <FrameLayout
-                android:id="@+id/fl_profile_register_work_fragment"
-                android:background="@color/green_900"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/standard_margin_size"
-                android:layout_weight="2"/>
+            <LinearLayout
+                android:id="@+id/linear_layout_profile_top"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/standard_margin_size"
+                android:layout_weight="1"
+                android:weightSum="4">
 
-            <FrameLayout
-                android:id="@+id/fl_profile_videos_fragment"
-                android:background="@color/green_500"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/standard_margin_size"
-                android:layout_weight="1"/>
+                <FrameLayout
+                    android:id="@+id/fl_profile_tbd_fragment"
+                    android:background="@color/red_500"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/standard_margin_size"
+                    android:layout_weight="2"
+                    android:text="Login Fragment"/>
 
-            <FrameLayout
-                android:id="@+id/fl_profile_bio_fragment"
-                android:background="@color/green_200"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                <FrameLayout
+                    android:id="@+id/fl_profile_music_fragment"
+                    android:background="@color/red_900"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/standard_margin_size"
+                    android:layout_weight="2"/>
+
+                <FrameLayout
+                    android:id="@+id/fl_profile_contacts_fragment"
+                    android:background="@color/red_200"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/linear_layout_profile_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:weightSum="4">
+
+                <FrameLayout
+                    android:id="@+id/fl_profile_register_work_fragment"
+                    android:background="@color/green_900"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/standard_margin_size"
+                    android:layout_weight="4"/>
+
+                <FrameLayout
+                    android:id="@+id/fl_profile_videos_fragment"
+                    android:background="@color/green_500"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/standard_margin_size"
+                    android:layout_weight="1"/>
+
+                <FrameLayout
+                    android:id="@+id/fl_profile_bio_fragment"
+                    android:background="@color/green_200"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
 
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>
 

@@ -23,6 +23,11 @@
     <string name="music_fragment_tag">Music Fragment</string>
     <string name="upload_button_text">UPLOAD</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--PROFILE FRAGMENT TITLES -->
+    <string name="profile_videos_fragment">Profile...Videos Fragment</string>
+    <string name="profile_tbd_fragment">Profile...TBD Fragment</string>
+    <string name="profile_register_work_frag">Profile...Register Work Fragment</string>
+    <string name="profile_music_fragment">Profile...Music Fragment</string>
+    <string name="profile_contacts_fragment">Profile...Contacts Fragment</string>
+    <string name="profile_bio_fragment">Profile...Bio Fragment</string>
 </resources>
