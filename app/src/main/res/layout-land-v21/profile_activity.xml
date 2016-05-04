@@ -30,7 +30,7 @@
             android:weightSum="2">
 
             <LinearLayout
-                android:id="@+id/linear_layout_profile_top"
+                android:id="@+id/ll_profile_top"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -39,7 +39,7 @@
                 android:weightSum="4">
 
                 <FrameLayout
-                    android:id="@+id/fl_profile_tbd_fragment"
+                    android:id="@+id/fl_profile_bio_fragment"
                     android:background="@color/red_500"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -55,7 +55,7 @@
                     android:layout_weight="2"/>
 
                 <FrameLayout
-                    android:id="@+id/fl_profile_contacts_fragment"
+                    android:id="@+id/fl_profile_fragment"
                     android:background="@color/red_200"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -65,14 +65,14 @@
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:id="@+id/linear_layout_profile_bottom"
+                android:id="@+id/ll_profile_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:weightSum="4">
 
                 <FrameLayout
-                    android:id="@+id/fl_profile_register_work_fragment"
+                    android:id="@+id/fl_profile_msg_chat_facetime"
                     android:background="@color/green_900"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -88,13 +88,21 @@
                     android:layout_weight="1"/>
 
                 <FrameLayout
-                    android:id="@+id/fl_profile_bio_fragment"
+                    android:id="@+id/fl_profile_contacts_fragment"
                     android:background="@color/green_200"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"/>
 
             </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_profile_register_work_fragment"
+                android:background="@color/yellow_900"
+                android:layout_marginTop="@dimen/standard_margin_size"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                />
 
         </LinearLayout>
     </LinearLayout>

@@ -25,9 +25,11 @@
 
     <!--PROFILE FRAGMENT TITLES -->
     <string name="profile_videos_fragment">Profile...Videos Fragment</string>
-    <string name="profile_tbd_fragment">Profile...TBD Fragment</string>
+    <string name="profile_fragment">Profile...Profile Fragment</string>
     <string name="profile_register_work_frag">Profile...Register Work Fragment</string>
     <string name="profile_music_fragment">Profile...Music Fragment</string>
     <string name="profile_contacts_fragment">Profile...Contacts Fragment</string>
     <string name="profile_bio_fragment">Profile...Bio Fragment</string>
+    <string name="profile_message_chat_fragment">Profile...Message Chat Fragment</string>
+
 </resources>
