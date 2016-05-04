@@ -46,7 +46,7 @@ public class Splash extends AppCompatActivity {
 
             @Override
             public void run() {
-                Intent intent = new Intent(getBaseContext(), Landing.class);
+                Intent intent = new Intent(getBaseContext(), LandingActivity.class);
                 if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(Splash.this).toBundle());
                 }else

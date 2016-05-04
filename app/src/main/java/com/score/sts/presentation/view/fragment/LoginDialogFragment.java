@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.score.sts.R;
+import com.score.sts.presentation.navigation.Navigator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,12 +39,13 @@ public class LoginDialogFragment extends DialogFragment {
 
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-
+        //---set the dialog layout and button functions
         alertDialog.setView(inflater.inflate(R.layout.login_dialog_fragment, null))
                 .setPositiveButton(LOGIN, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        //---launch the profile page
+                        Navigator.getInstance().navigateToProfilePage(getActivity());
                     }
                 })
                 .setNegativeButton(CANCEL, new DialogInterface.OnClickListener() {

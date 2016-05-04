@@ -15,17 +15,17 @@ import com.score.sts.presentation.view.fragment.CreateAccountDialogFragment;
 import com.score.sts.presentation.view.fragment.LoginDialogFragment;
 import com.score.sts.presentation.view.fragment.LoginFragment;
 import com.score.sts.presentation.view.fragment.MusicFragment;
-import com.score.sts.presentation.view.fragment.ProfileFragment;
+import com.score.sts.presentation.view.fragment.SignUpFragment;
 import com.score.sts.presentation.view.fragment.RegisterWorkFragment;
 import com.score.sts.presentation.view.fragment.VideosFragment;
 
 
-public class Landing extends AppCompatActivity {
+public class LandingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_landing);
+        setContentView(R.layout.landing_activity);
 
         init();
     }
@@ -36,7 +36,7 @@ public class Landing extends AppCompatActivity {
         FragmentTransaction supportFragmentTransaction = supportFragmentMgr.beginTransaction();
 
         MusicFragment mMusicFragment = new MusicFragment();
-        ProfileFragment mProfileFragment = new ProfileFragment();
+        SignUpFragment mSignUpFragment = new SignUpFragment();
         ContactFragment mContactFragment = new ContactFragment();
         VideosFragment mVideosFragment = new VideosFragment();
         RegisterWorkFragment mRegisterWorkFragment = new RegisterWorkFragment();
@@ -45,14 +45,14 @@ public class Landing extends AppCompatActivity {
         //--- set fragments according to orientation
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             supportFragmentTransaction.add(R.id.flMusicFragmentContainer, mMusicFragment);
-            supportFragmentTransaction.add(R.id.flProfileFragmentContainer, mProfileFragment);
+            supportFragmentTransaction.add(R.id.flSignUpFragmentContainer, mSignUpFragment);
             supportFragmentTransaction.add(R.id.flContactsFragmentContainer, mContactFragment);
             supportFragmentTransaction.add(R.id.flVideoFragmentContainer, mVideosFragment);
             supportFragmentTransaction.add(R.id.flRegisterWorksFragmentContainer, mRegisterWorkFragment);
             supportFragmentTransaction.add(R.id.flLoginFragmentContainer, mLoginFragment);
             supportFragmentTransaction.commit();
         }else if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
-            supportFragmentTransaction.add(R.id.flProfileFragmentContainer, mProfileFragment);
+            supportFragmentTransaction.add(R.id.flSignUpFragmentContainer, mSignUpFragment);
             supportFragmentTransaction.add(R.id.flRegisterWorksFragmentContainer, mRegisterWorkFragment);
             supportFragmentTransaction.add(R.id.flLoginFragmentContainer, mLoginFragment);
             supportFragmentTransaction.commit();
@@ -65,7 +65,7 @@ public class Landing extends AppCompatActivity {
     private void showCreateAccountDialog(){
 
         final DialogFragment createAccountDialog = new CreateAccountDialogFragment();
-        final FrameLayout mSignUp = (FrameLayout) findViewById(R.id.flProfileFragmentContainer);
+        final FrameLayout mSignUp = (FrameLayout) findViewById(R.id.flSignUpFragmentContainer);
         if (mSignUp != null) {
             mSignUp.setOnClickListener(new View.OnClickListener() {
                 @Override

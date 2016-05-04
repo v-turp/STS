@@ -2,12 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.view.fragment.ProfileFragment">
+    tools:context="com.score.sts.presentation.view.fragment.MessageChatProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/tv_message_chat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/profile_fragment" />
+        android:text="@string/profile_message_chat_fragment" />
 
 </FrameLayout>

@@ -5,55 +5,7 @@
     android:orientation="vertical"
     android:weightSum="3">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tbarLanding"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/standard_toolbar_height">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/ivMenu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/standard_toolbar_top_margin"
-                android:layout_marginLeft="@dimen/ic_menu_left_margin_portrait"
-                android:src="@drawable/ic_menu_white_24dp"
-                />
-
-            <TextView
-                android:id="@+id/tvToolbarAppName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="@dimen/app_name_toolbar_margin_right_portrait"
-                android:layout_marginLeft="@dimen/app_name_toolbar_margin_left_land"
-                android:textSize="18sp"
-                android:text="@string/app_name"/>
-
-            <ImageView
-                android:id="@+id/ivSearchIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/standard_toolbar_top_margin"
-                android:src="@drawable/ic_search_white_24dp"
-                />
-
-            <ImageView
-                android:id="@+id/ivMoreIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/ic_more_left_margin_portrait"
-                android:layout_marginRight="@dimen/ic_more_right_margin_portrait"
-                android:layout_marginTop="@dimen/standard_toolbar_top_margin"
-                android:src="@drawable/ic_more_vert_white_24dp"
-                />
-
-        </LinearLayout>
-    </android.support.v7.widget.Toolbar>
+    <include layout="@layout/toolbar_component" />
 
     <!-- fragment containers-->
     <LinearLayout
@@ -62,13 +14,13 @@
         android:orientation="horizontal">
 
         <FrameLayout
-            android:id="@+id/flLogoFragmentContainer"
+            android:id="@+id/fl_profile_photo"
             android:background="@color/amber_900"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_marginRight="@dimen/standard_margin_size"
-            android:foreground="@drawable/sts_logo_original"/>
+            android:foreground="@drawable/default_avatar"/>
 
         <LinearLayout
             android:orientation="vertical"
@@ -78,7 +30,7 @@
             android:weightSum="2">
 
             <LinearLayout
-                android:id="@+id/llTop"
+                android:id="@+id/ll_profile_top"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -87,7 +39,7 @@
                 android:weightSum="4">
 
                 <FrameLayout
-                    android:id="@+id/flLoginFragmentContainer"
+                    android:id="@+id/fl_profile_fragment"
                     android:background="@color/red_500"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -96,7 +48,7 @@
                     android:text="Login Fragment"/>
 
                 <FrameLayout
-                    android:id="@+id/flProfileFragmentContainer"
+                    android:id="@+id/fl_profile_music_fragment"
                     android:background="@color/red_900"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -104,7 +56,7 @@
                     android:layout_weight="2"/>
 
                 <FrameLayout
-                    android:id="@+id/flContactsFragmentContainer"
+                    android:id="@+id/fl_profile_contacts_fragment"
                     android:background="@color/red_200"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -114,14 +66,14 @@
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:id="@+id/llBottom"
+                android:id="@+id/ll_profile_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:weightSum="4">
 
                 <FrameLayout
-                    android:id="@+id/flRegisterWorksFragmentContainer"
+                    android:id="@+id/fl_profile_register_work_fragment"
                     android:background="@color/green_900"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -129,7 +81,7 @@
                     android:layout_weight="4"/>
 
                 <FrameLayout
-                    android:id="@+id/flVideoFragmentContainer"
+                    android:id="@+id/fl_profile_videos_fragment"
                     android:background="@color/green_500"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -137,7 +89,7 @@
                     android:layout_weight="1"/>
 
                 <FrameLayout
-                    android:id="@+id/flMusicFragmentContainer"
+                    android:id="@+id/fl_profile_bio_fragment"
                     android:background="@color/green_200"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
