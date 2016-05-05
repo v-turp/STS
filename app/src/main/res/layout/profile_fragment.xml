@@ -4,10 +4,26 @@
     android:layout_height="match_parent"
     tools:context=".presentation.view.fragment.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/profile_fragment" />
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:background="@color/grey_900">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/profile_fragment" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="95dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_edit_white_24dp"/>
+
+    </LinearLayout>
 
 </FrameLayout>
