@@ -12,7 +12,7 @@ import com.score.sts.presentation.view.fragment.ContactsProfileFragment;
 import com.score.sts.presentation.view.fragment.MessageChatProfileFragment;
 import com.score.sts.presentation.view.fragment.MusicProfileFragment;
 import com.score.sts.presentation.view.fragment.RegisterWorkProfileFragment;
-import com.score.sts.presentation.view.fragment.ProfileFragment;
+import com.score.sts.presentation.view.fragment.PicturesProfileFragment;
 import com.score.sts.presentation.view.fragment.VideosProfileFragment;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -33,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
 
-        ProfileFragment profileFragment = new ProfileFragment();
+        PicturesProfileFragment picturesProfileFragment = new PicturesProfileFragment();
         MusicProfileFragment musicProfileFragment = new MusicProfileFragment();
         ContactsProfileFragment contactsProfileFragment = new ContactsProfileFragment();
         RegisterWorkProfileFragment registerWorkProfileFragment = new RegisterWorkProfileFragment();
@@ -42,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
         MessageChatProfileFragment messageChatProfileFragment = new MessageChatProfileFragment();
 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-            ft.add(R.id.fl_profile_fragment, profileFragment);
+            ft.add(R.id.fl_profile_fragment, picturesProfileFragment);
             ft.add(R.id.fl_profile_music_fragment, musicProfileFragment);
             ft.add(R.id.fl_profile_contacts_fragment, contactsProfileFragment);
             ft.add(R.id.fl_profile_register_work_fragment, registerWorkProfileFragment);

@@ -25,7 +25,7 @@
 
     <!--PROFILE FRAGMENT TITLES -->
     <string name="profile_videos_fragment">Videos</string>
-    <string name="profile_fragment">Profile</string>
+    <string name="profile_fragment">Pictures</string>
     <string name="profile_register_work_frag">Register Work</string>
     <string name="profile_music_fragment">Music</string>
     <string name="profile_contacts_fragment">Contacts</string>
