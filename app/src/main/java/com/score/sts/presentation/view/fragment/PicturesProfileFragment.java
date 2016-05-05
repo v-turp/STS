@@ -12,10 +12,10 @@ import com.score.sts.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProfileFragment extends Fragment {
+public class PicturesProfileFragment extends Fragment {
 
 
-    public ProfileFragment() {
+    public PicturesProfileFragment() {
         // Required empty public constructor
     }
 
