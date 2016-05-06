@@ -15,12 +15,12 @@ import butterknife.ButterKnife;
 /**
  * Created by Who Dat on 3/18/2016.
  */
-public class Splash extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash);
+        setContentView(R.layout.splash_activity);
         ButterKnife.bind(this);
 
         init();
@@ -48,13 +48,13 @@ public class Splash extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(getBaseContext(), LandingActivity.class);
                 if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(Splash.this).toBundle());
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
                 }else
                     startActivity(intent);
                     overridePendingTransition(android.R.anim.fade_in, android.R.anim.slide_out_right);
             }
         }, 4000);
     }
-} // end class Splash
+} // end class SplashActivity
 
 

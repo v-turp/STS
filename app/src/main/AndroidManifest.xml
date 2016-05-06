@@ -16,9 +16,9 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
 
-        <!-- Splash page Activity -->
+        <!-- SplashActivity page Activity -->
         <activity
-            android:name=".presentation.view.activity.Splash"
+            android:name=".presentation.view.activity.SplashActivity"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

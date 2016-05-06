@@ -1,10 +1,15 @@
 package com.score.sts.presentation.view.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.score.sts.R;
 import com.score.sts.presentation.view.fragment.BioProfileFragment;
@@ -17,6 +22,8 @@ import com.score.sts.presentation.view.fragment.VideosProfileFragment;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    public static final String SHOW_SNACK = "signup complete";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +31,18 @@ public class ProfileActivity extends AppCompatActivity {
         init();
     }
 
+    public static Intent getCallingIntent(Context context){
+        Intent callingIntent = new Intent(context, ProfileActivity.class);
+        return callingIntent;
+    }
+
+
     protected void init(){
         setOrientationBasedLayout();
+
+        if(getIntent().hasExtra(SHOW_SNACK)) {
+            showFingerPrintAuthenticationPrompt(getIntent().getBooleanExtra(SHOW_SNACK, false));
+        }
     }
 
     private void setOrientationBasedLayout(){
@@ -53,6 +70,10 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-
+    private void showFingerPrintAuthenticationPrompt(boolean show){
+        if(show) {
+            Snackbar.make(findViewById(android.R.id.content), "Account successfully setup", Snackbar.LENGTH_LONG).show();
+        }
+    }
 
 }

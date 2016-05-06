@@ -5,23 +5,25 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 
 import com.score.sts.R;
+import com.score.sts.presentation.view.activity.ProfileActivity;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CreateAccountDialogFragment extends DialogFragment {
+public class SignUpDialogFragment extends DialogFragment {
 
-    private static final String TAG = CreateAccountDialogFragment.class.getSimpleName();
+    private static final String TAG = SignUpDialogFragment.class.getSimpleName();
     private static final String JOIN = "JOIN";
     private static final String CANCEL = "CANCEL";
 
-    public CreateAccountDialogFragment() {
+    public SignUpDialogFragment() {
         // Required empty public constructor
     }
 
@@ -40,18 +42,21 @@ public class CreateAccountDialogFragment extends DialogFragment {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
 
-        alertDialog.setView(layoutInflater.inflate(R.layout.create_account_dialog_fragment, null))
+        alertDialog.setView(layoutInflater.inflate(R.layout.sign_up_dialog_fragment, null))
                     .setPositiveButton(JOIN, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                }).setNegativeButton(CANCEL, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //---launch the profile page
+                            Intent intent = ProfileActivity.getCallingIntent(getActivity());
+                            intent.putExtra(ProfileActivity.SHOW_SNACK, true);
+                            startActivity(intent);
+                        }
+                    }).setNegativeButton(CANCEL, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
         return alertDialog.create();
     }
 }

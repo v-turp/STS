@@ -27,9 +27,10 @@ public class Navigator {
      }
 
      public void navigateToProfilePage(Context context){
-         Intent intent = new Intent();
-         intent.setClass(context, ProfileActivity.class);
-         context.startActivity(intent);
+         if(context != null) {
+             Intent intent = ProfileActivity.getCallingIntent(context);
+             context.startActivity(intent);
+         }
      }
 
 }

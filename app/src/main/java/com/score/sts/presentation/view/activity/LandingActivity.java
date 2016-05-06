@@ -11,12 +11,12 @@ import android.widget.FrameLayout;
 
 import com.score.sts.R;
 import com.score.sts.presentation.view.fragment.ContactFragment;
-import com.score.sts.presentation.view.fragment.CreateAccountDialogFragment;
+import com.score.sts.presentation.view.fragment.SignUpDialogFragment;
 import com.score.sts.presentation.view.fragment.LoginDialogFragment;
 import com.score.sts.presentation.view.fragment.LoginFragment;
 import com.score.sts.presentation.view.fragment.MusicFragment;
-import com.score.sts.presentation.view.fragment.SignUpFragment;
 import com.score.sts.presentation.view.fragment.RegisterWorkFragment;
+import com.score.sts.presentation.view.fragment.SignUpFragment;
 import com.score.sts.presentation.view.fragment.VideosFragment;
 
 
@@ -64,10 +64,10 @@ public class LandingActivity extends AppCompatActivity {
 
     private void showCreateAccountDialog(){
 
-        final DialogFragment createAccountDialog = new CreateAccountDialogFragment();
-        final FrameLayout mSignUp = (FrameLayout) findViewById(R.id.flSignUpFragmentContainer);
-        if (mSignUp != null) {
-            mSignUp.setOnClickListener(new View.OnClickListener() {
+        final DialogFragment createAccountDialog = new SignUpDialogFragment();
+        final FrameLayout signUpFragContainer = (FrameLayout) findViewById(R.id.flSignUpFragmentContainer);
+        if (signUpFragContainer != null) {
+            signUpFragContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     createAccountDialog.show(getFragmentManager(), "sign up fragment");
@@ -78,9 +78,9 @@ public class LandingActivity extends AppCompatActivity {
 
     private void showLoginDialogFragment(){
         final DialogFragment loginDialog = new LoginDialogFragment();
-        final FrameLayout mProfileFragmentContainer = (FrameLayout) findViewById(R.id.flLoginFragmentContainer);
-        if(mProfileFragmentContainer != null){
-            mProfileFragmentContainer.setOnClickListener(new View.OnClickListener() {
+        final FrameLayout loginFracContainer = (FrameLayout) findViewById(R.id.flLoginFragmentContainer);
+        if(loginFracContainer != null){
+            loginFracContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     loginDialog.show(getFragmentManager(), "login fragment");
