@@ -32,4 +32,7 @@
     <string name="profile_bio_fragment">Bio</string>
     <string name="profile_message_chat_fragment">Message and Chat</string>
 
+    <string name="snackbar_fingerprint_setup_confirmation"> GOT IT</string>
+    <string name="snackbar_fingerprint_setup_directions">Go to settings to enable fingerprint authentication</string>
+
 </resources>

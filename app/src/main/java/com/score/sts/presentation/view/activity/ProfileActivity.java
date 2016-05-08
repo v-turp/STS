@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.score.sts.R;
 import com.score.sts.presentation.view.fragment.BioProfileFragment;
@@ -22,13 +21,36 @@ import com.score.sts.presentation.view.fragment.VideosProfileFragment;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    private static final String TAG = ProfileActivity.class.getSimpleName();
     public static final String SHOW_SNACK = "signup complete";
+    private static final String GOT_IT = "got it";
+    private static final String CONFIRMED = "Confirmed";
+    private String gotIt;
+    private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_activity);
+
+//        snackbar = getFingerPrintSnackbarNotification();
         init();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(GOT_IT, gotIt);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        gotIt = savedInstanceState.getString(GOT_IT);
+
+        if(snackbar.isShown() && gotIt.equals(CONFIRMED)){
+            snackbar.dismiss();
+        }
     }
 
     public static Intent getCallingIntent(Context context){
@@ -37,11 +59,15 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
-    protected void init(){
+    private void init(){
         setOrientationBasedLayout();
-
+        snackbar = getFingerPrintSnackbarNotification();
+        /**
+         *  if the user clicked join, notification is sent here
+         *  through the intent with instructions to display the snackbar.
+         */
         if(getIntent().hasExtra(SHOW_SNACK)) {
-            showFingerPrintAuthenticationPrompt(getIntent().getBooleanExtra(SHOW_SNACK, false));
+            snackbar.show();
         }
     }
 
@@ -70,10 +96,15 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-    private void showFingerPrintAuthenticationPrompt(boolean show){
-        if(show) {
-            Snackbar.make(findViewById(android.R.id.content), "Account successfully setup", Snackbar.LENGTH_LONG).show();
-        }
+    private Snackbar getFingerPrintSnackbarNotification(){
+        Snackbar snackingBar = Snackbar
+              .make(findViewById(android.R.id.content), R.string.snackbar_fingerprint_setup_directions, Snackbar.LENGTH_INDEFINITE)
+              .setAction(R.string.snackbar_fingerprint_setup_confirmation, new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        gotIt = CONFIRMED;    // used to save state
+                                    }
+                             });
+        return snackingBar;
     }
-
 }
