@@ -26,13 +26,14 @@
     <!--PROFILE FRAGMENT TITLES -->
     <string name="profile_videos_fragment">Videos</string>
     <string name="profile_fragment">Pictures</string>
-    <string name="profile_register_work_frag">Register Work</string>
+    <string name="profile_register_work_frag">Register Material</string>
     <string name="profile_music_fragment">Music</string>
     <string name="profile_contacts_fragment">Contacts</string>
     <string name="profile_bio_fragment">Bio</string>
     <string name="profile_message_chat_fragment">Message and Chat</string>
 
     <string name="snackbar_fingerprint_setup_confirmation"> GOT IT</string>
-    <string name="snackbar_fingerprint_setup_directions">Go to settings to enable fingerprint authentication</string>
+    <string name="snackbar_fingerprint_setup_directions_alt">Go to settings to enable fingerprint authentication</string>
+    <string name="snackbar_fingerprint_setup_directions">Want to use your finger print to login? Go to settings to enable Finger print sign-in</string>
 
 </resources>

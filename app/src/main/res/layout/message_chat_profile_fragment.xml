@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/profile_gradient"
+    android:background="@drawable/star_wars"
     tools:context="com.score.sts.presentation.view.fragment.MessageChatProfileFragment">
 
     <LinearLayout

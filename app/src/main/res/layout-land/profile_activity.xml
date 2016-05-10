@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_marginRight="@dimen/standard_margin_size"
-            android:foreground="@drawable/default_avatar"/>
+            android:foreground="@drawable/girl_avatar"/>
 
         <LinearLayout
             android:orientation="vertical"
