@@ -22,6 +22,9 @@
     <string name="profile_fragment_tag">Profile Fragment</string>
     <string name="music_fragment_tag">Music Fragment</string>
     <string name="upload_button_text">UPLOAD</string>
+    <string name="settings">Settings</string>
+    <string name="log_out">Log Out</string>
+    <string name="search">Search</string>
 
     <!--PROFILE FRAGMENT TITLES -->
     <string name="profile_videos_fragment">Videos</string>

@@ -8,7 +8,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.score.sts.R;
 import com.score.sts.presentation.view.fragment.BioProfileFragment;
@@ -33,7 +38,9 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile_activity);
 
-//        snackbar = getFingerPrintSnackbarNotification();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_global);
+        setSupportActionBar(toolbar);
+
         init();
     }
 
@@ -50,6 +57,33 @@ public class ProfileActivity extends AppCompatActivity {
 
         if(snackbar.isShown() && gotIt.equals(CONFIRMED)){
             snackbar.dismiss();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_app_options, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.item_search:
+                Toast.makeText(getApplicationContext(), "Searching", Toast.LENGTH_LONG).show();
+                return true;
+
+            case R.id.item_settings:
+                Toast.makeText(getApplicationContext(), "I chose Settings", Toast.LENGTH_LONG).show();
+                return true;
+
+            case R.id.item_log_out:
+                Toast.makeText(getApplicationContext(), "Logging Out", Toast.LENGTH_LONG).show();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
