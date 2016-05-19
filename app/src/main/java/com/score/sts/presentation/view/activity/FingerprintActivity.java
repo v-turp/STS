@@ -2,9 +2,11 @@ package com.score.sts.presentation.view.activity;
 
 import android.Manifest;
 import android.app.KeyguardManager;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
+import android.os.CancellationSignal;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
@@ -38,6 +40,7 @@ public class FingerprintActivity extends AppCompatActivity {
     private KeyGenerator keyGenerator;
     private Cipher cipher;
     private FingerprintManager.CryptoObject cryptoObject;
+    private CancellationSignal cancellationSignal;
 
     private static final String ANDROID_KEYSTORE = "AndroidKeyStore";
     private static final String KEY_NAME = "STS";
@@ -77,6 +80,8 @@ public class FingerprintActivity extends AppCompatActivity {
                 cryptoObject = new FingerprintManager.CryptoObject(cipher);
                 FingerprintHandler fingerprintHandler = new FingerprintHandler(this);
                 fingerprintHandler.startAuth(fingerprintManager, cryptoObject);
+                // for versions < 23  and not in the original example
+                startAuth(fingerprintManager, cryptoObject, getAuthenticationCallback(this));
             }
         }
     }
@@ -136,4 +141,50 @@ public class FingerprintActivity extends AppCompatActivity {
 
     } // end method cipherInit
 
+
+    //---TODO this method is an attempt to substitute the FingerprintHandler class. version 23 is required for these callback methods.
+    protected static FingerprintManager.AuthenticationCallback getAuthenticationCallback(final Context context){
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            FingerprintManager.AuthenticationCallback callback = new FingerprintManager.AuthenticationCallback() {
+                @Override
+                public void onAuthenticationError(int errorCode, CharSequence errString) {
+                    super.onAuthenticationError(errorCode, errString);
+                    Toast.makeText(context, "Authentication error\n" + errString, Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onAuthenticationHelp(int helpCode, CharSequence helpString) {
+                    super.onAuthenticationHelp(helpCode, helpString);
+                    Toast.makeText(context, "Authentication help\n" + helpString, Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onAuthenticationFailed() {
+                    super.onAuthenticationFailed();
+                    Toast.makeText(context, "Authentication failed", Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
+                    super.onAuthenticationSucceeded(result);
+                    Toast.makeText(context, "Authentication succeeded", Toast.LENGTH_LONG).show();
+                }
+            };
+            return callback;
+        } // end if
+        return null;
+    }  // end method
+
+    public void startAuth(FingerprintManager manager, FingerprintManager.CryptoObject cryptoObject, FingerprintManager.AuthenticationCallback callback){
+        cancellationSignal = new CancellationSignal();
+
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED){
+            return;
+        }
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            manager.authenticate(cryptoObject, cancellationSignal, 0, callback, null);
+        }
+    }
 } // end activity FingerprintActivity
