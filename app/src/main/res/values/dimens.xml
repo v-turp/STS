@@ -34,6 +34,7 @@
     <!-- Material Design Fingerprint Dialog Metrics -->
     <dimen name="dialog_left_padding">24dp</dimen>
     <dimen name="dialog_right_padding">24dp</dimen>
+    <dimen name="dialog_top_padding">24dp</dimen>
     <dimen name="title_bottom_margin">20dp</dimen>
     <dimen name="subtitle_bottom_margin">28dp</dimen>
     <dimen name="fingerprint_icon_right_margin">16dp</dimen>

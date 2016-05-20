@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.score.sts.R;
 import com.score.sts.presentation.view.fragment.ContactFragment;
+import com.score.sts.presentation.view.fragment.FingerprintDialogFragment;
 import com.score.sts.presentation.view.fragment.LoginDialogFragment;
 import com.score.sts.presentation.view.fragment.LoginFragment;
 import com.score.sts.presentation.view.fragment.MusicFragment;
@@ -94,7 +95,8 @@ public class LandingActivity extends AppCompatActivity {
         }
 
         showCreateAccountDialog();
-        showLoginDialogFragment();
+//        showLoginDialogFragment();
+        showFingerprintDialogFragment();
     } // end method init
 
     private void showCreateAccountDialog(){
@@ -119,6 +121,20 @@ public class LandingActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     loginDialog.show(getFragmentManager(), "login fragment");
+                }
+            });
+        }
+
+    }
+
+    private void showFingerprintDialogFragment(){
+        final DialogFragment fingerprintDialog = new FingerprintDialogFragment();
+        final FrameLayout loginFracContainer = (FrameLayout) findViewById(R.id.flLoginFragmentContainer);
+        if(loginFracContainer != null){
+            loginFracContainer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    fingerprintDialog.show(getFragmentManager(), "fingerprint fragment");
                 }
             });
         }

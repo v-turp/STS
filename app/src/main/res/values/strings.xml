@@ -41,5 +41,7 @@
     <string name="fingerprint_dialog_option">Use your fingerprint for faster,\n easier access to your account.</string>
     <string name="confirm_fingerprint">Confirm fingerprint to continue</string>
     <string name="touch_sensor">Touch sensor</string>
+    <string name="use_password">Use Password</string>
+    <string name="cancel">Cancel</string>
 
 </resources>
