@@ -16,21 +16,24 @@
         android:layout_marginBottom="@dimen/title_bottom_margin"
         android:text="Fingerprint login"
         android:textColor="@android:color/black"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textSize="24sp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/subtitle_bottom_margin"
         android:text="@string/fingerprint_dialog_option"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/grey_700"
+        android:textSize="21dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/subtitle_bottom_margin"
         android:text="@string/confirm_fingerprint"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/grey_700"
+        android:textSize="21sp"/>
 
 
     <LinearLayout
@@ -50,13 +53,15 @@
             android:paddingTop="@dimen/touch_sensor_call_to_action_top_padding"
             android:paddingBottom="@dimen/touch_sensor_call_to_action_bottom_padding"
             android:text="@string/touch_sensor"
-            android:textColor="@color/grey_400"/>
+            android:textColor="@color/grey_500"
+            android:textSize="18sp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/button_container_height"
         android:paddingBottom="@dimen/button_container_bottom_padding"
+        android:layout_marginLeft="40dp"
         android:orientation="horizontal">
 
         <Button
@@ -64,14 +69,23 @@
             android:layout_height="@dimen/button_height"
             android:paddingLeft="@dimen/button_left_padding"
             android:paddingRight="@dimen/button_right_padding"
-            android:text="@string/use_password"/>
+            android:background="@android:color/transparent"
+            android:text="@string/use_password"
+            android:textAllCaps="true"
+            android:textColor="@color/teal_600"
+            android:textSize="18sp"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="@dimen/button_height"
             android:paddingLeft="@dimen/button_left_padding"
             android:paddingRight="@dimen/button_right_padding"
-            android:text="@string/cancel"/>
+            android:background="@android:color/transparent"
+            android:text="@string/cancel"
+            android:textAllCaps="true"
+            android:textColor="@color/teal_600"
+            android:textSize="18sp"/>
+
     </LinearLayout>
 
 </LinearLayout>
