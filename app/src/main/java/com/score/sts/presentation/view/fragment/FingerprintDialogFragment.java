@@ -37,26 +37,9 @@ public class FingerprintDialogFragment extends DialogFragment {
     }
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-        LayoutInflater layoutInflater = getActivity().getLayoutInflater();
-
-        alertDialog.setView(layoutInflater.inflate(R.layout.sign_up_dialog_fragment, null))
-                .setPositiveButton(USE_PASSWORD, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //---launch the profile page
-                        Intent intent = ProfileActivity.getCallingIntent(getActivity());
-                        intent.putExtra(ProfileActivity.SHOW_SNACK, true);
-                        startActivity(intent);
-                    }
-                }).setNegativeButton(CANCEL, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        return alertDialog.create();
+    public void onResume() {
+        super.onResume();
+//        int width = getResources().getDimensionPixelSize(android.R.dimen.popup_width);
+//        getDialog().getWindow().setLayout(300, 400);
     }
-
 }
