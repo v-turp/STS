@@ -8,15 +8,19 @@
 
     <include layout="@layout/toolbar_component" />
     <!-- fragment containers-->
-
-    <FrameLayout
-        android:id="@+id/flLogoFragmentContainer"
-        android:background="@color/amber_900"
-        android:layout_weight="1"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_width="0dp"
-        android:layout_marginRight="@dimen/standard_margin_size"
-        android:foreground="@drawable/sts_logo_original"/>
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/flLogoFragmentContainer"
+            android:background="@color/amber_900"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_marginRight="@dimen/standard_margin_size"
+            android:foreground="@drawable/sts_logo_original"/>
 
     <LinearLayout
         android:orientation="vertical"
@@ -25,22 +29,23 @@
         android:layout_weight="2"
         android:weightSum="2">
 
-        <LinearLayout
-            android:id="@+id/llTop"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginRight="@dimen/standard_margin_size"
-            android:layout_weight="1"
-            android:weightSum="4">
+            <LinearLayout
+                android:id="@+id/llTop"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/standard_margin_size"
+                android:layout_weight="1"
+                android:weightSum="4">
 
-            <FrameLayout
-                android:id="@+id/flMusicFragmentContainer"
-                android:background="@color/red_500"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/standard_margin_size"
-                android:layout_weight="1"/>
+                <FrameLayout
+                    android:id="@+id/flLoginFragmentContainer"
+                    android:background="@color/red_500"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/standard_margin_size"
+                    android:layout_weight="2"
+                    android:text="Login Fragment"/>
 
             <FrameLayout
                 android:id="@+id/flSignUpFragmentContainer"
@@ -67,13 +72,13 @@
             android:layout_weight="1"
             android:weightSum="4">
 
-            <FrameLayout
-                android:id="@+id/flLoginFragmentContainer"
-                android:background="@color/green_900"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/standard_margin_size"
-                android:layout_weight="2"/>
+                <FrameLayout
+                    android:id="@+id/flRegisterWorksFragmentContainer"
+                    android:background="@color/green_900"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/standard_margin_size"
+                    android:layout_weight="4"/>
 
             <FrameLayout
                 android:id="@+id/flVideoFragmentContainer"
@@ -83,12 +88,14 @@
                 android:layout_marginRight="@dimen/standard_margin_size"
                 android:layout_weight="1"/>
 
-            <FrameLayout
-                android:id="@+id/flRegisterWorksFragmentContainer"
-                android:background="@color/green_200"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                <FrameLayout
+                    android:id="@+id/flMusicFragmentContainer"
+                    android:background="@color/green_200"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
