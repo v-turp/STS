@@ -15,12 +15,13 @@
         <activity
             android:name=".presentation.view.activity.LandingActivity"
             android:label="@string/title_activity_entry"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
 
         <!-- SplashActivity page Activity -->
         <activity
             android:name=".presentation.view.activity.SplashActivity"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
