@@ -39,6 +39,8 @@
     <dimen name="subtitle_bottom_margin">28dp</dimen>
     <dimen name="fingerprint_icon_right_margin">16dp</dimen>
     <dimen name="touch_sensor_height">40dp</dimen>
+    <dimen name="touch_sensor_circle_width">40dp</dimen>
+    <dimen name="touch_sensor_circle_height">40dp</dimen>
     <dimen name="touch_sensor_call_to_action_top_padding">12dp</dimen>
     <dimen name="touch_sensor_call_to_action_bottom_padding">12dp</dimen>
     <dimen name="button_container_height">52dp</dimen>
@@ -46,4 +48,8 @@
     <dimen name="button_height">36dp</dimen>
     <dimen name="button_right_padding">8dp</dimen>
     <dimen name="button_left_padding">8dp</dimen>
+    <!--self set fingerprint dialog metrics -->
+    <dimen name="fingerprint_dialog_header_text">24sp</dimen>
+    <dimen name="fingerprint_dialog_text">18sp</dimen>
+    <dimen name="fingerprint_image_padding">6dp</dimen>
 </resources>

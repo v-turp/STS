@@ -40,6 +40,6 @@ public class FingerprintDialogFragment extends DialogFragment {
     public void onResume() {
         super.onResume();
 //        int width = getResources().getDimensionPixelSize(android.R.dimen.popup_width);
-//        getDialog().getWindow().setLayout(300, 400);
+//        getDialog().getWindow().setLayout(700, 500);
     }
 }

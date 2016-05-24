@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+     <solid android:color="@color/fingerprint_background_color"/>
+    <size android:height="@dimen/touch_sensor_circle_height"
+        android:width="@dimen/touch_sensor_circle_width"/>
+</shape>
