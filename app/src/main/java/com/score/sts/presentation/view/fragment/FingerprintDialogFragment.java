@@ -1,19 +1,16 @@
 package com.score.sts.presentation.view.fragment;
 
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 
 import com.score.sts.R;
-import com.score.sts.presentation.view.activity.ProfileActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,13 +30,18 @@ public class FingerprintDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fingerprint_dialog_fragment, container, false);
+        View view = inflater.inflate(R.layout.fingerprint_dialog_fragment, container, false);
+        // TODO uncomment this if you don't want to have the title area. be aware that you will have
+        // to adjust the sytles for the buttons because the text on the cancel button goes to the next line
+        /*if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
+            getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        }*/
+        return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-//        int width = getResources().getDimensionPixelSize(android.R.dimen.popup_width);
-//        getDialog().getWindow().setLayout(700, 500);
+
     }
 }
