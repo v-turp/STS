@@ -31,4 +31,13 @@
     <dimen name="app_bar_title_default_left_padding">72dp</dimen>
     <dimen name="app_bar_title_default_bottom_padding">20dp</dimen>
 
+    <!-- BEGIN: signup dialog dimens -->
+    <dimen name="signup_dialog_header_height">64dp</dimen>
+    <dimen name="signup_dialog_entries_top_margin">4dp</dimen>
+    <dimen name="signup_dialog_entries_alt_top_margin">16dp</dimen>
+    <dimen name="signup_dialog_entries_left_margin">8dp</dimen>
+    <dimen name="signup_dialog_entries_right_margin">8dp</dimen>
+    <dimen name="signup_dialog_entries_bottom_margin">4dp</dimen>
+    <dimen name="signup_dialog_entries_alt_bottom_margin">16dp</dimen>
+
 </resources>
