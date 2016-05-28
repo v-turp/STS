@@ -21,33 +21,74 @@
         <item name="android:layout_marginBottom">4dp</item>
     </style>
 
-    <style name="style_et_lname_create_account_dialog">
-        <item name="android:layout_marginTop">4dp</item>
-        <item name="android:layout_marginLeft">8dp</item>
-        <item name="android:layout_marginRight">8dp</item>
-        <item name="android:layout_marginBottom">4dp</item>
-    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="style_et_uname_create_account_dialog">
-        <item name="android:layout_marginTop">4dp</item>
-        <item name="android:layout_marginLeft">8dp</item>
-        <item name="android:layout_marginRight">8dp</item>
-        <item name="android:layout_marginBottom">4dp</item>
-    </style>
-
-    <style name="style_et_pword_create_account_dialog">
-        <item name="android:layout_marginTop">4dp</item>
-        <item name="android:layout_marginLeft">8dp</item>
-        <item name="android:layout_marginRight">8dp</item>
-        <item name="android:layout_marginBottom">16dp</item>
-        <item name="android:inputType">textPassword</item>
-    </style>
-
-    <style name="style_create_account_header_text">
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!--BEGIN: sign-up dialog fragment -->
+    <style name="signup_dialog_header">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/signup_dialog_header_height</item>
         <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:background">@color/deep_orange_900</item>
+        <item name="android:background">@color/blue_grey_900</item>
     </style>
 
+    <style name="et_fname_signup_dialog">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/signup_dialog_entries_alt_top_margin</item>
+        <item name="android:layout_marginLeft">@dimen/signup_dialog_entries_left_margin</item>
+        <item name="android:layout_marginRight">@dimen/signup_dialog_entries_right_margin</item>
+        <item name="android:layout_marginBottom">@dimen/signup_dialog_entries_bottom_margin</item>
+        <item name="android:textColorHint">@android:color/black</item>
+        <item name="android:textColor">@color/signup_dialog_text_color</item>
+    </style>
+
+    <style name="et_lname_signup_dialog">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/signup_dialog_entries_top_margin</item>
+        <item name="android:layout_marginLeft">@dimen/signup_dialog_entries_left_margin</item>
+        <item name="android:layout_marginRight">@dimen/signup_dialog_entries_right_margin</item>
+        <item name="android:layout_marginBottom">@dimen/signup_dialog_entries_bottom_margin</item>
+        <item name="android:textColorHint">@android:color/black</item>
+        <item name="android:textColor">@color/signup_dialog_text_color</item>
+    </style>
+
+    <style name="et_email_signup_dialog">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/signup_dialog_entries_top_margin</item>
+        <item name="android:layout_marginLeft">@dimen/signup_dialog_entries_left_margin</item>
+        <item name="android:layout_marginRight">@dimen/signup_dialog_entries_right_margin</item>
+        <item name="android:layout_marginBottom">@dimen/signup_dialog_entries_bottom_margin</item>
+        <item name="android:textColorHint">@android:color/black</item>
+        <item name="android:textColor">@color/signup_dialog_text_color</item>
+    </style>
+
+    <style name="et_uname_signup_dialog">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/signup_dialog_entries_top_margin</item>
+        <item name="android:layout_marginLeft">@dimen/signup_dialog_entries_left_margin</item>
+        <item name="android:layout_marginRight">@dimen/signup_dialog_entries_right_margin</item>
+        <item name="android:layout_marginBottom">@dimen/signup_dialog_entries_bottom_margin</item>
+        <item name="android:textColorHint">@android:color/black</item>
+        <item name="android:textColor">@color/signup_dialog_text_color</item>
+    </style>
+
+    <style name="et_pword_signup_dialog">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/signup_dialog_entries_top_margin</item>
+        <item name="android:layout_marginLeft">@dimen/signup_dialog_entries_left_margin</item>
+        <item name="android:layout_marginRight">@dimen/signup_dialog_entries_right_margin</item>
+        <item name="android:layout_marginBottom">@dimen/signup_dialog_entries_alt_bottom_margin</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:textColorHint">@android:color/black</item>
+        <item name="android:textColor">@color/signup_dialog_text_color</item>
+    </style>
+
+    <!-- BEGIN: login dialog fragment -->
     <style name="style_login_dialog_header_text">
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:background">@color/deep_orange_900</item>

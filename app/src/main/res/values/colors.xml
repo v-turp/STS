@@ -298,4 +298,6 @@
     <color name="blue_grey_900">#263238</color>
 
     <color name="fingerprint_background_color">#607D8B</color>
+    <!-- BEGIN: signup dialog colors -->
+    <color name="signup_dialog_text_color">@android:color/black</color>
 </resources>
