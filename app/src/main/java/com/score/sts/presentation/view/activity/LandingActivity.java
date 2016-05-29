@@ -12,13 +12,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.score.sts.R;
 import com.score.sts.presentation.view.fragment.ContactFragment;
 import com.score.sts.presentation.view.fragment.FingerprintDialogFragment;
-import com.score.sts.presentation.view.fragment.LoginDialogFragment;
 import com.score.sts.presentation.view.fragment.LoginFragment;
 import com.score.sts.presentation.view.fragment.MusicFragment;
 import com.score.sts.presentation.view.fragment.RegisterWorkFragment;
@@ -95,46 +93,31 @@ public class LandingActivity extends AppCompatActivity {
         }
 
         showCreateAccountDialog();
-//        showLoginDialogFragment();
         showFingerprintDialogFragment();
     } // end method init
 
     private void showCreateAccountDialog(){
 
-        final DialogFragment createAccountDialog = new SignUpDialogFragment();
+        final DialogFragment signupDialog = new SignUpDialogFragment();
         final FrameLayout signUpFragContainer = (FrameLayout) findViewById(R.id.flSignUpFragmentContainer);
         if (signUpFragContainer != null) {
             signUpFragContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    createAccountDialog.show(getFragmentManager(), "sign up fragment");
+                    signupDialog.show(getFragmentManager(), "sign up fragment");
                 }
             });
         }
-    }
-
-    private void showLoginDialogFragment(){
-        final DialogFragment loginDialog = new LoginDialogFragment();
-        final FrameLayout loginFracContainer = (FrameLayout) findViewById(R.id.flLoginFragmentContainer);
-        if(loginFracContainer != null){
-            loginFracContainer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    loginDialog.show(getFragmentManager(), "login fragment");
-                }
-            });
-        }
-
     }
 
     private void showFingerprintDialogFragment(){
-        final DialogFragment fingerprintDialog = new FingerprintDialogFragment();
+        final DialogFragment fingerprintLoginDialog = new FingerprintDialogFragment();
         final FrameLayout loginFracContainer = (FrameLayout) findViewById(R.id.flLoginFragmentContainer);
         if(loginFracContainer != null){
             loginFracContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    fingerprintDialog.show(getFragmentManager(), "fingerprint fragment");
+                    fingerprintLoginDialog.show(getFragmentManager(), "fingerprint fragment");
                 }
             });
         }

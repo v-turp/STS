@@ -1,5 +1,5 @@
 <resources>
-
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar"/>
    <!-- <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -13,6 +13,66 @@
         <item name="android:windowActivityTransitions">true</item>
     </style>-->
 
+   <!--BEGIN: sign-up dialog fragment -->
+   <style name="signup_dialog_header">
+      <item name="android:layout_width">match_parent</item>
+      <item name="android:layout_height">@dimen/signup_dialog_header_height</item>
+      <item name="android:layout_gravity">center_horizontal</item>
+      <item name="android:background">@color/blue_grey_900</item>
+   </style>
+
+   <style name="et_fname_signup_dialog">
+      <item name="android:layout_width">match_parent</item>
+      <item name="android:layout_height">wrap_content</item>
+      <item name="android:layout_marginTop">@dimen/signup_dialog_entries_alt_top_margin</item>
+      <item name="android:layout_marginLeft">@dimen/signup_dialog_entries_left_margin</item>
+      <item name="android:layout_marginRight">@dimen/signup_dialog_entries_right_margin</item>
+      <item name="android:layout_marginBottom">@dimen/signup_dialog_entries_bottom_margin</item>
+      <item name="android:textColorHint">@android:color/black</item>
+   </style>
+
+   <style name="et_lname_signup_dialog">
+      <item name="android:layout_width">match_parent</item>
+      <item name="android:layout_height">wrap_content</item>
+      <item name="android:layout_marginTop">@dimen/signup_dialog_entries_top_margin</item>
+      <item name="android:layout_marginLeft">@dimen/signup_dialog_entries_left_margin</item>
+      <item name="android:layout_marginRight">@dimen/signup_dialog_entries_right_margin</item>
+      <item name="android:layout_marginBottom">@dimen/signup_dialog_entries_bottom_margin</item>
+      <item name="android:textColorHint">@android:color/black</item>
+   </style>
+
+   <style name="et_email_signup_dialog">
+      <item name="android:layout_width">match_parent</item>
+      <item name="android:layout_height">wrap_content</item>
+      <item name="android:layout_marginTop">@dimen/signup_dialog_entries_top_margin</item>
+      <item name="android:layout_marginLeft">@dimen/signup_dialog_entries_left_margin</item>
+      <item name="android:layout_marginRight">@dimen/signup_dialog_entries_right_margin</item>
+      <item name="android:layout_marginBottom">@dimen/signup_dialog_entries_bottom_margin</item>
+      <item name="android:textColorHint">@android:color/black</item>
+   </style>
+
+   <style name="et_uname_signup_dialog">
+      <item name="android:layout_width">match_parent</item>
+      <item name="android:layout_height">wrap_content</item>
+      <item name="android:layout_marginTop">@dimen/signup_dialog_entries_top_margin</item>
+      <item name="android:layout_marginLeft">@dimen/signup_dialog_entries_left_margin</item>
+      <item name="android:layout_marginRight">@dimen/signup_dialog_entries_right_margin</item>
+      <item name="android:layout_marginBottom">@dimen/signup_dialog_entries_bottom_margin</item>
+      <item name="android:textColorHint">@android:color/black</item>
+   </style>
+
+   <style name="et_pword_signup_dialog">
+      <item name="android:layout_width">match_parent</item>
+      <item name="android:layout_height">wrap_content</item>
+      <item name="android:layout_marginTop">@dimen/signup_dialog_entries_top_margin</item>
+      <item name="android:layout_marginLeft">@dimen/signup_dialog_entries_left_margin</item>
+      <item name="android:layout_marginRight">@dimen/signup_dialog_entries_right_margin</item>
+      <item name="android:layout_marginBottom">@dimen/signup_dialog_entries_alt_bottom_margin</item>
+      <item name="android:inputType">textPassword</item>
+      <item name="android:textColorHint">@android:color/black</item>
+   </style>
+   <!--END: sign-up dialog fragment -->
+
    <!-- fingerprint dialog styles -->
    <style name="fingerprint_dialog">
       <item name="android:layout_width">match_parent</item>
@@ -24,7 +84,7 @@
       <item name="android:background">@android:color/white</item>
    </style>
 
-   <style name="fingerprint_dialogheader">
+   <style name="fingerprint_dialog_header">
       <item name="android:layout_width">wrap_content</item>
       <item name="android:layout_height">wrap_content</item>
       <item name="android:layout_marginBottom">@dimen/title_bottom_margin</item>

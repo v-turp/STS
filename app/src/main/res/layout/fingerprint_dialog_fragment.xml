@@ -7,7 +7,7 @@
     <TextView
         android:id="@+id/text_fingerprint_dialog_header"
         android:text="@string/fingerprint_login"
-        style="@style/fingerprint_dialogheader" />
+        style="@style/fingerprint_dialog_header" />
 
     <TextView
         android:id="@+id/text_fingerprint_dialog_use_your_fingerprint"
