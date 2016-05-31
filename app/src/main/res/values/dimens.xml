@@ -53,7 +53,7 @@
     <dimen name="fingerprint_dialog_text">18sp</dimen>
     <dimen name="fingerprint_image_padding">6dp</dimen>
     <!-- BEGIN: signup dialog dimens -->
-    <dimen name="signup_dialog_header_height">64dp</dimen>
+    <dimen name="signup_dialog_header_height">55dp</dimen>
     <dimen name="signup_dialog_entries_top_margin">4dp</dimen>
     <dimen name="signup_dialog_entries_alt_top_margin">16dp</dimen>
     <dimen name="signup_dialog_entries_left_margin">8dp</dimen>

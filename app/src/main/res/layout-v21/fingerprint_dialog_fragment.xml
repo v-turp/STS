@@ -7,12 +7,11 @@
 
     <!-- TODO: Update blank fragment layout -->
     <!--NOTE: this layout is different from the regular retro layout.
-    DO NOT COPY AND PASTE ANY CHANGES FROM THE nonV21 sister layout -->
+    DO NOT COPY AND PASTE ANY CHANGES FROM THE nonV21 sister layout in here -->
     <!-- this view is simply a placeholder to make it look like previous version dialog fragments with a header -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:background="@android:color/black"
-        android:layout_height="@dimen/signup_dialog_header_height"/>
+    <LinearLayout style="@style/dialog_header_custom" />
+
+    <View style="@style/accent_bar" />
 
     <LinearLayout style="@style/fingerprint_dialog">
 

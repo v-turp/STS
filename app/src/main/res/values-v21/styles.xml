@@ -13,6 +13,18 @@
         <item name="android:windowActivityTransitions">true</item>
     </style>-->
 
+   <style name="accent_bar">
+      <item name="android:layout_width">match_parent</item>
+      <item name="android:layout_height">2dp</item>
+      <item name="android:background">@color/blue_500</item>
+   </style>
+
+   <style name="dialog_header_custom">
+      <item name="android:layout_width">match_parent</item>
+      <item name="android:background">@color/grey_900</item>
+      <item name="android:layout_height">@dimen/signup_dialog_header_height</item>
+   </style>
+
    <!--BEGIN: sign-up dialog fragment -->
    <style name="signup_dialog_header">
       <item name="android:layout_width">match_parent</item>
@@ -158,4 +170,5 @@
       <item name="android:textSize">@dimen/fingerprint_dialog_text</item>
       <item name="android:textStyle">normal</item>
    </style>
+
 </resources>
