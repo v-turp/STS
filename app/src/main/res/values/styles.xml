@@ -151,7 +151,7 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_marginRight">@dimen/fingerprint_icon_right_margin</item>
         <item name="android:padding">@dimen/fingerprint_image_padding</item>
-        <item name="android:background">@drawable/fingerprint_background_circle</item>
+        <!--<item name="android:background">@drawable/fingerprint_background_circle</item>-->
     </style>
 
     <style name="fingerprint_dialog_touch_sensor">
@@ -194,5 +194,109 @@
         <item name="android:textSize">@dimen/fingerprint_dialog_text</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <!-- LANDING PAGE STYLES -->
+    <style name="ll_frames_container">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="logo_frame_container">
+        <item name="android:background">@android:color/white</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
+        <item name="android:foreground">@drawable/sts_logo_original</item>
+    </style>
+
+    <style name="ll_rows_container">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:weightSum">2</item>
+    </style>
+
+    <style name="ll_top">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_marginBottom">@dimen/standard_margin_size</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:weightSum">4</item>
+    </style>
+
+    <style name="fl_login_frame_container">
+        <item name="android:background">@color/red_500</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
+        <item name="android:layout_weight">2</item>
+    </style>
+
+    <style name="fl_login_frame_container_landscape">
+        <item name="android:background">@color/red_500</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="fl_sign_up_frame_container">
+        <item name="android:background">@color/red_900</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
+        <item name="android:layout_weight">2</item>
+    </style>
+
+    <style name="fl_contacts_fragment_container">
+        <item name="android:background">@color/red_200</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="ll_bottom">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:weightSum">4</item>
+    </style>
+
+    <style name="fl_register_work_frame_container">
+        <item name="android:background">@color/green_900</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
+        <item name="android:layout_weight">4</item>
+    </style>
+
+    <style name="fl_register_work_frame_container_landscape">
+        <item name="android:background">@color/green_900</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
+        <item name="android:layout_weight">2</item>
+    </style>
+
+    <style name="fl_video_frame_container">
+        <item name="android:background">@color/green_500</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="fl_music_frame_container">
+        <item name="android:background">@color/green_200</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
 
 </resources>

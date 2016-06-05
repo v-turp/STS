@@ -1,7 +1,9 @@
 package com.score.sts.presentation.view.activity;
 
+import android.animation.Animator;
 import android.app.DialogFragment;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -78,17 +81,17 @@ public class LandingActivity extends AppCompatActivity {
 
         //--- set fragments according to orientation
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            supportFragmentTransaction.add(R.id.flMusicFragmentContainer, mMusicFragment);
-            supportFragmentTransaction.add(R.id.flSignUpFragmentContainer, mSignUpFragment);
-            supportFragmentTransaction.add(R.id.flContactsFragmentContainer, mContactFragment);
-            supportFragmentTransaction.add(R.id.flVideoFragmentContainer, mVideosFragment);
-            supportFragmentTransaction.add(R.id.flRegisterWorksFragmentContainer, mRegisterWorkFragment);
-            supportFragmentTransaction.add(R.id.flLoginFragmentContainer, mLoginFragment);
+            supportFragmentTransaction.add(R.id.fl_music_frame_container, mMusicFragment);
+            supportFragmentTransaction.add(R.id.fl_sign_up_frame_container, mSignUpFragment);
+            supportFragmentTransaction.add(R.id.fl_contacts_fragment_container, mContactFragment);
+            supportFragmentTransaction.add(R.id.fl_video_frame_container, mVideosFragment);
+            supportFragmentTransaction.add(R.id.fl_register_work_frame_container, mRegisterWorkFragment);
+            supportFragmentTransaction.add(R.id.fl_login_frame_container, mLoginFragment);
             supportFragmentTransaction.commit();
         }else if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
-            supportFragmentTransaction.add(R.id.flSignUpFragmentContainer, mSignUpFragment);
-            supportFragmentTransaction.add(R.id.flRegisterWorksFragmentContainer, mRegisterWorkFragment);
-            supportFragmentTransaction.add(R.id.flLoginFragmentContainer, mLoginFragment);
+            supportFragmentTransaction.add(R.id.fl_sign_up_frame_container, mSignUpFragment);
+            supportFragmentTransaction.add(R.id.fl_register_work_frame_container, mRegisterWorkFragment);
+            supportFragmentTransaction.add(R.id.fl_login_frame_container, mLoginFragment);
             supportFragmentTransaction.commit();
         }
 
@@ -99,7 +102,7 @@ public class LandingActivity extends AppCompatActivity {
     private void showCreateAccountDialog(){
 
         final DialogFragment signupDialog = new SignUpDialogFragment();
-        final FrameLayout signUpFragContainer = (FrameLayout) findViewById(R.id.flSignUpFragmentContainer);
+        final FrameLayout signUpFragContainer = (FrameLayout) findViewById(R.id.fl_sign_up_frame_container);
         if (signUpFragContainer != null) {
             signUpFragContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -112,15 +115,32 @@ public class LandingActivity extends AppCompatActivity {
 
     private void showFingerprintDialogFragment(){
         final DialogFragment fingerprintLoginDialog = new FingerprintDialogFragment();
-        final FrameLayout loginFracContainer = (FrameLayout) findViewById(R.id.flLoginFragmentContainer);
+        final FrameLayout loginFracContainer = (FrameLayout) findViewById(R.id.fl_login_frame_container);
         if(loginFracContainer != null){
             loginFracContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     fingerprintLoginDialog.show(getFragmentManager(), "fingerprint fragment");
+                    setCircularReveal(findViewById(R.id.flLogoFrameContainer));
                 }
             });
         }
 
+    }
+
+    private void setCircularReveal(View view){
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+            int cx = view.getWidth() / 2;
+            int cy = view.getHeight() / 2;
+
+            float finalRadius = (float) Math.hypot(cx, cy);
+
+            Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
+            anim.setDuration(1000);
+            view.setVisibility(View.VISIBLE);
+            anim.start();
+        }
     }
 }
