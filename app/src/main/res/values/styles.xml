@@ -298,5 +298,129 @@
         <item name="android:layout_weight">1</item>
     </style>
 
+    <!-- PROFILE PAGE STYLES -->
+    <style name="ll_profile_frame_container">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="fl_profile_photo">
+        <item name="android:background">@color/amber_900</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
+        <item name="android:foreground">@drawable/girl_avatar</item>
+    </style>
+
+    <style name="ll_profile_rows">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:weightSum">2</item>
+    </style>
+
+    <style name="ll_profile_top">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_marginBottom">@dimen/standard_margin_size</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:weightSum">4</item>
+    </style>
+
+    <style name="fl_profile_frame">
+        <item name="android:background">@color/red_500</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
+        <item name="android:layout_weight">2</item>
+    </style>
+
+    <style name="fl_profile_frame_landscape">
+        <item name="android:background">@color/red_200</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="fl_profile_music_frame">
+        <item name="android:background">@color/red_900</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
+        <item name="android:layout_weight">2</item>
+    </style>
+
+    <style name="fl_profile_contacts_fragment">
+        <item name="android:background">@color/red_200</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="fl_profile_contacts_fragment_landscape">
+        <item name="android:background">@color/green_200</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="ll_profile_bottom">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:weightSum">4</item>
+    </style>
+
+    <style name="fl_profile_register_work_frame">
+        <item name="android:background">@color/green_900</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
+        <item name="android:layout_weight">4</item>
+    </style>
+
+    <style name="fl_profile_register_work_frame_landscape">
+        <item name="android:background">@color/yellow_900</item>
+        <item name="android:layout_marginTop">@dimen/standard_margin_size</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+    </style>
+
+    <style name="fl_profile_videos_frame">
+        <item name="android:background">@color/green_500</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="fl_profile_bio_frame">
+        <item name="android:background">@color/green_200</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="fl_profile_bio_frame_landing">
+        <item name="android:background">@color/red_500</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="fl_profile_msg_chat_facetime_landing">
+        <item name="android:background">@color/green_900</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
+        <item name="android:layout_weight">2</item>
+    </style>
+
 
 </resources>

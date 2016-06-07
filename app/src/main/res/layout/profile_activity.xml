@@ -7,93 +7,54 @@
 
     <include layout="@layout/toolbar_component" />
 
-    <!-- fragment containers-->
+    <View style="@style/accent_bar"/>
+
+    <!-- frame container-->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:id="@+id/ll_profile_frame_container"
+        style="@style/ll_profile_frame_container">
 
         <FrameLayout
             android:id="@+id/fl_profile_photo"
-            android:background="@color/amber_900"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_marginRight="@dimen/standard_margin_size"
-            android:foreground="@drawable/girl_avatar"/>
+            style="@style/fl_profile_photo" />
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:weightSum="2">
+            android:id="@+id/ll_profile_rows"
+            style="@style/ll_profile_rows">
 
             <LinearLayout
                 android:id="@+id/ll_profile_top"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="@dimen/standard_margin_size"
-                android:layout_weight="1"
-                android:weightSum="4">
+                style="@style/ll_profile_top">
 
                 <FrameLayout
-                    android:id="@+id/fl_profile_fragment"
-                    android:background="@color/red_500"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/standard_margin_size"
-                    android:layout_weight="2"
-                    android:text="Login Fragment"/>
+                    android:id="@+id/fl_profile_frame"
+                    style="@style/fl_profile_frame" />
 
                 <FrameLayout
-                    android:id="@+id/fl_profile_music_fragment"
-                    android:background="@color/red_900"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/standard_margin_size"
-                    android:layout_weight="2"/>
+                    android:id="@+id/fl_profile_music_frame"
+                    style="@style/fl_profile_music_frame" />
 
                 <FrameLayout
                     android:id="@+id/fl_profile_contacts_fragment"
-                    android:background="@color/red_200"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    style="@style/fl_profile_contacts_fragment" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:id="@+id/ll_profile_bottom"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:weightSum="4">
+                style="@style/ll_profile_bottom">
 
                 <FrameLayout
-                    android:id="@+id/fl_profile_register_work_fragment"
-                    android:background="@color/green_900"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/standard_margin_size"
-                    android:layout_weight="4"/>
+                    android:id="@+id/fl_profile_register_work_frame"
+                    style="@style/fl_profile_register_work_frame" />
 
                 <FrameLayout
-                    android:id="@+id/fl_profile_videos_fragment"
-                    android:background="@color/green_500"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/standard_margin_size"
-                    android:layout_weight="1"/>
+                    android:id="@+id/fl_profile_videos_frame"
+                    style="@style/fl_profile_videos_frame" />
 
                 <FrameLayout
-                    android:id="@+id/fl_profile_bio_fragment"
-                    android:background="@color/green_200"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:id="@+id/fl_profile_bio_frame"
+                    style="@style/fl_profile_bio_frame" />
 
             </LinearLayout>
 
