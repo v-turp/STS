@@ -119,12 +119,12 @@ public class ProfileActivity extends AppCompatActivity {
         MessageChatProfileFragment messageChatProfileFragment = new MessageChatProfileFragment();
 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-            ft.add(R.id.fl_profile_fragment, picturesProfileFragment);
-            ft.add(R.id.fl_profile_music_fragment, musicProfileFragment);
+            ft.add(R.id.fl_profile_frame, picturesProfileFragment);
+            ft.add(R.id.fl_profile_music_frame, musicProfileFragment);
             ft.add(R.id.fl_profile_contacts_fragment, contactsProfileFragment);
-            ft.add(R.id.fl_profile_register_work_fragment, registerWorkProfileFragment);
-            ft.add(R.id.fl_profile_bio_fragment, bioProfileFragment);
-            ft.add(R.id.fl_profile_videos_fragment, videosProfileFragment);
+            ft.add(R.id.fl_profile_register_work_frame, registerWorkProfileFragment);
+            ft.add(R.id.fl_profile_bio_frame, bioProfileFragment);
+            ft.add(R.id.fl_profile_videos_frame, videosProfileFragment);
             ft.add(R.id.fl_profile_msg_chat_facetime, messageChatProfileFragment);
             ft.commit();
         }
