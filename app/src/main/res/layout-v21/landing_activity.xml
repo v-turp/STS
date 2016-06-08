@@ -28,9 +28,11 @@
             android:id="@+id/ll_top"
             style="@style/ll_top">
 
-            <FrameLayout
-                android:id="@+id/fl_login_frame_container"
-                style="@style/fl_login_frame_container"/>
+            <include layout="@layout/partial_landing_activity_login"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:layout_marginRight="@dimen/standard_margin_size"/>
 
             <FrameLayout
                 android:id="@+id/fl_sign_up_frame_container"

@@ -15,12 +15,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.score.sts.R;
 import com.score.sts.presentation.view.fragment.ContactFragment;
 import com.score.sts.presentation.view.fragment.FingerprintDialogFragment;
-import com.score.sts.presentation.view.fragment.LoginFragment;
 import com.score.sts.presentation.view.fragment.MusicFragment;
 import com.score.sts.presentation.view.fragment.SignUpDialogFragment;
 import com.score.sts.presentation.view.fragment.SignUpFragment;
@@ -75,7 +75,6 @@ public class LandingActivity extends AppCompatActivity {
         SignUpFragment mSignUpFragment = new SignUpFragment();
         ContactFragment mContactFragment = new ContactFragment();
         VideosFragment mVideosFragment = new VideosFragment();
-        LoginFragment mLoginFragment = new LoginFragment();
 
         //--- set fragments according to orientation
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
@@ -83,11 +82,9 @@ public class LandingActivity extends AppCompatActivity {
             supportFragmentTransaction.add(R.id.fl_sign_up_frame_container, mSignUpFragment);
             supportFragmentTransaction.add(R.id.fl_contacts_fragment_container, mContactFragment);
             supportFragmentTransaction.add(R.id.fl_video_frame_container, mVideosFragment);
-            supportFragmentTransaction.add(R.id.fl_login_frame_container, mLoginFragment);
             supportFragmentTransaction.commit();
         }else if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
             supportFragmentTransaction.add(R.id.fl_sign_up_frame_container, mSignUpFragment);
-            supportFragmentTransaction.add(R.id.fl_login_frame_container, mLoginFragment);
             supportFragmentTransaction.commit();
         }
 
@@ -111,9 +108,9 @@ public class LandingActivity extends AppCompatActivity {
 
     private void showFingerprintDialogFragment(){
         final DialogFragment fingerprintLoginDialog = new FingerprintDialogFragment();
-        final FrameLayout loginFracContainer = (FrameLayout) findViewById(R.id.fl_login_frame_container);
-        if(loginFracContainer != null){
-            loginFracContainer.setOnClickListener(new View.OnClickListener() {
+        ImageView imageLogin = (ImageView) findViewById(R.id.image_login);
+        if(imageLogin != null){
+            imageLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     fingerprintLoginDialog.show(getFragmentManager(), "fingerprint fragment");
