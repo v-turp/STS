@@ -45,9 +45,12 @@
                 android:id="@+id/ll_bottom"
                 style="@style/ll_bottom">
 
-                <FrameLayout
-                    android:id="@+id/fl_register_work_frame_container"
-                    style="@style/fl_register_work_frame_container_landscape" />
+                <include
+                    layout="@layout/partial_landing_activity_register_work"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:layout_marginRight="@dimen/standard_margin_size"/>
 
                 <FrameLayout
                     android:id="@+id/fl_video_frame_container"

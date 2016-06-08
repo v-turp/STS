@@ -22,7 +22,6 @@ import com.score.sts.presentation.view.fragment.ContactFragment;
 import com.score.sts.presentation.view.fragment.FingerprintDialogFragment;
 import com.score.sts.presentation.view.fragment.LoginFragment;
 import com.score.sts.presentation.view.fragment.MusicFragment;
-import com.score.sts.presentation.view.fragment.RegisterWorkFragment;
 import com.score.sts.presentation.view.fragment.SignUpDialogFragment;
 import com.score.sts.presentation.view.fragment.SignUpFragment;
 import com.score.sts.presentation.view.fragment.VideosFragment;
@@ -76,7 +75,6 @@ public class LandingActivity extends AppCompatActivity {
         SignUpFragment mSignUpFragment = new SignUpFragment();
         ContactFragment mContactFragment = new ContactFragment();
         VideosFragment mVideosFragment = new VideosFragment();
-        RegisterWorkFragment mRegisterWorkFragment = new RegisterWorkFragment();
         LoginFragment mLoginFragment = new LoginFragment();
 
         //--- set fragments according to orientation
@@ -85,12 +83,10 @@ public class LandingActivity extends AppCompatActivity {
             supportFragmentTransaction.add(R.id.fl_sign_up_frame_container, mSignUpFragment);
             supportFragmentTransaction.add(R.id.fl_contacts_fragment_container, mContactFragment);
             supportFragmentTransaction.add(R.id.fl_video_frame_container, mVideosFragment);
-            supportFragmentTransaction.add(R.id.fl_register_work_frame_container, mRegisterWorkFragment);
             supportFragmentTransaction.add(R.id.fl_login_frame_container, mLoginFragment);
             supportFragmentTransaction.commit();
         }else if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
             supportFragmentTransaction.add(R.id.fl_sign_up_frame_container, mSignUpFragment);
-            supportFragmentTransaction.add(R.id.fl_register_work_frame_container, mRegisterWorkFragment);
             supportFragmentTransaction.add(R.id.fl_login_frame_container, mLoginFragment);
             supportFragmentTransaction.commit();
         }

@@ -46,17 +46,19 @@
             android:id="@+id/ll_bottom"
             style="@style/ll_bottom">
 
-                <FrameLayout
-                    android:id="@+id/fl_register_work_frame_container"
-                    style="@style/fl_register_work_frame_container"/>
+                <include
+                    layout="@layout/partial_landing_activity_register_work"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/standard_margin_size"/>
 
-                <FrameLayout
-                    android:id="@+id/fl_video_frame_container"
-                    style="@style/fl_video_frame_container"/>
+                <!--<FrameLayout-->
+                    <!--android:id="@+id/fl_video_frame_container"-->
+                    <!--style="@style/fl_video_frame_container"/>-->
 
-                <FrameLayout
-                    android:id="@+id/fl_music_frame_container"
-                    style="@style/fl_music_frame_container"/>
+                <!--<FrameLayout-->
+                    <!--android:id="@+id/fl_music_frame_container"-->
+                    <!--style="@style/fl_music_frame_container"/>-->
 
             </LinearLayout>
 

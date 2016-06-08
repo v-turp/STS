@@ -267,14 +267,6 @@
         <item name="android:weightSum">4</item>
     </style>
 
-    <style name="fl_register_work_frame_container">
-        <item name="android:background">@color/green_900</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
-        <item name="android:layout_weight">4</item>
-    </style>
-
     <style name="fl_register_work_frame_container_landscape">
         <item name="android:background">@color/green_900</item>
         <item name="android:layout_width">0dp</item>
