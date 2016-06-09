@@ -33,9 +33,11 @@
                 android:layout_weight="1"
                 android:layout_marginRight="@dimen/standard_margin_size"/>
 
-            <FrameLayout
+            <include layout="@layout/partial_landing_activity_sign_up"
+                style="@style/landing_activity_sign_up"/>
+            <!--<FrameLayout
                 android:id="@+id/fl_sign_up_frame_container"
-                style="@style/fl_sign_up_frame_container"/>
+                style="@style/fl_sign_up_frame_container"/>-->
 
             <FrameLayout
                 android:id="@+id/fl_contacts_fragment_container"

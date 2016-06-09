@@ -14,7 +14,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -23,7 +22,6 @@ import com.score.sts.presentation.view.fragment.ContactFragment;
 import com.score.sts.presentation.view.fragment.FingerprintDialogFragment;
 import com.score.sts.presentation.view.fragment.MusicFragment;
 import com.score.sts.presentation.view.fragment.SignUpDialogFragment;
-import com.score.sts.presentation.view.fragment.SignUpFragment;
 import com.score.sts.presentation.view.fragment.VideosFragment;
 
 
@@ -72,19 +70,16 @@ public class LandingActivity extends AppCompatActivity {
         FragmentTransaction supportFragmentTransaction = supportFragmentMgr.beginTransaction();
 
         MusicFragment mMusicFragment = new MusicFragment();
-        SignUpFragment mSignUpFragment = new SignUpFragment();
         ContactFragment mContactFragment = new ContactFragment();
         VideosFragment mVideosFragment = new VideosFragment();
 
         //--- set fragments according to orientation
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             supportFragmentTransaction.add(R.id.fl_music_frame_container, mMusicFragment);
-            supportFragmentTransaction.add(R.id.fl_sign_up_frame_container, mSignUpFragment);
             supportFragmentTransaction.add(R.id.fl_contacts_fragment_container, mContactFragment);
             supportFragmentTransaction.add(R.id.fl_video_frame_container, mVideosFragment);
             supportFragmentTransaction.commit();
         }else if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
-            supportFragmentTransaction.add(R.id.fl_sign_up_frame_container, mSignUpFragment);
             supportFragmentTransaction.commit();
         }
 
@@ -95,9 +90,9 @@ public class LandingActivity extends AppCompatActivity {
     private void showCreateAccountDialog(){
 
         final DialogFragment signupDialog = new SignUpDialogFragment();
-        final FrameLayout signUpFragContainer = (FrameLayout) findViewById(R.id.fl_sign_up_frame_container);
-        if (signUpFragContainer != null) {
-            signUpFragContainer.setOnClickListener(new View.OnClickListener() {
+        final ImageView imageSignUp = (ImageView) findViewById(R.id.image_signup);
+        if (imageSignUp != null) {
+            imageSignUp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     signupDialog.show(getFragmentManager(), "sign up fragment");
