@@ -270,11 +270,14 @@
         <item name="android:src">@drawable/motorcycle</item>
     </style>
 
-    <style name="fl_music_frame_container">
+    <style name="landing_page_bottom_row_column3">
         <item name="android:background">@color/green_200</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:src">@drawable/benzo</item>
     </style>
 
     <!-- PROFILE PAGE STYLES -->

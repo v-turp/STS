@@ -55,9 +55,8 @@
                 <ImageView
                     style="@style/landing_page_bottom_row_column2"/>
 
-                <FrameLayout
-                    android:id="@+id/fl_music_frame_container"
-                    style="@style/fl_music_frame_container"/>
+                <ImageView
+                    style="@style/landing_page_bottom_row_column3"/>
 
             </LinearLayout>
 

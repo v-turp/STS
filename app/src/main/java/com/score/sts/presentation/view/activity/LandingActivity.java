@@ -2,7 +2,6 @@ package com.score.sts.presentation.view.activity;
 
 import android.animation.Animator;
 import android.app.DialogFragment;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 
 import com.score.sts.R;
 import com.score.sts.presentation.view.fragment.FingerprintDialogFragment;
-import com.score.sts.presentation.view.fragment.MusicFragment;
 import com.score.sts.presentation.view.fragment.SignUpDialogFragment;
 
 
