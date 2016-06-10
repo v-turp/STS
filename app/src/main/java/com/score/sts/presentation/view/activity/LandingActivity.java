@@ -5,8 +5,6 @@ import android.app.DialogFragment;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -21,7 +19,6 @@ import com.score.sts.R;
 import com.score.sts.presentation.view.fragment.FingerprintDialogFragment;
 import com.score.sts.presentation.view.fragment.MusicFragment;
 import com.score.sts.presentation.view.fragment.SignUpDialogFragment;
-import com.score.sts.presentation.view.fragment.VideosFragment;
 
 
 public class LandingActivity extends AppCompatActivity {
@@ -64,22 +61,6 @@ public class LandingActivity extends AppCompatActivity {
     }
 
     public void init(){
-        // TODO attach the fragments here
-        FragmentManager supportFragmentMgr = getSupportFragmentManager();
-        FragmentTransaction supportFragmentTransaction = supportFragmentMgr.beginTransaction();
-
-        MusicFragment mMusicFragment = new MusicFragment();
-        VideosFragment mVideosFragment = new VideosFragment();
-
-        //--- set fragments according to orientation
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            supportFragmentTransaction.add(R.id.fl_music_frame_container, mMusicFragment);
-            supportFragmentTransaction.add(R.id.fl_video_frame_container, mVideosFragment);
-            supportFragmentTransaction.commit();
-        }else if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
-            supportFragmentTransaction.commit();
-        }
-
         showCreateAccountDialog();
         showFingerprintDialogFragment();
     } // end method init

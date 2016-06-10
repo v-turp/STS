@@ -259,12 +259,15 @@
         <item name="android:layout_weight">2</item>
     </style>
 
-    <style name="fl_video_frame_container">
+    <style name="landing_page_bottom_row_column2">
         <item name="android:background">@color/green_500</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:src">@drawable/motorcycle</item>
     </style>
 
     <style name="fl_music_frame_container">
