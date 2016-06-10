@@ -18,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.score.sts.R;
-import com.score.sts.presentation.view.fragment.ContactFragment;
 import com.score.sts.presentation.view.fragment.FingerprintDialogFragment;
 import com.score.sts.presentation.view.fragment.MusicFragment;
 import com.score.sts.presentation.view.fragment.SignUpDialogFragment;
@@ -70,13 +69,11 @@ public class LandingActivity extends AppCompatActivity {
         FragmentTransaction supportFragmentTransaction = supportFragmentMgr.beginTransaction();
 
         MusicFragment mMusicFragment = new MusicFragment();
-        ContactFragment mContactFragment = new ContactFragment();
         VideosFragment mVideosFragment = new VideosFragment();
 
         //--- set fragments according to orientation
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             supportFragmentTransaction.add(R.id.fl_music_frame_container, mMusicFragment);
-            supportFragmentTransaction.add(R.id.fl_contacts_fragment_container, mContactFragment);
             supportFragmentTransaction.add(R.id.fl_video_frame_container, mVideosFragment);
             supportFragmentTransaction.commit();
         }else if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){

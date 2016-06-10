@@ -37,14 +37,6 @@
             <include layout="@layout/partial_landing_activity_sign_up"
                 style="@style/landing_activity_sign_up"/>
 
-            <!--<FrameLayout-->
-            <!--android:id="@+id/fl_sign_up_frame_container"-->
-            <!--style="@style/fl_sign_up_frame_container" />-->
-
-            <FrameLayout
-                android:id="@+id/fl_contacts_fragment_container"
-                style="@style/fl_contacts_fragment_container"/>
-
         </LinearLayout>
 
         <LinearLayout
@@ -56,14 +48,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/standard_margin_size"/>
-
-                <!--<FrameLayout-->
-                    <!--android:id="@+id/fl_video_frame_container"-->
-                    <!--style="@style/fl_video_frame_container"/>-->
-
-                <!--<FrameLayout-->
-                    <!--android:id="@+id/fl_music_frame_container"-->
-                    <!--style="@style/fl_music_frame_container"/>-->
 
             </LinearLayout>
 
