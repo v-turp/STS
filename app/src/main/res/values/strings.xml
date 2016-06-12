@@ -25,6 +25,7 @@
     <string name="settings">Settings</string>
     <string name="log_out">Log Out</string>
     <string name="search">Search</string>
+    <string name="fingerprint_recognized">Fingerprint Recognized</string>
 
     <!--PROFILE FRAGMENT TITLES -->
     <string name="profile_videos_fragment">Videos</string>

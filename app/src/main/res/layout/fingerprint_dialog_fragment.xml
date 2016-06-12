@@ -28,6 +28,7 @@
         <ImageView
             android:id="@+id/image_fingerprint"
             android:src="@drawable/ic_fingerprint_white_24dp"
+            android:background="@drawable/fingerprint_background_circle"
             style="@style/fingerprint_dialog_image" />
 
         <TextView

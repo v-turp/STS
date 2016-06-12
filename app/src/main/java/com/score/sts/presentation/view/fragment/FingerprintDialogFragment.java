@@ -6,20 +6,23 @@ import android.app.DialogFragment;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.score.sts.R;
@@ -64,6 +67,7 @@ public class FingerprintDialogFragment extends DialogFragment {
     private static final String ANDROID_KEYSTORE = "AndroidKeyStore";
     private static final String KEY_NAME = "STS";
 
+    private int tempIdOfimageFingerprint;
     public FingerprintDialogFragment() {
         // Required empty public constructor
     }
@@ -74,16 +78,25 @@ public class FingerprintDialogFragment extends DialogFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fingerprint_dialog_fragment, container, false);
-        // TODO uncomment this if you don't want to have the title area. be aware that you will have
-        // to adjust the sytles for the buttons because the text on the cancel button goes to the next line
-        /*if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
-            getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        }*/
 
         // TODO create a listener for the fingerprint icon
         View.OnClickListener fingerprintListener = new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) {//---the view passed in here is th same view that set the listener.
+
+                //====TODO NOTE: this recognition change is placed here temporarily until I get the authentication working=======
+                ImageView imageView = (ImageView) view.getRootView().findViewById(R.id.image_fingerprint);
+                TextView textView = (TextView) view.getRootView().findViewById(R.id.text_touch_sensor);
+
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    textView.setText(R.string.fingerprint_recognized);
+                    imageView.setImageResource(R.drawable.ic_done_white_24dp);
+                    imageView.setBackground(getResources().getDrawable(R.drawable.fingerprint_background_circle_authenticated, null));
+                    textView.setTextColor(getResources().getColor(R.color.teal_600, null));
+                }
+                  Log.d(TAG, "ImageView id is view id? " + (tempIdOfimageFingerprint == view.getId())  );
+                //=====TODO NOTE: this is the end of the fingerprint recognition change code=========
+
 
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     // get access to the FingerprintManager and KeyguardManager
@@ -130,7 +143,8 @@ public class FingerprintDialogFragment extends DialogFragment {
             }
         };
 
-        ImageView imageFingerprint = (ImageView) view.findViewById(R.id.image_fingerprint);
+        final ImageView imageFingerprint = (ImageView) view.findViewById(R.id.image_fingerprint);
+        tempIdOfimageFingerprint = imageFingerprint.getId();
         imageFingerprint.setOnClickListener(fingerprintListener);
 
         return view;
@@ -254,5 +268,23 @@ public class FingerprintDialogFragment extends DialogFragment {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             manager.authenticate(cryptoObject, cancellationSignal, 0, callback, null);
         }
+    }
+
+    /**
+     * NOTE: this only for version 23+
+     */
+    private void setAuthenticationState(){
+       // this is all for version 23+
+        ImageView imageView = (ImageView) getActivity().findViewById(R.id.image_fingerprint);
+        imageView.setImageResource(R.drawable.ic_done_white_24dp);
+
+        TextView textView = (TextView) getActivity().findViewById(R.id.text_touch_sensor);
+        textView.setText(R.string.fingerprint_recognized);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            imageView.setBackground(getResources().getDrawable(R.drawable.fingerprint_background_circle_authenticated, null));
+            textView.setTextColor(getResources().getColor(R.color.teal_600, null));
+        }
+
     }
 }
