@@ -1,9 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/star_wars"
-    tools:context="com.score.sts.presentation.view.fragment.MessageChatProfileFragment">
+    android:background="@drawable/boy">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,18 +11,17 @@
         android:background="@color/grey_900">
 
         <TextView
-            android:id="@+id/tv_message_chat"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="@string/profile_message_chat_fragment" />
+            android:text="@string/profile_music_fragment" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="195dp"
+            android:layout_marginLeft="255dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_star_border_white_18dp"/>
+            android:src="@drawable/ic_file_upload_white_24dp"/>
 
     </LinearLayout>
 

@@ -32,7 +32,7 @@
 
                 <FrameLayout
                     android:id="@+id/fl_profile_music_frame"
-                    style="@style/fl_profile_music_frame" />
+                    style="@style/partial_profile_music" />
 
                 <FrameLayout
                     android:id="@+id/fl_profile_contacts_fragment"
@@ -50,7 +50,7 @@
 
                 <FrameLayout
                     android:id="@+id/fl_profile_videos_frame"
-                    style="@style/fl_profile_videos_frame" />
+                    style="@style/partial_profile_videos" />
 
                 <FrameLayout
                     android:id="@+id/fl_profile_bio_frame"

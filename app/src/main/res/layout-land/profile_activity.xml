@@ -26,17 +26,14 @@
                 android:id="@+id/ll_profile_top"
                 style="@style/ll_profile_top">
 
-                <FrameLayout
-                    android:id="@+id/fl_profile_bio_frame"
-                    style="@style/fl_profile_bio_frame_landing" />
+                <include layout="@layout/partial_profile_bio"
+                    style="@style/partial_profile_bio"/>
 
-                <FrameLayout
-                    android:id="@+id/fl_profile_music_frame"
-                    style="@style/fl_profile_music_frame"/>
+                <include layout="@layout/partial_profile_music"
+                    style="@style/partial_profile_music"/>
 
-                <FrameLayout
-                    android:id="@+id/fl_profile_frame"
-                    style="@style/fl_profile_frame_landscape" />
+                <include layout="@layout/partial_profile_pictures"
+                    style="@style/partial_profile_pictures_landscape"/>
 
             </LinearLayout>
 
@@ -44,23 +41,19 @@
                 android:id="@+id/ll_profile_bottom"
                 style="@style/ll_profile_bottom">
 
-                <FrameLayout
-                    android:id="@+id/fl_profile_msg_chat_facetime"
-                    style="@style/fl_profile_msg_chat_facetime_landing"/>
+                <include layout="@layout/partial_profile_msg_cht"
+                    style="@style/partial_profile_msg_cht"/>
 
-                <FrameLayout
-                    android:id="@+id/fl_profile_videos_frame"
-                    style="@style/fl_profile_videos_frame"/>
+                <include layout="@layout/partial_profile_videos"
+                    style="@style/partial_profile_videos"/>
 
-                <FrameLayout
-                    android:id="@+id/fl_profile_contacts_fragment"
-                    style="@style/fl_profile_contacts_fragment_landscape" />
+                <include layout="@layout/partial_profile_contacts"
+                    style="@style/partial_profile_contacts"/>
 
             </LinearLayout>
 
-            <FrameLayout
-                android:id="@+id/fl_profile_register_work_frame"
-                style="@style/fl_profile_register_work_frame_landscape"/>
+            <include layout="@layout/partial_profile_register_work"
+                style="@style/partial_profile_register_work"/>
 
         </LinearLayout>
     </LinearLayout>

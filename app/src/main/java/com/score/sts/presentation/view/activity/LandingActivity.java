@@ -21,6 +21,8 @@ import com.score.sts.presentation.view.fragment.SignUpDialogFragment;
 
 public class LandingActivity extends AppCompatActivity {
 
+    static DialogFragment signupDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +67,7 @@ public class LandingActivity extends AppCompatActivity {
 
     private void showCreateAccountDialog(){
 
-        final DialogFragment signupDialog = new SignUpDialogFragment();
+        /*static DialogFragment*/ signupDialog = new SignUpDialogFragment();
         final ImageView imageSignUp = (ImageView) findViewById(R.id.image_signup);
         if (imageSignUp != null) {
             imageSignUp.setOnClickListener(new View.OnClickListener() {

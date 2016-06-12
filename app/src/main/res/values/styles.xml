@@ -321,14 +321,14 @@
         <item name="android:layout_weight">2</item>
     </style>
 
-    <style name="fl_profile_frame_landscape">
+    <style name="partial_profile_pictures_landscape">
         <item name="android:background">@color/red_200</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
     </style>
 
-    <style name="fl_profile_music_frame">
+    <style name="partial_profile_music">
         <item name="android:background">@color/red_900</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
@@ -343,7 +343,7 @@
         <item name="android:layout_weight">1</item>
     </style>
 
-    <style name="fl_profile_contacts_fragment_landscape">
+    <style name="partial_profile_contacts">
         <item name="android:background">@color/green_200</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
@@ -366,14 +366,14 @@
         <item name="android:layout_weight">4</item>
     </style>
 
-    <style name="fl_profile_register_work_frame_landscape">
+    <style name="partial_profile_register_work">
         <item name="android:background">@color/yellow_900</item>
         <item name="android:layout_marginTop">@dimen/standard_margin_size</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
     </style>
 
-    <style name="fl_profile_videos_frame">
+    <style name="partial_profile_videos">
         <item name="android:background">@color/green_500</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
@@ -388,7 +388,7 @@
         <item name="android:layout_weight">1</item>
     </style>
 
-    <style name="fl_profile_bio_frame_landing">
+    <style name="partial_profile_bio">
         <item name="android:background">@color/red_500</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
@@ -396,13 +396,13 @@
         <item name="android:layout_weight">1</item>
     </style>
 
-    <style name="fl_profile_msg_chat_facetime_landing">
+    <style name="partial_profile_msg_cht">
         <item name="android:background">@color/green_900</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
         <item name="android:layout_weight">2</item>
     </style>
-
+<!-- profile activity styles -->
 
 </resources>
