@@ -9,36 +9,18 @@
 
         <ImageView
             android:id="@+id/image_signup"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:adjustViewBounds="true"
-            android:src="@drawable/director"/>
+            style="@style/partial_landing_activity_sign_up_image"/>
 
         <LinearLayout
             android:id="@+id/profileFooter"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:layout_gravity="bottom"
-            android:background="@color/grey_900">
+            style="@style/ll_profile_footer">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sign Up"
-                android:textSize="14sp"
-                android:layout_gravity="center_vertical"
-                android:textColor="@android:color/white"
-                />
+                style="@style/partial_landing_activity_sign_up_text"/>
 
             <ImageView
                 android:id="@+id/ivSignUpStar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="90dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_star_border_white_18dp"/>
+                style="@style/partial_landing_activity_sign_up_star_image" />
         </LinearLayout>
     </FrameLayout>
 </LinearLayout>

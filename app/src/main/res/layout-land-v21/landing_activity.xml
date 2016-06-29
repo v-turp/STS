@@ -28,10 +28,7 @@
             style="@style/ll_top">
 
             <include layout="@layout/partial_landing_activity_login"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginRight="@dimen/standard_margin_size"/>
+                style="@style/landing_activity_login_landscape"/>
 
             <include layout="@layout/partial_landing_activity_sign_up"
                 style="@style/landing_activity_sign_up"/>
@@ -47,10 +44,7 @@
 
             <include
                 layout="@layout/partial_landing_activity_register_work"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:layout_marginRight="@dimen/standard_margin_size"/>
+                style="@style/landing_activity_register_work_landscape"/>
 
             <ImageView
                 style="@style/landing_page_bottom_row_column2"/>

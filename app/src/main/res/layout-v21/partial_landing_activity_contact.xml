@@ -8,11 +8,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:adjustViewBounds="true"
-            android:src="@drawable/king_alphonso"/>
+            style="@style/partial_landing_activity_contact_image" />
 
     </FrameLayout>
 
