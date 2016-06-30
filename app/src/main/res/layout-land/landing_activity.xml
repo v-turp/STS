@@ -47,9 +47,11 @@
                     style="@style/landing_activity_register_work_landscape"/>
 
                 <ImageView
+                    android:id="@+id/image_random1"
                     style="@style/landing_page_bottom_row_column2"/>
 
                 <ImageView
+                    android:id="@+id/image_random2"
                     style="@style/landing_page_bottom_row_column3"/>
 
             </LinearLayout>

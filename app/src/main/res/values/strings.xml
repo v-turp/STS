@@ -45,5 +45,7 @@
     <string name="use_password">Use Password</string>
     <string name="cancel">Cancel</string>
     <string name="fingerprint_login">Fingerprint login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="register_work">Register Music</string>
 
 </resources>

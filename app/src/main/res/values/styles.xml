@@ -208,7 +208,6 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
-        <item name="android:foreground">@drawable/sts_logo_original</item>
     </style>
 
     <style name="ll_rows_container">
@@ -226,6 +225,20 @@
         <item name="android:layout_marginBottom">@dimen/standard_margin_size</item>
         <item name="android:layout_weight">1</item>
         <item name="android:weightSum">4</item>
+    </style>
+
+    <style name="landing_activity_login_landscape">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
+    </style>
+
+    <style name="landing_activity_login">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
     </style>
 
     <style name="landing_activity_sign_up">
@@ -251,6 +264,19 @@
         <item name="android:weightSum">4</item>
     </style>
 
+    <style name="landing_activity_register_work_landscape">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
+    </style>
+
+    <style name="landing_activity_register_work">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
+    </style>
+
     <style name="fl_register_work_frame_container_landscape">
         <item name="android:background">@color/green_900</item>
         <item name="android:layout_width">0dp</item>
@@ -267,7 +293,6 @@
         <item name="android:layout_weight">1</item>
         <item name="android:scaleType">fitXY</item>
         <item name="android:adjustViewBounds">true</item>
-        <item name="android:src">@drawable/motorcycle</item>
     </style>
 
     <style name="landing_page_bottom_row_column3">
@@ -277,7 +302,6 @@
         <item name="android:layout_weight">1</item>
         <item name="android:scaleType">fitXY</item>
         <item name="android:adjustViewBounds">true</item>
-        <item name="android:src">@drawable/benzo</item>
     </style>
 
     <!-- PROFILE PAGE STYLES -->
@@ -293,7 +317,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
-        <item name="android:foreground">@drawable/girl_avatar</item>
+        <!--<item name="android:foreground">@drawable/girl_avatar</item>-->
     </style>
 
     <style name="ll_profile_rows">
@@ -403,6 +427,108 @@
         <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
         <item name="android:layout_weight">2</item>
     </style>
-<!-- profile activity styles -->
+
+    <!-- profile activity styles -->
+    <!-- partials/includes -->
+    <style name="partial_landing_activity_login_image">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+
+    <style name="ll_login_container">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:background">@color/grey_900</item>
+    </style>
+
+    <style name="partial_landing_activity_text_login">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:text">@string/login</item>
+    </style>
+
+    <style name="partial_landing_activity_login_star">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">25dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="partial_landing_activity_sign_up_image">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+
+    <style name="ll_profile_footer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:background">@color/grey_900</item>
+    </style>
+
+    <style name="partial_landing_activity_sign_up_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:text">@string/sign_up</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="partial_landing_activity_sign_up_star_image">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">90dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="partial_landing_activity_contact_image">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+
+    <style name="image_register_work">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:adjustViewBounds">true</item>
+    </style>
+
+    <style name="ll_register_work">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:background">@color/grey_900</item>
+    </style>
+
+    <style name="text_register_work">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:text">@string/register_work</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="register_work_star">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">50dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+    <!-- END: partials/includes -->
 
 </resources>

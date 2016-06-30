@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 
 import com.score.sts.R;
+import com.score.sts.presentation.view.activity.LandingActivity;
 import com.score.sts.presentation.view.activity.ProfileActivity;
 
 
@@ -50,6 +51,7 @@ public class SignUpDialogFragment extends DialogFragment {
                             Intent intent = ProfileActivity.getCallingIntent(getActivity());
                             intent.putExtra(ProfileActivity.SHOW_SNACK, true);
                             startActivity(intent);
+                            dialog.dismiss();
                         }
                     }).setNegativeButton(CANCEL, new DialogInterface.OnClickListener() {
                         @Override
