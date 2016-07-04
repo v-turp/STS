@@ -1,6 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/fl_partial_profile_contacts">
     <!--android:background="@drawable/pics"-->
 
     <LinearLayout
@@ -17,6 +18,7 @@
             android:text="@string/profile_contacts_fragment" />
 
         <ImageView
+            android:id="@+id/image_profile_contacts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="75dp"

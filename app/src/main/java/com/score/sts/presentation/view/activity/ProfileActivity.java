@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -162,8 +163,15 @@ public class ProfileActivity extends AppCompatActivity {
         FrameLayout flProfileBio;
         FrameLayout flProfileMusic;
         FrameLayout flProfilePictures;
+        FrameLayout flProfileMessageChat;
+        FrameLayout flProfileVideos;
+        FrameLayout flProfileContacts;
+        FrameLayout flProfileRegisterWork;
         ImageView imageBioEdit;
         ImageView imagePictures;
+        ImageView imageMessageChat;
+        ImageView imageVideos;
+        ImageView imageContacts;
 
         public ProfileImageLoadHelper(Context context){
 //            this.context = context;
@@ -186,21 +194,30 @@ public class ProfileActivity extends AppCompatActivity {
             flProfileMusic = (FrameLayout) profileActivity.findViewById(R.id.fl_partial_profile_music);
             flProfilePictures = (FrameLayout) profileActivity.findViewById(R.id.fl_partial_profile_pictures);
             imagePictures = (ImageView) profileActivity.findViewById(R.id.image_pictures_ic_edit);
+            flProfileMessageChat = (FrameLayout) profileActivity.findViewById(R.id.fl_partial_profile_msg_cht);
+            imageMessageChat = (ImageView) profileActivity.findViewById(R.id.image_profile_message_chat);
+            flProfileVideos = (FrameLayout) profileActivity.findViewById(R.id.fl_partial_profile_videos);
+            imageVideos = (ImageView) profileActivity.findViewById(R.id.image_videos_ic_upload);
+            flProfileContacts = (FrameLayout) profileActivity.findViewById(R.id.fl_partial_profile_contacts);
+            imageContacts = (ImageView) profileActivity.findViewById(R.id.image_profile_contacts);
+            flProfileRegisterWork = (FrameLayout) profileActivity.findViewById(R.id.fl_partial_profile_register_work);
+
+
 
             // icon drawables
-            edit = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_edit_white_24dp, 10, 10);
-            upload = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_file_upload_white_24dp, 10, 10);
-            star = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_star_border_white_18dp, 10, 10);
-            personAdd = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_person_add_white_24dp, 10, 10);
+            edit = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_edit_white_24dp, 100, 100);
+            upload = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_file_upload_white_24dp, 100, 100);
+            star = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_star_border_white_18dp, 100, 100);
+            personAdd = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_person_add_white_24dp, 100, 100);
             // image drawables
-            girlAvatar = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.girl_avatar, 10, 10);
+            girlAvatar = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.girl_avatar, 100, 100);
             boy = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.boy, 100, 100);
             rmfmk = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.rmfmk, 100, 100);
             rmfmkTshirt = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.rmfmk_tshirt, 100, 100);
-            starWars = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.star_wars, 10, 10);
-            bugatti = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.bugatti, 10, 10);
-            pics = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.pics, 10, 10);
-            nightCloud = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.night_cloud, 10, 10);
+            starWars = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.star_wars, 100, 100);
+            bugatti = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.bugatti, 100, 100);
+            pics = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.pics, 100, 100);
+            nightCloud = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.night_cloud, 100, 100);
 
             // icon drawables
             imageList.add(edit);        // 0
@@ -225,6 +242,10 @@ public class ProfileActivity extends AppCompatActivity {
             super.onPostExecute(drawables);
             Toast.makeText(profileActivity, "onPostExecute is executed", Toast.LENGTH_LONG).show();
 
+            // profile image
+            if(flProfilePic != null) {
+                flProfilePic.setForeground(ContextCompat.getDrawable(profileActivity, R.drawable.girl_avatar));
+            }
             // bio images
             if(flProfileBio != null){
                 flProfileBio.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(6)));
@@ -243,30 +264,35 @@ public class ProfileActivity extends AppCompatActivity {
             if(imagePictures != null ){
                 imagePictures.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(0)));
             }
+
+            // message and chat
+            if(flProfileMessageChat != null){
+                flProfileMessageChat.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(8)));
+            }
+            if(imageMessageChat != null){
+                imageMessageChat.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(2)));
+            }
+            // vidoes
+            if(flProfileVideos != null){
+                flProfileVideos.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(9)));
+            }
+            if(imageVideos != null){
+                imageVideos.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(1)));
+            }
+            // contacts
+            if(flProfileContacts != null){
+                flProfileContacts.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(10)));
+            }
+            if(imageContacts != null){
+                imageContacts.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(3)));
+            }
+            // register work
+            if(flProfileRegisterWork != null){
+                flProfileRegisterWork.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(11)));
+            }
         }
 
         public void loadProfileImages(){
-            // profile image
-            if(flProfilePic != null) {
-                flProfilePic.setForeground(ContextCompat.getDrawable(profileActivity, R.drawable.girl_avatar));
-            }
-
-            if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE /*||
-                    profileActivity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT*/  ) {
-                // bio images
-               /* if (flProfileBio != null) {
-                    flProfileBio.setForeground(ContextCompat.getDrawable(profileActivity, R.drawable.rmfmk_tshirt));
-                }
-                if (imageBioEdit != null) {
-                    imageBioEdit.setImageDrawable(edit);
-                }
-*/
-                // music images
-                if(flProfileMusic != null){
-//                    flProfileMusic.setForeground(ContextCompat.getDrawable(profileActivity, R.drawable.boy));
-//                    flProfileMusic.setForeground(new BitmapDrawable(profileActivity.getResources(), bitmapBoy));
-                }
-            }
 
         } // end method loadProfileImages
 
