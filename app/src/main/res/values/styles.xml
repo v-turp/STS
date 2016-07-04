@@ -317,7 +317,6 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_marginRight">@dimen/standard_margin_size</item>
-        <!--<item name="android:foreground">@drawable/girl_avatar</item>-->
     </style>
 
     <style name="ll_profile_rows">

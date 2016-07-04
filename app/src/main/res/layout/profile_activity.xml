@@ -26,12 +26,13 @@
                 android:id="@+id/ll_profile_top"
                 style="@style/ll_profile_top">
 
-                <FrameLayout
-                    android:id="@+id/fl_profile_frame"
-                    style="@style/fl_profile_frame" />
+                <include layout="@layout/partial_profile_bio"
+                    style="@style/fl_profile_frame"/>
 
-                <FrameLayout
+               <!-- <FrameLayout
                     android:id="@+id/fl_profile_music_frame"
+                    style="@style/partial_profile_music" />-->
+                <include layout="@layout/partial_profile_music"
                     style="@style/partial_profile_music" />
 
                 <FrameLayout
