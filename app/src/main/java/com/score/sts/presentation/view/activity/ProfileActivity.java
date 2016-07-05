@@ -2,14 +2,10 @@ package com.score.sts.presentation.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.AsyncTask;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +24,8 @@ import com.score.sts.R;
 import com.score.sts.presentation.BitmapUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -47,8 +45,15 @@ public class ProfileActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_global);
         setSupportActionBar(toolbar);
 
+        // load the images with the asyncTask
         imageLoadHelper = new ProfileImageLoadHelper(this);
         imageLoadHelper.execute();
+
+        // load the images without launching the asyncTask
+//        imageLoadHelper = new ProfileImageLoadHelper(this);
+//        ArrayList<Bitmap> images = imageLoadHelper.initializeProfileImages(this);
+//        imageLoadHelper.loadImages(images);
+
         Log.d(TAG, "Max Memory Size: " + Runtime.getRuntime().maxMemory() / 1024 );
         init();
     }
@@ -56,7 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-//        imageLoadHelper.loadProfileImages();
+//        imageLoadHelper.initializeProfileImages();
     }
 
     @Override
@@ -140,8 +145,25 @@ public class ProfileActivity extends AppCompatActivity {
 
     /**
      * This is a helper class to lazy load images
+     * This class is created for dual purpose to be use as an asyncTask of not asynchronously
+     * If used asynchronously, the configuration will change quicker during rotation but the images will load much slower.
+     * however if not used asynchronously, the images will load quicker but will take longer to rotate.
      */
-    public static class ProfileImageLoadHelper extends AsyncTask<Context, ArrayList<Bitmap> , ArrayList<Bitmap>>{
+    public static class ProfileImageLoadHelper extends AsyncTask<Context, Map<String, Bitmap>, Map<String, Bitmap>>{
+        public static final String PROFILE_PICTURE = "profile picture";
+        public static final String BIO = "bio";
+        public static final String MUSIC = "music";
+        public static final String PICTURES = "pictures";
+        public static final String MESSAGE_AND_CHAT = "message and chat";
+        public static final String VIDEOS = "videos";
+        public static final String CONTACTS = "contacts";
+        public static final String REGISTER_MATERIAL = "register material";
+        public static final String EDIT_ICON = "edit icon";
+        public static final String UPLOAD_ICON = "upload icon";
+        public static final String STAR_ICON = "star icon";
+        public static final String ADD_PERSON_ICON = "add person icon";
+
+
         ProfileActivity profileActivity;
         Context context;
         Bitmap edit;
@@ -184,9 +206,24 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         @Override
-        protected ArrayList<Bitmap> doInBackground(Context... context) {
+        protected Map<String, Bitmap> doInBackground(Context... context) {
+            // the argument for doInBackground method is an array of context objects.
+            // we can use the first element in the context array or use the global context object.
+            // in this case we are using the first element in the context array
+//            Context theContext = context[0]; // with this uncommented, I get a Runtime error, ArrayIndexOutOfVBounds. A context is not really necessary but don't remove this line
+            return initializeProfileImages(null);
 
-            ArrayList<Bitmap> imageList = new ArrayList<>();
+        }
+
+        @Override
+        protected void onPostExecute(Map<String, Bitmap> drawables) {
+            super.onPostExecute(drawables);
+            Toast.makeText(profileActivity, "onPostExecute is executed", Toast.LENGTH_LONG).show();
+            loadImages(drawables);
+        }
+
+        public Map<String, Bitmap> initializeProfileImages(@Nullable Context context){
+            Map<String, Bitmap> imageList = new HashMap<>();
 
             flProfilePic = (FrameLayout) profileActivity.findViewById(R.id.fl_profile_photo);
             flProfileBio = (FrameLayout) profileActivity.findViewById(R.id.fl_partial_profile_bio);
@@ -220,95 +257,74 @@ public class ProfileActivity extends AppCompatActivity {
             nightCloud = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.night_cloud, 100, 100);
 
             // icon drawables
-            imageList.add(edit);        // 0
-            imageList.add(upload);      // 1
-            imageList.add(star);        // 2
-            imageList.add(personAdd);   // 3
+            imageList.put(EDIT_ICON, edit);
+            imageList.put(UPLOAD_ICON, upload);
+            imageList.put(STAR_ICON, star);
+            imageList.put(ADD_PERSON_ICON, personAdd);
             // image drawables
-            imageList.add(girlAvatar);  // 4
-            imageList.add(boy);         // 5
-            imageList.add(rmfmk);       // 6
-            imageList.add(rmfmkTshirt); // 7
-            imageList.add(starWars);    // 8
-            imageList.add(bugatti);     // 9
-            imageList.add(pics);        // 10
-            imageList.add(nightCloud);  // 11
+            imageList.put(PROFILE_PICTURE, girlAvatar);
+            imageList.put(MUSIC, boy);
+            imageList.put(PICTURES, rmfmk);
+            imageList.put(BIO, rmfmkTshirt);
+            imageList.put(MESSAGE_AND_CHAT, starWars);
+            imageList.put(VIDEOS, bugatti);
+            imageList.put(CONTACTS, pics);
+            imageList.put(REGISTER_MATERIAL, nightCloud);
 
             return imageList;
-        }
+        } // end method initializeProfileImages
 
-        @Override
-        protected void onPostExecute(ArrayList<Bitmap> drawables) {
-            super.onPostExecute(drawables);
-            Toast.makeText(profileActivity, "onPostExecute is executed", Toast.LENGTH_LONG).show();
-
+        public void loadImages(Map<String, Bitmap> drawables){
             // profile image
             if(flProfilePic != null) {
-                flProfilePic.setForeground(ContextCompat.getDrawable(profileActivity, R.drawable.girl_avatar));
+                flProfilePic.setForeground(new BitmapDrawable(profileActivity.getResources(), drawables.get(PROFILE_PICTURE)));
+//                flProfilePic.setForeground(ContextCompat.getDrawable(profileActivity, R.drawable.girl_avatar));
             }
             // bio images
             if(flProfileBio != null){
-                flProfileBio.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(6)));
+                flProfileBio.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(BIO)));
             }
             if( imageBioEdit != null){
-                imageBioEdit.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(0)) );
+                imageBioEdit.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(EDIT_ICON)) );
             }
             // music images
             if(flProfileMusic != null){
-                flProfileMusic.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(5)));
+                flProfileMusic.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(MUSIC)));
             }
             // pictures images
             if(flProfilePictures != null){
-                flProfilePictures.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(7)));
+                flProfilePictures.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(PICTURES)));
             }
             if(imagePictures != null ){
-                imagePictures.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(0)));
+                imagePictures.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(EDIT_ICON)));
             }
 
             // message and chat
             if(flProfileMessageChat != null){
-                flProfileMessageChat.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(8)));
+                flProfileMessageChat.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(MESSAGE_AND_CHAT)));
             }
             if(imageMessageChat != null){
-                imageMessageChat.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(2)));
+                imageMessageChat.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(STAR_ICON)));
             }
             // vidoes
             if(flProfileVideos != null){
-                flProfileVideos.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(9)));
+                flProfileVideos.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(VIDEOS)));
             }
             if(imageVideos != null){
-                imageVideos.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(1)));
+                imageVideos.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(UPLOAD_ICON)));
             }
             // contacts
             if(flProfileContacts != null){
-                flProfileContacts.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(10)));
+                flProfileContacts.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(CONTACTS)));
             }
             if(imageContacts != null){
-                imageContacts.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(3)));
+                imageContacts.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(ADD_PERSON_ICON)));
             }
             // register work
             if(flProfileRegisterWork != null){
-                flProfileRegisterWork.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(11)));
+                flProfileRegisterWork.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(REGISTER_MATERIAL)));
             }
         }
-
-        public void loadProfileImages(){
-
-        } // end method loadProfileImages
-
-        public void removeProfileImages(){
-            // profile picture
-            flProfilePic.setForeground(null);
-            flProfilePic = null;
-            // bio imaages
-            flProfileBio.setForeground(null);
-            imageBioEdit.setImageResource(0);
-            flProfileBio = null;
-            imageBioEdit = null;
-            // music images
-            flProfileMusic.setForeground(null);
-            flProfileMusic = null;
-        } // end method removeProfileImages
 
         public static int whatIsTheImageSize(BitmapDrawable drawable, String imageName){
             Log.d(TAG, "Drawable Size: " + imageName + " " + drawable.getBitmap().getByteCount() / 1024);
