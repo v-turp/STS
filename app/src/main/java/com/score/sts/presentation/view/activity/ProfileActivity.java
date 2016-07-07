@@ -5,11 +5,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
+import android.support.v4.util.LruCache;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -23,7 +23,6 @@ import android.widget.Toast;
 import com.score.sts.R;
 import com.score.sts.presentation.BitmapUtil;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,6 +36,9 @@ public class ProfileActivity extends AppCompatActivity {
     private Snackbar snackbar;
     public static ProfileImageLoadHelper imageLoadHelper;
 
+    // setup cache
+    private static LruCache<String, Bitmap> imageMemoryCache;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,14 +47,25 @@ public class ProfileActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_global);
         setSupportActionBar(toolbar);
 
-        // load the images with the asyncTask
-        imageLoadHelper = new ProfileImageLoadHelper(this);
-        imageLoadHelper.execute();
+        // TODO setup the LruCache
+        final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
 
-        // load the images without launching the asyncTask
-//        imageLoadHelper = new ProfileImageLoadHelper(this);
-//        ArrayList<Bitmap> images = imageLoadHelper.initializeProfileImages(this);
-//        imageLoadHelper.loadImages(images);
+        // use 1/8th  of the available memory for this memory cach
+        final int cacheSize = maxMemory / 8;
+
+        if(imageMemoryCache == null){
+            imageMemoryCache = new LruCache<String, Bitmap>(cacheSize){
+                @Override
+                protected int sizeOf(String key, Bitmap bitmap) {
+                    // cache size is measured in kilobytes
+                    return bitmap.getByteCount() / 1024 ;
+                }
+            };
+
+            // load the images with the asyncTask
+            imageLoadHelper = new ProfileImageLoadHelper(this);
+            imageLoadHelper.execute();
+        }
 
         Log.d(TAG, "Max Memory Size: " + Runtime.getRuntime().maxMemory() / 1024 );
         init();
@@ -61,14 +74,16 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-//        imageLoadHelper.initializeProfileImages();
+        loadImagesFromCache();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-//        imageLoadHelper.removeProfileImages();
-        imageLoadHelper = null; // release resources
+        if(imageLoadHelper != null) {
+            imageLoadHelper.cancel(true);
+            imageLoadHelper = null; // release resources
+        }
     }
 
     @Override
@@ -117,6 +132,32 @@ public class ProfileActivity extends AppCompatActivity {
     public static Intent getCallingIntent(Context context){
         Intent callingIntent = new Intent(context, ProfileActivity.class);
         return callingIntent;
+    }
+
+    public static void addBitmapToMemoryCache(String key, Bitmap bitmap){
+        if( getBitmapFromMemCache(key) == null){
+            imageMemoryCache.put(key, bitmap);
+        }
+    }
+
+    public static Bitmap getBitmapFromMemCache(String key){
+            return imageMemoryCache.get(key);
+    }
+
+    private void loadImagesFromCache(){
+        // TODO figure out why uncommenting out the remainder of these lines cause a null pointer exception
+        findViewById(R.id.fl_profile_photo).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.PROFILE_PICTURE)));
+        findViewById(R.id.fl_partial_profile_bio).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.BIO)));
+        findViewById(R.id.fl_partial_profile_music).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.MUSIC)));
+//        findViewById(R.id.fl_partial_profile_pictures).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.PICTURES)));
+//        findViewById(R.id.fl_partial_profile_msg_cht).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.MESSAGE_AND_CHAT)));
+//        findViewById(R.id.fl_partial_profile_videos).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.VIDEOS)));
+//        findViewById(R.id.fl_partial_profile_contacts).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.CONTACTS)));
+//        findViewById(R.id.fl_partial_profile_register_work).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.REGISTER_MATERIAL)));
+//        findViewById(R.id.image_pictures_ic_edit).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.EDIT_ICON)));
+//        findViewById(R.id.image_videos_ic_upload).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.UPLOAD_ICON)));
+//        findViewById(R.).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.STAR_ICON)));
+        findViewById(R.id.fl_partial_profile_bio).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.BIO)));
     }
 
     private void init(){
@@ -205,6 +246,8 @@ public class ProfileActivity extends AppCompatActivity {
             super.onPreExecute();
         }
 
+        // TODO implement the onProgressUpdate method and add a spinner to it.
+
         @Override
         protected Map<String, Bitmap> doInBackground(Context... context) {
             // the argument for doInBackground method is an array of context objects.
@@ -274,55 +317,67 @@ public class ProfileActivity extends AppCompatActivity {
             return imageList;
         } // end method initializeProfileImages
 
-        public void loadImages(Map<String, Bitmap> drawables){
+        public void loadImages( Map<String, Bitmap> drawables){
             // profile image
             if(flProfilePic != null) {
                 flProfilePic.setForeground(new BitmapDrawable(profileActivity.getResources(), drawables.get(PROFILE_PICTURE)));
-//                flProfilePic.setForeground(ContextCompat.getDrawable(profileActivity, R.drawable.girl_avatar));
+                ProfileActivity.addBitmapToMemoryCache(PROFILE_PICTURE, drawables.get(PROFILE_PICTURE));
             }
             // bio images
             if(flProfileBio != null){
                 flProfileBio.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(BIO)));
+                ProfileActivity.addBitmapToMemoryCache(BIO, drawables.get(BIO));
             }
             if( imageBioEdit != null){
                 imageBioEdit.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(EDIT_ICON)) );
+                ProfileActivity.addBitmapToMemoryCache(EDIT_ICON, drawables.get(EDIT_ICON));
             }
             // music images
             if(flProfileMusic != null){
                 flProfileMusic.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(MUSIC)));
+                ProfileActivity.addBitmapToMemoryCache(MUSIC, drawables.get(MUSIC));
             }
             // pictures images
             if(flProfilePictures != null){
                 flProfilePictures.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(PICTURES)));
+                ProfileActivity.addBitmapToMemoryCache(PICTURES, drawables.get(PICTURES));
             }
             if(imagePictures != null ){
                 imagePictures.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(EDIT_ICON)));
+                // already added to cache
             }
 
             // message and chat
             if(flProfileMessageChat != null){
                 flProfileMessageChat.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(MESSAGE_AND_CHAT)));
+                ProfileActivity.addBitmapToMemoryCache(MESSAGE_AND_CHAT, drawables.get(MESSAGE_AND_CHAT));
             }
             if(imageMessageChat != null){
                 imageMessageChat.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(STAR_ICON)));
+                ProfileActivity.addBitmapToMemoryCache(STAR_ICON, drawables.get(STAR_ICON));
             }
             // vidoes
             if(flProfileVideos != null){
                 flProfileVideos.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(VIDEOS)));
+                ProfileActivity.addBitmapToMemoryCache(VIDEOS, drawables.get(VIDEOS));
             }
             if(imageVideos != null){
                 imageVideos.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(UPLOAD_ICON)));
+                ProfileActivity.addBitmapToMemoryCache(UPLOAD_ICON, drawables.get(UPLOAD_ICON));
             }
             // contacts
             if(flProfileContacts != null){
                 flProfileContacts.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(CONTACTS)));
+                ProfileActivity.addBitmapToMemoryCache(CONTACTS, drawables.get(CONTACTS));
             }
             if(imageContacts != null){
                 imageContacts.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(ADD_PERSON_ICON)));
+                ProfileActivity.addBitmapToMemoryCache(ADD_PERSON_ICON, drawables.get(ADD_PERSON_ICON));
             }
             // register work
             if(flProfileRegisterWork != null){
                 flProfileRegisterWork.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(REGISTER_MATERIAL)));
+                ProfileActivity.addBitmapToMemoryCache(REGISTER_MATERIAL, drawables.get(REGISTER_MATERIAL));
             }
         }
 
