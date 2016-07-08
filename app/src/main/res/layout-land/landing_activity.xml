@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="3">
+    android:orientation="vertical">
 
     <include layout="@layout/toolbar_component"/>
 
@@ -55,7 +54,7 @@
                     style="@style/landing_page_bottom_row_column3"/>
 
             </LinearLayout>
-
+            <View style="@style/accent_bar"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
