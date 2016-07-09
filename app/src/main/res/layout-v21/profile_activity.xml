@@ -16,7 +16,7 @@
 
         <FrameLayout
             android:id="@+id/fl_profile_photo"
-            style="@style/fl_profile_photo"/>
+            style="@style/fl_profile_photo" />
 
         <LinearLayout
             android:id="@+id/ll_profile_rows"
@@ -29,15 +29,11 @@
                 <include layout="@layout/partial_profile_bio"
                     style="@style/fl_profile_frame"/>
 
-                <!--<FrameLayout
-                    android:id="@+id/fl_profile_music_frame"
-                    style="@style/partial_profile_music"/>-->
                 <include layout="@layout/partial_profile_music"
                     style="@style/partial_profile_music" />
 
-                <FrameLayout
-                    android:id="@+id/fl_profile_contacts_fragment"
-                    style="@style/fl_profile_contacts_fragment"/>
+                <include layout="@layout/partial_profile_contacts"
+                    style="@style/partial_profile_contacts"/>
 
             </LinearLayout>
 
@@ -45,17 +41,17 @@
                 android:id="@+id/ll_profile_bottom"
                 style="@style/ll_profile_bottom">
 
-                <FrameLayout
-                    android:id="@+id/fl_profile_register_work_frame"
+                <include layout="@layout/partial_profile_register_work"
                     style="@style/fl_profile_register_work_frame"/>
 
-                <FrameLayout
-                    android:id="@+id/fl_profile_videos_frame"
+                <include layout="@layout/partial_profile_videos"
                     style="@style/partial_profile_videos"/>
 
-                <FrameLayout
-                    android:id="@+id/fl_profile_bio_frame"
-                    style="@style/fl_profile_bio_frame"/>
+                <include layout="@layout/partial_profile_msg_cht"
+                    style="@style/partial_profile_msg_cht"/>
+
+                <include layout="@layout/partial_profile_pictures"
+                    style="@style/partial_profile_pictures_landscape"/>
 
             </LinearLayout>
 

@@ -24,7 +24,9 @@ import com.score.sts.R;
 import com.score.sts.presentation.BitmapUtil;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -145,19 +147,18 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void loadImagesFromCache(){
-        // TODO figure out why uncommenting out the remainder of these lines cause a null pointer exception
-        findViewById(R.id.fl_profile_photo).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.PROFILE_PICTURE)));
-        findViewById(R.id.fl_partial_profile_bio).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.BIO)));
-        findViewById(R.id.fl_partial_profile_music).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.MUSIC)));
-//        findViewById(R.id.fl_partial_profile_pictures).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.PICTURES)));
-//        findViewById(R.id.fl_partial_profile_msg_cht).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.MESSAGE_AND_CHAT)));
-//        findViewById(R.id.fl_partial_profile_videos).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.VIDEOS)));
-//        findViewById(R.id.fl_partial_profile_contacts).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.CONTACTS)));
-//        findViewById(R.id.fl_partial_profile_register_work).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.REGISTER_MATERIAL)));
-//        findViewById(R.id.image_pictures_ic_edit).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.EDIT_ICON)));
-//        findViewById(R.id.image_videos_ic_upload).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.UPLOAD_ICON)));
-//        findViewById(R.).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.STAR_ICON)));
-        findViewById(R.id.fl_partial_profile_bio).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.BIO)));
+        // TODO redo the naming convention for the portrait layout for the profile pages so that I don't have to constantly load the configuration dynamically
+        findViewById(R.id.fl_profile_photo).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.PROFILE_PICTURE)));
+        findViewById(R.id.fl_partial_profile_bio).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.BIO)));
+        findViewById(R.id.fl_partial_profile_music).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.MUSIC)));
+        findViewById(R.id.fl_partial_profile_pictures).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.PICTURES)));
+        findViewById(R.id.fl_partial_profile_msg_cht).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.MESSAGE_AND_CHAT)));
+        findViewById(R.id.fl_partial_profile_videos).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.VIDEOS)));
+        findViewById(R.id.fl_partial_profile_contacts).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.CONTACTS)));
+        findViewById(R.id.fl_partial_profile_register_work).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.REGISTER_MATERIAL)));
+        findViewById(R.id.image_pictures_ic_edit).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.EDIT_ICON)));
+        findViewById(R.id.image_videos_ic_upload).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.UPLOAD_ICON)));
+        findViewById(R.id.image_profile_message_chat).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.STAR_ICON)));
     }
 
     private void init(){
@@ -265,9 +266,17 @@ public class ProfileActivity extends AppCompatActivity {
             loadImages(drawables);
         }
 
+        /**
+         * This method initializes the views for the profile page. The images are then decoded, resized and added to
+         * their respective view.
+         * @param context
+         * @return return a map of all the resized and decoded images. all images will be decoded and resized
+         *         before bind added to the map
+         */
         public Map<String, Bitmap> initializeProfileImages(@Nullable Context context){
             Map<String, Bitmap> imageList = new HashMap<>();
 
+            // initialize the views for the profile page
             flProfilePic = (FrameLayout) profileActivity.findViewById(R.id.fl_profile_photo);
             flProfileBio = (FrameLayout) profileActivity.findViewById(R.id.fl_partial_profile_bio);
             imageBioEdit = (ImageView) profileActivity.findViewById(R.id.image_profile_bio_ic_edit);
@@ -283,7 +292,7 @@ public class ProfileActivity extends AppCompatActivity {
             flProfileRegisterWork = (FrameLayout) profileActivity.findViewById(R.id.fl_partial_profile_register_work);
 
 
-
+            // after decoding and resizing, initialize the images
             // icon drawables
             edit = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_edit_white_24dp, 100, 100);
             upload = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_file_upload_white_24dp, 100, 100);
@@ -299,6 +308,7 @@ public class ProfileActivity extends AppCompatActivity {
             pics = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.pics, 100, 100);
             nightCloud = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.night_cloud, 100, 100);
 
+            // add the decoded and resized images to the map for storage
             // icon drawables
             imageList.put(EDIT_ICON, edit);
             imageList.put(UPLOAD_ICON, upload);
@@ -314,9 +324,19 @@ public class ProfileActivity extends AppCompatActivity {
             imageList.put(CONTACTS, pics);
             imageList.put(REGISTER_MATERIAL, nightCloud);
 
+            // output total size of all images
+            getTotalSizeOfAllImages(imageList);
+
             return imageList;
         } // end method initializeProfileImages
 
+
+
+        /**
+         *
+         * @param drawables this argument is the list of resized images. these images will be set to their respective view
+         *                  and then added to the cache.
+         */
         public void loadImages( Map<String, Bitmap> drawables){
             // profile image
             if(flProfilePic != null) {
@@ -379,6 +399,23 @@ public class ProfileActivity extends AppCompatActivity {
                 flProfileRegisterWork.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(REGISTER_MATERIAL)));
                 ProfileActivity.addBitmapToMemoryCache(REGISTER_MATERIAL, drawables.get(REGISTER_MATERIAL));
             }
+        }
+
+
+        /**
+         *
+         * @param map this is the map of resized images.
+         *            we get the set of keys from the map and iterate through the map getting each image's size
+         */
+        private void getTotalSizeOfAllImages( Map map){
+            Map<String, Bitmap> imageList = map;
+            Set imageListKeySet = imageList.keySet();
+            Iterator iterator = imageListKeySet.iterator();
+            int totalSizeOfAllImages = 0;
+            while(iterator.hasNext()){
+                totalSizeOfAllImages+= ( imageList.get(iterator.next()).getByteCount() ) / 1024;   // get the list of images and, using the iterator, get the next image, its byte count/size and convert it to megs.
+            }
+            Log.d(TAG, "Size of all images: " + totalSizeOfAllImages);
         }
 
         public static int whatIsTheImageSize(BitmapDrawable drawable, String imageName){
