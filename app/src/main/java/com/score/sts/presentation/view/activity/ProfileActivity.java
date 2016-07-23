@@ -1,15 +1,21 @@
 package com.score.sts.presentation.view.activity;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.LruCache;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -22,7 +28,9 @@ import android.widget.Toast;
 
 import com.score.sts.R;
 import com.score.sts.presentation.BitmapUtil;
+import com.score.sts.presentation.view.adapter.ProfileRecyclerViewAdapter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -34,12 +42,38 @@ public class ProfileActivity extends AppCompatActivity {
     public static final String SHOW_SNACK = "signup complete";
     private static final String GOT_IT = "got it";
     private static final String CONFIRMED = "Confirmed";
+    public static final String PROFILE_ACTIVITY_INTENT_FILTER = "profile recycler view";
     private String gotIt;
     private Snackbar snackbar;
     public static ProfileImageLoadHelper imageLoadHelper;
+    private static RecyclerView rvProfile;
+    private RecyclerView.LayoutManager layoutManager;
+    private ArrayList<Map<String, Bitmap>> recyclerViewImageList;   // this list is primarily for the recycler view adapter
+    private static ProfileRecyclerViewAdapter profileRecyclerViewAdapter;   // this is static so it can be called in the onPostExecute of the AsyncTask
 
     // setup cache
     private static LruCache<String, Bitmap> imageMemoryCache;
+
+    // setup the broadcast receiver for launching the list
+    private BroadcastReceiver listReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // TODO add a recyclerView here
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                rvProfile = (RecyclerView) findViewById(R.id.rvProfile);
+                // create the layout for the recycler view
+                layoutManager = new LinearLayoutManager(ProfileActivity.this);
+                rvProfile.setLayoutManager(layoutManager);
+
+//              set the adapter
+//                if (recyclerViewImageList != null) {
+//                    ProfileRecyclerViewAdapter profileRecyclerViewAdapter = new ProfileRecyclerViewAdapter(recyclerViewImageList, this);
+//                    rvProfile.setAdapter(profileRecyclerViewAdapter);
+//                }
+            }
+        }
+    }; // end receiver
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +98,19 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             };
 
-            // load the images with the asyncTask
-            imageLoadHelper = new ProfileImageLoadHelper(this);
-            imageLoadHelper.execute();
+            //---load the images with the asyncTask if the cache is empty. this is only for landscape orientation b/c the views that will be instantiated do not exits in portrait
+            if( getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ) {
+                imageLoadHelper = new ProfileImageLoadHelper(this);
+                imageLoadHelper.execute();
+            }
+        }else {
+            //---if the cache is not null and the size is still 0, launch the async task.SOLVED[if app starts in portrait and is then rotated to landscape, async task will not execute. now it will]
+            if(imageMemoryCache != null && imageMemoryCache.size() == 0){
+                if( getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ) {
+                    imageLoadHelper = new ProfileImageLoadHelper(this);
+                    imageLoadHelper.execute();
+                }
+            }
         }
 
         Log.d(TAG, "Max Memory Size: " + Runtime.getRuntime().maxMemory() / 1024 );
@@ -76,7 +120,19 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        loadImagesFromCache();
+        //---this is only for landscape orientation b/c the views that will be instantiated do not exits in portrait
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            loadImagesFromCache();
+        }
+        // register the list receiver for the recycler view
+        LocalBroadcastManager.getInstance(this).registerReceiver(listReceiver, new IntentFilter(PROFILE_ACTIVITY_INTENT_FILTER));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // unregister the list receiver for the recycler view
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(listReceiver);
     }
 
     @Override
@@ -146,6 +202,10 @@ public class ProfileActivity extends AppCompatActivity {
             return imageMemoryCache.get(key);
     }
 
+    /**
+     * this method is streamlined and does not create any objects. it simply trusts the cache and fetches images from the cache
+     * to load images into their respective views. NOTE: The images from the cache have already been resized.
+     */
     private void loadImagesFromCache(){
         // TODO redo the naming convention for the portrait layout for the profile pages so that I don't have to constantly load the configuration dynamically
         findViewById(R.id.fl_profile_photo).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(ProfileImageLoadHelper.PROFILE_PICTURE)));
@@ -191,7 +251,7 @@ public class ProfileActivity extends AppCompatActivity {
      * If used asynchronously, the configuration will change quicker during rotation but the images will load much slower.
      * however if not used asynchronously, the images will load quicker but will take longer to rotate.
      */
-    public static class ProfileImageLoadHelper extends AsyncTask<Context, Map<String, Bitmap>, Map<String, Bitmap>>{
+    public static class ProfileImageLoadHelper extends AsyncTask<ArrayList<Map<String, Bitmap>>, Map<String, Bitmap>, Map<String, Bitmap>>{
         public static final String PROFILE_PICTURE = "profile picture";
         public static final String BIO = "bio";
         public static final String MUSIC = "music";
@@ -205,6 +265,7 @@ public class ProfileActivity extends AppCompatActivity {
         public static final String STAR_ICON = "star icon";
         public static final String ADD_PERSON_ICON = "add person icon";
 
+        ArrayList<Map<String, Bitmap>> imageBucket; // this will be sent in onPostExecute the ProfileActivity bucketList
 
         ProfileActivity profileActivity;
         Context context;
@@ -237,26 +298,44 @@ public class ProfileActivity extends AppCompatActivity {
         ImageView imageVideos;
         ImageView imageContacts;
 
+        // TODO  setup variables for recycler view
+        RecyclerView rvProfile;
+        RecyclerView.LayoutManager layoutManager;
+        ProfileRecyclerViewAdapter profileRecyclerViewAdapter;
+
         public ProfileImageLoadHelper(Context context){
 //            this.context = context;
             this.profileActivity = (ProfileActivity) context; // this is context of the ProfileActivity
+//            rvProfile = (RecyclerView) profileActivity.findViewById(R.id.rvProfile);
+//            layoutManager = new LinearLayoutManager(profileActivity);
+//            rvProfile.setLayoutManager(layoutManager);
         }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+//            rvProfile = (RecyclerView) profileActivity.findViewById(R.id.rvProfile);
+//            layoutManager = new LinearLayoutManager(profileActivity);
+//            rvProfile.setLayoutManager(layoutManager);
         }
 
         // TODO implement the onProgressUpdate method and add a spinner to it.
-
+        /***
+         *
+         * @param imageList the argument for doInBackground method is an array of context objects.
+         *                we can use the first element in the context array or use the global context object.
+         *                in this case we are using the first element in the context array
+         * @return
+         */
         @Override
-        protected Map<String, Bitmap> doInBackground(Context... context) {
-            // the argument for doInBackground method is an array of context objects.
-            // we can use the first element in the context array or use the global context object.
-            // in this case we are using the first element in the context array
-//            Context theContext = context[0]; // with this uncommented, I get a Runtime error, ArrayIndexOutOfVBounds. A context is not really necessary but don't remove this line
-            return initializeProfileImages(null);
+        protected Map<String, Bitmap> doInBackground(ArrayList<Map<String, Bitmap>>... imageList) {
 
+            Map<String, Bitmap> theMap = initializeProfileImages(null);
+//            imageBucket = createImageBucketForRecyclerView(theMap);
+//            imageList[0] = imageBucket;
+//            Log.d(TAG, "Image Bucket List. Is it null? " + (imageList[0] == null) );
+            return theMap;
+//     return initializeProfileImages(null);
         }
 
         @Override
@@ -264,6 +343,9 @@ public class ProfileActivity extends AppCompatActivity {
             super.onPostExecute(drawables);
             Toast.makeText(profileActivity, "onPostExecute is executed", Toast.LENGTH_LONG).show();
             loadImages(drawables);
+//            imageBucket = createImageBucketForRecyclerView(drawables);
+//            profileRecyclerViewAdapter = new ProfileRecyclerViewAdapter(imageBucket, profileActivity);
+//            rvProfile.setAdapter(profileRecyclerViewAdapter);
         }
 
         /**
@@ -292,7 +374,7 @@ public class ProfileActivity extends AppCompatActivity {
             flProfileRegisterWork = (FrameLayout) profileActivity.findViewById(R.id.fl_partial_profile_register_work);
 
 
-            // after decoding and resizing, initialize the images
+            // after decoding and resizing, initialize the images and add them to the cache
             // icon drawables
             edit = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_edit_white_24dp, 100, 100);
             upload = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_file_upload_white_24dp, 100, 100);
@@ -324,8 +406,14 @@ public class ProfileActivity extends AppCompatActivity {
             imageList.put(CONTACTS, pics);
             imageList.put(REGISTER_MATERIAL, nightCloud);
 
-            // output total size of all images
+            // output total size of all images for logging purposes
             getTotalSizeOfAllImages(imageList);
+
+            // load the images into cache. piggy-backing of the work that was done here...loading the decoded images into a map
+            loadImagesIntoCache(imageList);
+
+            // initialize the image bucket that will be sent to the recycler view. this method is piggy-backing off the image list created here.
+//            imageBucket = createImageBucketForRecyclerView(imageList);
 
             return imageList;
         } // end method initializeProfileImages
@@ -335,32 +423,28 @@ public class ProfileActivity extends AppCompatActivity {
         /**
          *
          * @param drawables this argument is the list of resized images. these images will be set to their respective view
-         *                  and then added to the cache.
+         *                  which is the background or the icon(upload, edit, add etc...)
+         *
          */
         public void loadImages( Map<String, Bitmap> drawables){
             // profile image
             if(flProfilePic != null) {
                 flProfilePic.setForeground(new BitmapDrawable(profileActivity.getResources(), drawables.get(PROFILE_PICTURE)));
-                ProfileActivity.addBitmapToMemoryCache(PROFILE_PICTURE, drawables.get(PROFILE_PICTURE));
             }
             // bio images
             if(flProfileBio != null){
                 flProfileBio.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(BIO)));
-                ProfileActivity.addBitmapToMemoryCache(BIO, drawables.get(BIO));
             }
             if( imageBioEdit != null){
                 imageBioEdit.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(EDIT_ICON)) );
-                ProfileActivity.addBitmapToMemoryCache(EDIT_ICON, drawables.get(EDIT_ICON));
             }
             // music images
             if(flProfileMusic != null){
                 flProfileMusic.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(MUSIC)));
-                ProfileActivity.addBitmapToMemoryCache(MUSIC, drawables.get(MUSIC));
             }
             // pictures images
             if(flProfilePictures != null){
                 flProfilePictures.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(PICTURES)));
-                ProfileActivity.addBitmapToMemoryCache(PICTURES, drawables.get(PICTURES));
             }
             if(imagePictures != null ){
                 imagePictures.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(EDIT_ICON)));
@@ -370,37 +454,79 @@ public class ProfileActivity extends AppCompatActivity {
             // message and chat
             if(flProfileMessageChat != null){
                 flProfileMessageChat.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(MESSAGE_AND_CHAT)));
-                ProfileActivity.addBitmapToMemoryCache(MESSAGE_AND_CHAT, drawables.get(MESSAGE_AND_CHAT));
             }
             if(imageMessageChat != null){
                 imageMessageChat.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(STAR_ICON)));
-                ProfileActivity.addBitmapToMemoryCache(STAR_ICON, drawables.get(STAR_ICON));
             }
             // vidoes
             if(flProfileVideos != null){
                 flProfileVideos.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(VIDEOS)));
-                ProfileActivity.addBitmapToMemoryCache(VIDEOS, drawables.get(VIDEOS));
             }
             if(imageVideos != null){
                 imageVideos.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(UPLOAD_ICON)));
-                ProfileActivity.addBitmapToMemoryCache(UPLOAD_ICON, drawables.get(UPLOAD_ICON));
             }
             // contacts
             if(flProfileContacts != null){
                 flProfileContacts.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(CONTACTS)));
-                ProfileActivity.addBitmapToMemoryCache(CONTACTS, drawables.get(CONTACTS));
             }
             if(imageContacts != null){
                 imageContacts.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(ADD_PERSON_ICON)));
-                ProfileActivity.addBitmapToMemoryCache(ADD_PERSON_ICON, drawables.get(ADD_PERSON_ICON));
             }
             // register work
             if(flProfileRegisterWork != null){
                 flProfileRegisterWork.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(REGISTER_MATERIAL)));
-                ProfileActivity.addBitmapToMemoryCache(REGISTER_MATERIAL, drawables.get(REGISTER_MATERIAL));
             }
         }
 
+        /***
+         *
+         * @param drawables the drawables passed in here should already have been resized before adding them to cache
+         */
+        private void loadImagesIntoCache(Map<String, Bitmap> drawables){
+            ProfileActivity.addBitmapToMemoryCache(PROFILE_PICTURE, drawables.get(PROFILE_PICTURE));
+            ProfileActivity.addBitmapToMemoryCache(BIO, drawables.get(BIO));
+            ProfileActivity.addBitmapToMemoryCache(EDIT_ICON, drawables.get(EDIT_ICON));
+            ProfileActivity.addBitmapToMemoryCache(MUSIC, drawables.get(MUSIC));
+            ProfileActivity.addBitmapToMemoryCache(PICTURES, drawables.get(PICTURES));
+            ProfileActivity.addBitmapToMemoryCache(MESSAGE_AND_CHAT, drawables.get(MESSAGE_AND_CHAT));
+            ProfileActivity.addBitmapToMemoryCache(STAR_ICON, drawables.get(STAR_ICON));
+            ProfileActivity.addBitmapToMemoryCache(VIDEOS, drawables.get(VIDEOS));
+            ProfileActivity.addBitmapToMemoryCache(UPLOAD_ICON, drawables.get(UPLOAD_ICON));
+            ProfileActivity.addBitmapToMemoryCache(CONTACTS, drawables.get(CONTACTS));
+            ProfileActivity.addBitmapToMemoryCache(ADD_PERSON_ICON, drawables.get(ADD_PERSON_ICON));
+            ProfileActivity.addBitmapToMemoryCache(REGISTER_MATERIAL, drawables.get(REGISTER_MATERIAL));
+        }
+
+        /***
+         *
+         * @param mapBucket this argument is the set of resized images and icons used for the profile page
+         * @return we are returning a bucket of resized images in a format that is usable for the recycler view
+         * each map should contain a background image and the icon to display.
+         * this method reconstructs and builds upon the data that is already contained in the mapBucket and generates
+         * a usable arraylist for the recycler view.
+         */
+        private ArrayList<Map<String, Bitmap>> createImageBucketForRecyclerView(Map<String, Bitmap> mapBucket){
+            ArrayList<Map<String, Bitmap>> imageBucket = new ArrayList<>();
+            Map<String, Bitmap> theMapBucket = mapBucket;
+
+            Map<String, Bitmap> bioMap = new HashMap<>();
+            bioMap.put(BIO, theMapBucket.get(BIO) );
+            bioMap.put(EDIT_ICON, theMapBucket.get(EDIT_ICON));
+            imageBucket.add(0, bioMap);
+
+            Map<String, Bitmap> musicMap = new HashMap<>();
+            musicMap.put(MUSIC, theMapBucket.get(MUSIC));
+            musicMap.put(UPLOAD_ICON, theMapBucket.get(UPLOAD_ICON));
+            imageBucket.add(musicMap);
+
+//            Map<String, Bitmap> picturesMap = new HashMap<>();
+//            Map<String, Bitmap> messageAndChatMap = new HashMap<>();
+//            Map<String, Bitmap> vidoesMap = new HashMap<>();
+//            Map<String, Bitmap> contactsMap = new HashMap<>();
+//            Map<String, Bitmap> registerMaterialMap = new HashMap<>();
+
+            return imageBucket;
+        }
 
         /**
          *

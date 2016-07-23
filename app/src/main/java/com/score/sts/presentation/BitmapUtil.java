@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v4.util.LruCache;
 import android.util.Log;
 
 /**
@@ -12,7 +13,7 @@ import android.util.Log;
 public class BitmapUtil {
 
     public static final String TAG = BitmapUtil.class.getSimpleName();
-
+    private static LruCache<String, Bitmap> imageMemoryCache;
     public BitmapUtil(){}
 
     /**
@@ -78,4 +79,24 @@ public class BitmapUtil {
         Log.d(TAG, "New Image height and width: " + options.inSampleSize + ", " + options.outWidth );
         return BitmapFactory.decodeResource(resources, resourceId, options);
     }
+
+    // TODO test and finish this class. may need to take arguments and be adjusted a bit. this implementation is currently working in ProfileActivity Class
+    public void setupApplicationWideImageCache(){
+        // TODO setup the LruCache
+        final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+
+        // use 1/8th  of the available memory for this memory cach
+        final int cacheSize = maxMemory / 8;
+
+        if(imageMemoryCache == null) {
+            imageMemoryCache = new LruCache<String, Bitmap>(cacheSize) {
+                @Override
+                protected int sizeOf(String key, Bitmap bitmap) {
+                    // cache size is measured in kilobytes
+                    return bitmap.getByteCount() / 1024;
+                }
+            };
+
+        }
+    } // end method setupApplicationWideImageCache
 }

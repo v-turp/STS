@@ -327,6 +327,14 @@
         <item name="android:weightSum">2</item>
     </style>
 
+    <style name="ll_profile_rows_portrait">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0</item><!-- changed from 2 to 0 while working on implementing a list -->
+        <item name="android:weightSum">2</item>
+    </style>
+
     <style name="ll_profile_top">
         <item name="android:orientation">horizontal</item>
         <item name="android:layout_width">match_parent</item>
