@@ -67,28 +67,6 @@ public class ProfileActivity extends AppCompatActivity {
     // setup cache
     private static LruCache<String, Bitmap> imageMemoryCache;
 
-    // setup the broadcast receiver for launching the list
-    private BroadcastReceiver listReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            // TODO add a recyclerView here
-            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-//                rvProfile = (RecyclerView) findViewById(R.id.rvProfile);
-//                // create the layout for the recycler view
-//                layoutManager = new LinearLayoutManager(ProfileActivity.this);
-//                rvProfile.setLayoutManager(layoutManager);
-
-//              set the adapter
-//                if (recyclerViewImageList != null) {
-//                    ProfileRecyclerViewAdapter profileRecyclerViewAdapter = new ProfileRecyclerViewAdapter(recyclerViewImageList, this);
-//                    rvProfile.setAdapter(profileRecyclerViewAdapter);
-//                }
-            }
-            Toast.makeText(getApplication(), "BroadcastReceiver is launched ", Toast.LENGTH_LONG).show();
-        }
-    }; // end receiver
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,10 +107,13 @@ public class ProfileActivity extends AppCompatActivity {
             }
         }else {
             //---if the cache is not null and the size is still 0, launch the async task.SOLVED[if app starts in portrait and is then rotated to landscape, async task will not execute. now it will]
-            if(imageMemoryCache != null && imageMemoryCache.size() == 0){
+            if(imageMemoryCache != null /*&& imageMemoryCache.size() == 0*/){
                 if( getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ) {
-                    landscapeLayoutTask = new ProfileLandscapeLayoutTask(this);
-                    landscapeLayoutTask.execute();
+//                    landscapeLayoutTask = new ProfileLandscapeLayoutTask(this);
+//                    landscapeLayoutTask.execute();
+                }else if( getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+                        profileRecyclerViewAdapter = new ProfileRecyclerViewAdapter(imageMemoryCache, this);
+                        rvProfile.setAdapter(profileRecyclerViewAdapter);
                 }
             }
         }
@@ -148,15 +129,11 @@ public class ProfileActivity extends AppCompatActivity {
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             loadImagesFromCache();
         }
-        // register the list receiver for the recycler view
-        LocalBroadcastManager.getInstance(this).registerReceiver(listReceiver, new IntentFilter(PROFILE_ACTIVITY_INTENT_FILTER));
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        // unregister the list receiver for the recycler view
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(listReceiver);
     }
 
     @Override
@@ -297,11 +274,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         FrameLayout flItemLayout;
 
-        // TODO  setup variables for recycler view
-        RecyclerView rvProfile;
-        RecyclerView.LayoutManager layoutManager;
-        ProfileRecyclerViewAdapter profileRecyclerViewAdapter;
-
         public ProfilePortraitLayoutTask(Context context){
             this.context = context;
             this.profileActivity = (ProfileActivity) context;
@@ -314,9 +286,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         @Override
         protected Map<String, Bitmap> doInBackground(Void... voids) {
-//            imageBucket = createImageBucketForRecyclerView(theMap);
-//            imageList[0] = imageBucket;
-//            Log.d(TAG, "Image Bucket List. Is it null? " + (imageList[0] == null) );
             return initializeProfileImages(null);
         }
 
@@ -431,10 +400,23 @@ public class ProfileActivity extends AppCompatActivity {
             picturesMap.put(UPLOAD_ICON, theMapBucket.get(UPLOAD_ICON));
             imageBucket.add(picturesMap);
 
-//            Map<String, Bitmap> messageAndChatMap = new HashMap<>();
-//            Map<String, Bitmap> vidoesMap = new HashMap<>();
-//            Map<String, Bitmap> contactsMap = new HashMap<>();
-//            Map<String, Bitmap> registerMaterialMap = new HashMap<>();
+            Map<String, Bitmap> messageAndChatMap = new HashMap<>();
+            messageAndChatMap.put(MESSAGE_AND_CHAT, theMapBucket.get(MESSAGE_AND_CHAT));
+            imageBucket.add(messageAndChatMap);
+
+            Map<String, Bitmap> videosMap = new HashMap<>();
+            videosMap.put(VIDEOS, theMapBucket.get(VIDEOS));
+            videosMap.put(UPLOAD_ICON, theMapBucket.get(UPLOAD_ICON));
+            imageBucket.add(videosMap);
+
+            Map<String, Bitmap> contactsMap = new HashMap<>();
+            contactsMap.put(CONTACTS, theMapBucket.get(CONTACTS));
+            contactsMap.put(UPLOAD_ICON, theMapBucket.get(UPLOAD_ICON));
+            imageBucket.add(contactsMap);
+
+            Map<String, Bitmap> registerMaterialMap = new HashMap<>();
+            registerMaterialMap.put(REGISTER_MATERIAL, theMapBucket.get(REGISTER_MATERIAL));
+            imageBucket.add(registerMaterialMap);
 
             return imageBucket;
         }
