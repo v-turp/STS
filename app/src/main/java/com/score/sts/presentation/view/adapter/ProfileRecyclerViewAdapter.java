@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +16,6 @@ import com.score.sts.R;
 import com.score.sts.presentation.view.activity.ProfileActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -41,14 +41,22 @@ public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecy
         Log.d(TAG, "What is the ArrayList contents? Is it null? " + profileStation.get(position).keySet());
 
         switch(position){
+            case 0:
+                    holder.frameLayout.setBackground(new BitmapDrawable(context.getResources(), profileStation.get(position).get(ProfileActivity.BIO)));
+                    holder.imageView.setImageDrawable(new BitmapDrawable(context.getResources(), profileStation.get(position).get(ProfileActivity.EDIT_ICON)));
+                    holder.textView.setText(R.string.profile_music_fragment);
+                break;
 
             case 1:
-                    holder.imageView.setImageDrawable(new BitmapDrawable(context.getResources(), profileStation.get(position).get(ProfileActivity.ProfileImageLoadHelper.BIO)));
+                    holder.frameLayout.setBackground(new BitmapDrawable(context.getResources(), profileStation.get(position).get(ProfileActivity.MUSIC)));
+                    holder.imageView.setImageDrawable(new BitmapDrawable(context.getResources(), profileStation.get(position).get(ProfileActivity.UPLOAD_ICON)));
                     holder.textView.setText(R.string.profile_bio_fragment);
                 break;
-            case 0:
-                    holder.imageView.setImageDrawable(new BitmapDrawable(context.getResources(), profileStation.get(position).get(ProfileActivity.ProfileImageLoadHelper.MUSIC)));
-                    holder.textView.setText(R.string.profile_music_fragment);
+
+            case 2:
+                holder.frameLayout.setBackground(new BitmapDrawable(context.getResources(), profileStation.get(position).get(ProfileActivity.PICTURES)));
+                holder.imageView.setImageDrawable(new BitmapDrawable(context.getResources(), profileStation.get(position).get(ProfileActivity.UPLOAD_ICON)));
+                holder.textView.setText(R.string.profile_fragment_pictures);
                 break;
         }
 
@@ -65,18 +73,20 @@ public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecy
     @Override
     public int getItemCount() {
         // TODO return the number of items in the list
-        return 2;
+        return 3;
     }
 
     public static class ProfileViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textView;
         public ImageView imageView;
+        public FrameLayout frameLayout;
 
         public ProfileViewHolder(View itemView) {
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.image_profile_item);
             textView = (TextView) itemView.findViewById(R.id.text_profile_description_item);
+            frameLayout = (FrameLayout) itemView.findViewById(R.id.fl_profile_item);
         }
 
 

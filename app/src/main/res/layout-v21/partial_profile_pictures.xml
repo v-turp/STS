@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="@string/profile_fragment" />
+            android:text="@string/profile_fragment_pictures" />
 
         <ImageView
             android:id="@+id/image_pictures_ic_edit"
