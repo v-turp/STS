@@ -166,6 +166,7 @@ public class LandingActivity extends AppCompatActivity {
             // logo
             if(logoFrameLsyout != null) {
                 logoFrameLsyout.setForeground(ContextCompat.getDrawable(landingActivity, R.drawable.sts_logo_original));
+//                logoFrameLsyout.setForeground(ContextCompat.getDrawable(landingActivity, R.drawable.smirk1));
             }
 
             // login image and star
