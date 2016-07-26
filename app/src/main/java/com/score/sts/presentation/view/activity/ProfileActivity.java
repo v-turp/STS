@@ -1,9 +1,7 @@
 package com.score.sts.presentation.view.activity;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -11,7 +9,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.util.LruCache;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -104,6 +101,7 @@ public class ProfileActivity extends AppCompatActivity {
             } else if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
                 portraitLayoutTask = new ProfilePortraitLayoutTask(this);
                 portraitLayoutTask.execute();
+                portraitLayoutTask.loadPortraitProfileImage();
             }
         }else {
             //---if the cache is not null and the size is still 0, launch the async task.SOLVED[if app starts in portrait and is then rotated to landscape, async task will not execute. now it will]
@@ -112,8 +110,8 @@ public class ProfileActivity extends AppCompatActivity {
 //                    landscapeLayoutTask = new ProfileLandscapeLayoutTask(this);
 //                    landscapeLayoutTask.execute();
                 }else if( getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
-                        profileRecyclerViewAdapter = new ProfileRecyclerViewAdapter(imageMemoryCache, this);
-                        rvProfile.setAdapter(profileRecyclerViewAdapter);
+//                        profileRecyclerViewAdapter = new ProfileRecyclerViewAdapter(imageMemoryCache, this);
+//                        rvProfile.setAdapter(profileRecyclerViewAdapter);
                 }
             }
         }
@@ -128,6 +126,10 @@ public class ProfileActivity extends AppCompatActivity {
         //---this is only for landscape orientation b/c the views that will be instantiated do not exits in portrait
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             loadImagesFromCache();
+        }else if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            profileRecyclerViewAdapter = new ProfileRecyclerViewAdapter(imageMemoryCache, this);
+            rvProfile.setAdapter(profileRecyclerViewAdapter);
+            loadPortraitProfileImageFromCache();
         }
     }
 
@@ -226,6 +228,9 @@ public class ProfileActivity extends AppCompatActivity {
         findViewById(R.id.image_profile_message_chat).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(STAR_ICON)));
     }
 
+    private void loadPortraitProfileImageFromCache(){
+        findViewById(R.id.fl_profile_photo).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(PROFILE_PICTURE)));
+    }
     private void init(){
         snackbar = getFingerPrintSnackbarNotification();
         /**
@@ -272,7 +277,7 @@ public class ProfileActivity extends AppCompatActivity {
         Bitmap nightCloud;
         //--- end debug pics
 
-        FrameLayout flItemLayout;
+//        FrameLayout flItemLayout;
 
         public ProfilePortraitLayoutTask(Context context){
             this.context = context;
@@ -316,7 +321,7 @@ public class ProfileActivity extends AppCompatActivity {
         public Map<String, Bitmap> initializeProfileImages(@Nullable Context context){
             Map<String, Bitmap> imageMap = new HashMap<>();
 
-            flItemLayout = (FrameLayout) profileActivity.findViewById(R.id.fl_profile_item);
+//            flItemLayout = (FrameLayout) profileActivity.findViewById(R.id.fl_profile_item);
             // after decoding and resizing, initialize the images and add them to the cache
             // icon drawables
             edit = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_edit_white_24dp, 100, 100);
@@ -419,6 +424,15 @@ public class ProfileActivity extends AppCompatActivity {
             imageBucket.add(registerMaterialMap);
 
             return imageBucket;
+        }
+
+        public void loadPortraitProfileImage(){
+            Bitmap girlAvatar = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.girl_avatar, 100, 100);
+            FrameLayout flProfilePic = (FrameLayout) profileActivity.findViewById(R.id.fl_profile_photo);
+            // profile image
+            if(flProfilePic != null) {
+                flProfilePic.setForeground(new BitmapDrawable(profileActivity.getResources(), girlAvatar));
+            }
         }
     } // end class ProfilePortraitLayoutTask
 

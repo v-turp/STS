@@ -3,11 +3,7 @@
     android:layout_height="match_parent"
     android:id="@+id/fl_profile_item">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        android:layout_gravity="bottom">
+    <LinearLayout style="@style/ll_footer_decor">
 
         <TextView
             android:id="@+id/text_profile_description_item"
