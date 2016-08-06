@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -9,6 +14,13 @@
     <View style="@style/accent_bar"/>
 
     <!-- frame container-->
+    <LinearLayout
+        android:id="@+id/ll_reveal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"/>
+
     <LinearLayout
         android:id="@+id/ll_profile_frame_container"
         style="@style/ll_profile_frame_container">
@@ -57,4 +69,4 @@
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
-
+</android.support.design.widget.CoordinatorLayout>
