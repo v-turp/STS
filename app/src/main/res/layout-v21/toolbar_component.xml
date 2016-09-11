@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/app_bar_default_left_padding"
     android:paddingRight="@dimen/app_bar_default_right_padding"
     android:elevation="@dimen/base_elevation"
-    tools:showIn="@layout/landing_activity">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"

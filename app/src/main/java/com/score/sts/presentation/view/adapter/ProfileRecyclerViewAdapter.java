@@ -3,6 +3,7 @@ package com.score.sts.presentation.view.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.util.LruCache;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.score.sts.R;
 import com.score.sts.presentation.view.activity.ProfileActivity;
@@ -138,6 +140,8 @@ public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecy
         // TODO return the number of items in the list
         return 7;
     }
+
+    // TODO create a click listener for the list items for the circular reveal
 
     public static class ProfileViewHolder extends RecyclerView.ViewHolder{
 

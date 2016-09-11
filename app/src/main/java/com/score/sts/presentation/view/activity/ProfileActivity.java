@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.util.LruCache;
 import android.support.v7.app.AppCompatActivity;
@@ -22,8 +23,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
-import android.view.ViewPropertyAnimator;
-import android.view.ViewStub;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -39,7 +38,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = ProfileActivity.class.getSimpleName();
     public static final String SHOW_SNACK = "signup complete";
@@ -65,12 +64,17 @@ public class ProfileActivity extends AppCompatActivity {
     private static RecyclerView rvProfile;
     private ArrayList<Map<String, Bitmap>> recyclerViewImageList;   // this list is primarily for the recycler view adapter
     private static ProfileRecyclerViewAdapter profileRecyclerViewAdapter;   // this is static so it can be called in the onPostExecute of the AsyncTask
-
     // setup cache
     private static LruCache<String, Bitmap> imageMemoryCache;
 
-    //---TODO 1) views for testing circular reveal
-    FrameLayout flProfileLayout;
+    // views for circular reveal
+    FrameLayout flBio;
+    FrameLayout flMusic;
+    FrameLayout flPictures;
+    FrameLayout flMessageChat;
+    FrameLayout flVideos;
+    FrameLayout flContacts;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,32 +84,22 @@ public class ProfileActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_global);
         setSupportActionBar(toolbar);
 
-        // TODO 2) initialize the layout
-        flProfileLayout = (FrameLayout) findViewById(R.id.fl_partial_profile_bio);
-
-        // TODO 3) View to animate
-        final LinearLayout linearLayout = (LinearLayout) findViewById(R.id.ll_profile_frame_container);
-        final FrameLayout musicFrameLayout = (FrameLayout) findViewById(R.id.fl_partial_profile_music);
-        final FrameLayout picturesFrameLayout = (FrameLayout) findViewById(R.id.fl_partial_profile_pictures);
-        final FrameLayout flLogo = (FrameLayout) findViewById(R.id.fl_profile_photo);
-        final LinearLayout rowsLayout = (LinearLayout) findViewById(R.id.ll_profile_rows);
-
-        // TODO 4) set click listener and start circular reveal
-            flProfileLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-//                musicFrameLayout.setVisibility(View.GONE);
-//                picturesFrameLayout.setVisibility(View.GONE);
-//                rowsLayout.setVisibility(View.GONE);
-//                flLogo.setVisibility(View.GONE);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                    assert linearLayout != null;
-                        linearLayout.setForeground(getResources().getDrawable(R.drawable.circular_reveal_color, null));
-                    }
-                    setCircularReveal(linearLayout);
-                }
-            });
-
+        // TODO create in the adapter a click listener for the circular reveal. this is for the portrait layout
+        // layouts for circular reveal. this is for landscape layout.
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            flBio = (FrameLayout) findViewById(R.id.fl_partial_profile_bio);
+            flBio.setOnClickListener(this);
+            flMusic = (FrameLayout) findViewById(R.id.fl_partial_profile_music);
+            flMusic.setOnClickListener(this);
+            flPictures = (FrameLayout) findViewById(R.id.fl_partial_profile_pictures);
+            flPictures.setOnClickListener(this);
+            flMessageChat = (FrameLayout) findViewById(R.id.fl_partial_profile_msg_cht);
+            flMessageChat.setOnClickListener(this);
+            flVideos = (FrameLayout) findViewById(R.id.fl_partial_profile_videos);
+            flVideos.setOnClickListener(this);
+            flContacts = (FrameLayout) findViewById(R.id.fl_partial_profile_contacts);
+            flContacts.setOnClickListener(this);
+        }
 
         //--- setup recycler view
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -194,6 +188,65 @@ public class ProfileActivity extends AppCompatActivity {
 
         if (snackbar.isShown() && gotIt.equals(CONFIRMED)) {
             snackbar.dismiss();
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        CoordinatorLayout musicLayout = (CoordinatorLayout) findViewById(R.id.cl_component_hub);
+        FrameLayout layoutToCover = (FrameLayout) findViewById(R.id.fl_frame_to_cover);
+        int id = view.getId();
+
+        switch(id){
+
+            case R.id.fl_partial_profile_bio:
+                        Toast.makeText(this, "Bio was clicked", Toast.LENGTH_LONG).show();
+                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                break;
+
+            case R.id.fl_partial_profile_music:
+                        Toast.makeText(this, "Music was clicked", Toast.LENGTH_LONG).show();
+                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                break;
+
+            case R.id.fl_partial_profile_pictures:
+                        Toast.makeText(this, "Pictures was clicked", Toast.LENGTH_LONG).show();
+                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                break;
+
+            case R.id.fl_partial_profile_msg_cht:
+                        Toast.makeText(this, "Message/Chat was clicked", Toast.LENGTH_LONG).show();
+                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                break;
+
+            case R.id.fl_partial_profile_videos:
+                        Toast.makeText(this, "Videos was clicked", Toast.LENGTH_LONG).show();
+                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                break;
+
+            case R.id.fl_partial_profile_contacts:
+                        Toast.makeText(this, "Contacts was clicked", Toast.LENGTH_LONG).show();
+                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    // administers the circular reveal
+    private void administerCircularReveal(View viewToCover, View viewToReveal, int duration){
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+            int cx = viewToCover.getWidth();
+            int cy = viewToCover.getHeight();
+
+            float finalRadius = (float) Math.hypot(cx, cy);
+            Animator anim = ViewAnimationUtils.createCircularReveal(viewToReveal, cx, cy, 0, finalRadius);
+            viewToReveal.setVisibility(View.VISIBLE);
+            anim.setDuration(duration);
+            anim.start();
         }
     }
 
@@ -287,61 +340,6 @@ public class ProfileActivity extends AppCompatActivity {
         return snackingBar;
     }
 
-
-    private void setCircularReveal(final View view) {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
-            int cx = view.getWidth();
-            int cy = view.getHeight();
-
-            float finalRadius = (float) Math.hypot(cx, cy);
-
-            Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
-            anim.setDuration(500);
-            view.setVisibility(View.VISIBLE);
-            anim.addListener(new Animator.AnimatorListener() {
-
-                @Override
-                public void onAnimationStart(Animator animator) {
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    Bitmap girlAvatar = BitmapUtil.decodeBitmapFromResource(getBaseContext().getResources(), R.drawable.girl_avatar, 100, 100);
-                    LinearLayout linearLayout = (LinearLayout) findViewById(R.id.ll_reveal);
-//                    ImageView imageView = (ImageView) findViewById(R.id.image_avatar_fader);
-                    linearLayout.setVisibility(View.VISIBLE);
-                    ViewPropertyAnimator animAvatar = linearLayout.animate();
-//                    animAvatar.setStartDelay(500);
-
-//                    if (linearLayout != null) {
-                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-                            linearLayout.setForeground(new BitmapDrawable(getResources(), girlAvatar));
-//                    }
-//                    linearLayout.setAlpha(0);
-                    animAvatar.alpha(1).setDuration(4000);
-                    animAvatar.start();
-                    Log.d(TAG, "The girl avatar is visible? " + view.isShown());
-//                    Toast.makeText(ProfileActivity.this, "Animation ended", Toast.LENGTH_LONG).show();
-
-                }
-
-                @Override
-                public void onAnimationCancel(Animator animator) {
-
-                }
-
-                @Override
-                public void onAnimationRepeat(Animator animator) {
-
-                }
-            });
-
-            anim.start();
-        }
-    } // end method setCircularReveal
 
     public static class ProfilePortraitLayoutTask extends AsyncTask<Void, Void, Map<String, Bitmap>> {
 
