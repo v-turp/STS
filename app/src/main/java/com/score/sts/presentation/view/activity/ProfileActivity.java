@@ -193,7 +193,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        CoordinatorLayout musicLayout = (CoordinatorLayout) findViewById(R.id.cl_component_hub);
+        LinearLayout musicLayout = (LinearLayout) findViewById(R.id.cl_component_hub);
         FrameLayout layoutToCover = (FrameLayout) findViewById(R.id.fl_frame_to_cover);
         int id = view.getId();
 
