@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.util.LruCache;
@@ -31,6 +32,7 @@ import android.widget.Toast;
 import com.score.sts.R;
 import com.score.sts.presentation.BitmapUtil;
 import com.score.sts.presentation.view.adapter.ProfileRecyclerViewAdapter;
+import com.score.sts.presentation.view.component.HubCoordinator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -193,7 +195,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        LinearLayout musicLayout = (LinearLayout) findViewById(R.id.cl_component_hub);
+        CoordinatorLayout musicLayout = (CoordinatorLayout) findViewById(R.id.cl_component_hub);
         FrameLayout layoutToCover = (FrameLayout) findViewById(R.id.fl_frame_to_cover);
         int id = view.getId();
 
@@ -325,6 +327,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if (getIntent().hasExtra(SHOW_SNACK)) {
             snackbar.show();
         }
+        // TODO if this works then clean up the code. if not remove it
+        LinearLayout bottomSheet = (LinearLayout) findViewById(R.id.ll_bottom_bottom_sheet);
+        BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+        behavior.setPeekHeight(200);
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
 
     }
 

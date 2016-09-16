@@ -1,30 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:visibility="gone"
+    android:background="#ffff00"
     android:id="@+id/cl_component_hub">
 
-    <!--<ImageView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:scaleType="fitXY"-->
-        <!--android:src="@drawable/cello_player" />-->
-
-    <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"/>-->
-
-    <com.score.sts.presentation.view.component.DataListHeader
+    <LinearLayout
+        android:id="@+id/ll_bottom_bottom_sheet"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:orientation="vertical"
+        app:layout_behavior="BottomSheetBehavior">
 
-    <com.score.sts.presentation.view.component.DataList
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        <LinearLayout
+            android:id="@+id/ll_bottom_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <com.score.sts.presentation.view.component.DataListHeader
+                android:id="@+id/dlh_dlh_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <com.score.sts.presentation.view.component.DataList
+                android:id="@+id/dl_data_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
 
     </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
