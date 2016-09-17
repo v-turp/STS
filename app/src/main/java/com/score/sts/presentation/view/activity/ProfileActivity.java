@@ -1,13 +1,17 @@
 package com.score.sts.presentation.view.activity;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.util.LruCache;
 import android.support.v7.app.AppCompatActivity;
@@ -19,13 +23,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.score.sts.R;
 import com.score.sts.presentation.BitmapUtil;
 import com.score.sts.presentation.view.adapter.ProfileRecyclerViewAdapter;
+import com.score.sts.presentation.view.component.HubCoordinator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +40,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = ProfileActivity.class.getSimpleName();
     public static final String SHOW_SNACK = "signup complete";
@@ -57,12 +64,19 @@ public class ProfileActivity extends AppCompatActivity {
     public static ProfileLandscapeLayoutTask landscapeLayoutTask;
     public static ProfilePortraitLayoutTask portraitLayoutTask;
     private static RecyclerView rvProfile;
-    private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Map<String, Bitmap>> recyclerViewImageList;   // this list is primarily for the recycler view adapter
     private static ProfileRecyclerViewAdapter profileRecyclerViewAdapter;   // this is static so it can be called in the onPostExecute of the AsyncTask
-
     // setup cache
     private static LruCache<String, Bitmap> imageMemoryCache;
+
+    // views for circular reveal
+    FrameLayout flBio;
+    FrameLayout flMusic;
+    FrameLayout flPictures;
+    FrameLayout flMessageChat;
+    FrameLayout flVideos;
+    FrameLayout flContacts;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,10 +86,27 @@ public class ProfileActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_global);
         setSupportActionBar(toolbar);
 
+        // TODO create in the adapter a click listener for the circular reveal. this is for the portrait layout
+        // layouts for circular reveal. this is for landscape layout.
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            flBio = (FrameLayout) findViewById(R.id.fl_partial_profile_bio);
+            flBio.setOnClickListener(this);
+            flMusic = (FrameLayout) findViewById(R.id.fl_partial_profile_music);
+            flMusic.setOnClickListener(this);
+            flPictures = (FrameLayout) findViewById(R.id.fl_partial_profile_pictures);
+            flPictures.setOnClickListener(this);
+            flMessageChat = (FrameLayout) findViewById(R.id.fl_partial_profile_msg_cht);
+            flMessageChat.setOnClickListener(this);
+            flVideos = (FrameLayout) findViewById(R.id.fl_partial_profile_videos);
+            flVideos.setOnClickListener(this);
+            flContacts = (FrameLayout) findViewById(R.id.fl_partial_profile_contacts);
+            flContacts.setOnClickListener(this);
+        }
+
         //--- setup recycler view
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             rvProfile = (RecyclerView) findViewById(R.id.rvProfile);
-            layoutManager = new LinearLayoutManager(ProfileActivity.this);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ProfileActivity.this);
             rvProfile.setLayoutManager(layoutManager);
         }
 
@@ -85,38 +116,38 @@ public class ProfileActivity extends AppCompatActivity {
         // use 1/8th  of the available memory for this memory cach
         final int cacheSize = maxMemory / 8;
 
-        if(imageMemoryCache == null){
-            imageMemoryCache = new LruCache<String, Bitmap>(cacheSize){
+        if (imageMemoryCache == null) {
+            imageMemoryCache = new LruCache<String, Bitmap>(cacheSize) {
                 @Override
                 protected int sizeOf(String key, Bitmap bitmap) {
                     // cache size is measured in kilobytes
-                    return bitmap.getByteCount() / 1024 ;
+                    return bitmap.getByteCount() / 1024;
                 }
             };
 
             //---load the images with the asyncTask if the cache is empty. this is only for landscape orientation b/c the views that will be instantiated do not exits in portrait
-            if( getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 landscapeLayoutTask = new ProfileLandscapeLayoutTask(this);
                 landscapeLayoutTask.execute();
-            } else if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 portraitLayoutTask = new ProfilePortraitLayoutTask(this);
                 portraitLayoutTask.execute();
                 portraitLayoutTask.loadPortraitProfileImage();
             }
-        }else {
+        } else {
             //---if the cache is not null and the size is still 0, launch the async task.SOLVED[if app starts in portrait and is then rotated to landscape, async task will not execute. now it will]
-            if(imageMemoryCache != null /*&& imageMemoryCache.size() == 0*/){
-                if( getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE ) {
+            if (imageMemoryCache != null /*&& imageMemoryCache.size() == 0*/) {
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 //                    landscapeLayoutTask = new ProfileLandscapeLayoutTask(this);
 //                    landscapeLayoutTask.execute();
-                }else if( getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+                } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
 //                        profileRecyclerViewAdapter = new ProfileRecyclerViewAdapter(imageMemoryCache, this);
 //                        rvProfile.setAdapter(profileRecyclerViewAdapter);
                 }
             }
         }
 
-        Log.d(TAG, "Max Memory Size: " + Runtime.getRuntime().maxMemory() / 1024 );
+        Log.d(TAG, "Max Memory Size: " + Runtime.getRuntime().maxMemory() / 1024);
         init();
     }
 
@@ -124,18 +155,13 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //---this is only for landscape orientation b/c the views that will be instantiated do not exits in portrait
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             loadImagesFromCache();
-        }else if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+        } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             profileRecyclerViewAdapter = new ProfileRecyclerViewAdapter(imageMemoryCache, this);
             rvProfile.setAdapter(profileRecyclerViewAdapter);
             loadPortraitProfileImageFromCache();
         }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
     }
 
     @Override
@@ -145,9 +171,9 @@ public class ProfileActivity extends AppCompatActivity {
             landscapeLayoutTask.cancel(true);
             landscapeLayoutTask = null; // release resources
         }
-        if(portraitLayoutTask != null){
+        if (portraitLayoutTask != null) {
             portraitLayoutTask.cancel(true);
-            portraitLayoutTask =  null; // release resources
+            portraitLayoutTask = null; // release resources
         }
     }
 
@@ -162,8 +188,67 @@ public class ProfileActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         gotIt = savedInstanceState.getString(GOT_IT);
 
-        if(snackbar.isShown() && gotIt.equals(CONFIRMED)){
+        if (snackbar.isShown() && gotIt.equals(CONFIRMED)) {
             snackbar.dismiss();
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        CoordinatorLayout musicLayout = (CoordinatorLayout) findViewById(R.id.cl_component_hub);
+        FrameLayout layoutToCover = (FrameLayout) findViewById(R.id.fl_frame_to_cover);
+        int id = view.getId();
+
+        switch(id){
+
+            case R.id.fl_partial_profile_bio:
+                        Toast.makeText(this, "Bio was clicked", Toast.LENGTH_LONG).show();
+                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                break;
+
+            case R.id.fl_partial_profile_music:
+                        Toast.makeText(this, "Music was clicked", Toast.LENGTH_LONG).show();
+                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                break;
+
+            case R.id.fl_partial_profile_pictures:
+                        Toast.makeText(this, "Pictures was clicked", Toast.LENGTH_LONG).show();
+                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                break;
+
+            case R.id.fl_partial_profile_msg_cht:
+                        Toast.makeText(this, "Message/Chat was clicked", Toast.LENGTH_LONG).show();
+                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                break;
+
+            case R.id.fl_partial_profile_videos:
+                        Toast.makeText(this, "Videos was clicked", Toast.LENGTH_LONG).show();
+                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                break;
+
+            case R.id.fl_partial_profile_contacts:
+                        Toast.makeText(this, "Contacts was clicked", Toast.LENGTH_LONG).show();
+                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    // administers the circular reveal
+    private void administerCircularReveal(View viewToCover, View viewToReveal, int duration){
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+            int cx = viewToCover.getWidth();
+            int cy = viewToCover.getHeight();
+
+            float finalRadius = (float) Math.hypot(cx, cy);
+            Animator anim = ViewAnimationUtils.createCircularReveal(viewToReveal, cx, cy, 0, finalRadius);
+            viewToReveal.setVisibility(View.VISIBLE);
+            anim.setDuration(duration);
+            anim.start();
         }
     }
 
@@ -176,7 +261,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.item_search:
                 Toast.makeText(getApplicationContext(), "Searching", Toast.LENGTH_LONG).show();
                 return true;
@@ -194,68 +279,78 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-    public static Intent getCallingIntent(Context context){
-        Intent callingIntent = new Intent(context, ProfileActivity.class);
-        return callingIntent;
+    public static Intent getCallingIntent(Context context) {
+        return new Intent(context, ProfileActivity.class);
     }
 
-    public static void addBitmapToMemoryCache(String key, Bitmap bitmap){
-        if( getBitmapFromMemCache(key) == null){
+    public static void addBitmapToMemoryCache(String key, Bitmap bitmap) {
+        if (getBitmapFromMemCache(key) == null) {
             imageMemoryCache.put(key, bitmap);
         }
     }
 
-    public static Bitmap getBitmapFromMemCache(String key){
-            return imageMemoryCache.get(key);
+    public static Bitmap getBitmapFromMemCache(String key) {
+        return imageMemoryCache.get(key);
     }
 
     /**
      * this method is streamlined and does not create any objects. it simply trusts the cache and fetches images from the cache
      * to load images into their respective views. NOTE: The images from the cache have already been resized.
      */
-    private void loadImagesFromCache(){
+    @SuppressWarnings("ConstantConditions")
+    private void loadImagesFromCache() {
         // TODO redo the naming convention for the portrait layout for the profile pages so that I don't have to constantly load the configuration dynamically
         findViewById(R.id.fl_profile_photo).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(PROFILE_PICTURE)));
+        //noinspection ConstantConditions,ConstantConditions
         findViewById(R.id.fl_partial_profile_bio).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(BIO)));
         findViewById(R.id.fl_partial_profile_music).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(MUSIC)));
-        findViewById(R.id.fl_partial_profile_pictures).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(PICTURES)));
-        findViewById(R.id.fl_partial_profile_msg_cht).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(MESSAGE_AND_CHAT)));
-        findViewById(R.id.fl_partial_profile_videos).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(VIDEOS)));
+        findViewById(R.id.fl_partial_profile_pictures).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(PICTURES)));
+        findViewById(R.id.fl_partial_profile_msg_cht).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(MESSAGE_AND_CHAT)));
+        findViewById(R.id.fl_partial_profile_videos).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(VIDEOS)));
         findViewById(R.id.fl_partial_profile_contacts).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(CONTACTS)));
-        findViewById(R.id.fl_partial_profile_register_work).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(REGISTER_MATERIAL)));
-        findViewById(R.id.image_pictures_ic_edit).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(EDIT_ICON)));
-        findViewById(R.id.image_videos_ic_upload).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(UPLOAD_ICON)));
-        findViewById(R.id.image_profile_message_chat).setBackground( new BitmapDrawable(getResources(), getBitmapFromMemCache(STAR_ICON)));
+        findViewById(R.id.fl_partial_profile_register_work).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(REGISTER_MATERIAL)));
+        findViewById(R.id.image_pictures_ic_edit).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(EDIT_ICON)));
+        findViewById(R.id.image_videos_ic_upload).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(UPLOAD_ICON)));
+        findViewById(R.id.image_profile_message_chat).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(STAR_ICON)));
     }
 
-    private void loadPortraitProfileImageFromCache(){
+    private void loadPortraitProfileImageFromCache() {
         findViewById(R.id.fl_profile_photo).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(PROFILE_PICTURE)));
     }
-    private void init(){
+
+    private void init() {
         snackbar = getFingerPrintSnackbarNotification();
         /**
          *  if the user clicked join, notification is sent here
          *  through the intent with instructions to display the snackbar.
          */
-        if(getIntent().hasExtra(SHOW_SNACK)) {
+        if (getIntent().hasExtra(SHOW_SNACK)) {
             snackbar.show();
+        }
+        // TODO remove the evaluation once the setup is complete for portrait mode
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            LinearLayout bottomSheet = (LinearLayout) findViewById(R.id.ll_bottom_bottom_sheet);
+            BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+            behavior.setPeekHeight(200);
+            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
 
     }
 
-    private Snackbar getFingerPrintSnackbarNotification(){
+    private Snackbar getFingerPrintSnackbarNotification() {
         Snackbar snackingBar = Snackbar
-              .make(findViewById(android.R.id.content), R.string.snackbar_fingerprint_setup_directions, Snackbar.LENGTH_INDEFINITE)
-              .setAction(R.string.snackbar_fingerprint_setup_confirmation, new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-                                        gotIt = CONFIRMED;    // used to save state
-                                    }
-                             });
+                .make(findViewById(android.R.id.content), R.string.snackbar_fingerprint_setup_directions, Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.snackbar_fingerprint_setup_confirmation, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        gotIt = CONFIRMED;    // used to save state
+                    }
+                });
         return snackingBar;
     }
 
-    public static class ProfilePortraitLayoutTask extends AsyncTask<Void, Void, Map<String, Bitmap> >{
+
+    public static class ProfilePortraitLayoutTask extends AsyncTask<Void, Void, Map<String, Bitmap>> {
 
         ArrayList<Map<String, Bitmap>> imageBucket; // this will be sent in onPostExecute the ProfileActivity bucketList
 
@@ -279,7 +374,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 //        FrameLayout flItemLayout;
 
-        public ProfilePortraitLayoutTask(Context context){
+        public ProfilePortraitLayoutTask(Context context) {
             this.context = context;
             this.profileActivity = (ProfileActivity) context;
         }
@@ -305,7 +400,7 @@ public class ProfileActivity extends AppCompatActivity {
             imageBucket = createImageBucketForRecyclerView(drawables);
             profileRecyclerViewAdapter = new ProfileRecyclerViewAdapter(imageBucket, profileActivity);
             rvProfile = (RecyclerView) profileActivity.findViewById(R.id.rvProfile);
-            if(rvProfile != null) {
+            if (rvProfile != null) {
                 rvProfile.setAdapter(profileRecyclerViewAdapter);
             }
             Toast.makeText(context, "Cache is setup from the PortraitLayoutTask", Toast.LENGTH_LONG).show();
@@ -314,11 +409,12 @@ public class ProfileActivity extends AppCompatActivity {
         /**
          * This method initializes the views for the profile page. The images are then decoded, resized and added to
          * their respective view.
+         *
          * @param context
          * @return return a map of all the resized and decoded images. all images will be decoded and resized
-         *         before bind added to the map
+         * before bind added to the map
          */
-        public Map<String, Bitmap> initializeProfileImages(@Nullable Context context){
+        public Map<String, Bitmap> initializeProfileImages(@Nullable Context context) {
             Map<String, Bitmap> imageMap = new HashMap<>();
 
 //            flItemLayout = (FrameLayout) profileActivity.findViewById(R.id.fl_profile_item);
@@ -363,7 +459,7 @@ public class ProfileActivity extends AppCompatActivity {
         /**
          * @param drawables the drawables passed in here should already have been resized before adding them to cache
          */
-        private void loadImagesIntoCache(Map<String, Bitmap> drawables){
+        private void loadImagesIntoCache(Map<String, Bitmap> drawables) {
             ProfileActivity.addBitmapToMemoryCache(PROFILE_PICTURE, drawables.get(PROFILE_PICTURE));
             ProfileActivity.addBitmapToMemoryCache(BIO, drawables.get(BIO));
             ProfileActivity.addBitmapToMemoryCache(EDIT_ICON, drawables.get(EDIT_ICON));
@@ -379,19 +475,18 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         /***
-         *
          * @param mapBucket this argument is the set of resized images and icons used for the profile page
          * @return we are returning a bucket of resized images in a format that is usable for the recycler view
          * each map should contain a background image and the icon to display.
          * this method reconstructs and builds upon the data that is already contained in the mapBucket and generates
          * a usable arraylist for the recycler view.
          */
-        private ArrayList<Map<String, Bitmap>> createImageBucketForRecyclerView(Map<String, Bitmap> mapBucket){
+        private ArrayList<Map<String, Bitmap>> createImageBucketForRecyclerView(Map<String, Bitmap> mapBucket) {
             ArrayList<Map<String, Bitmap>> imageBucket = new ArrayList<>();
             Map<String, Bitmap> theMapBucket = mapBucket;
 
             Map<String, Bitmap> bioMap = new HashMap<>();
-            bioMap.put(BIO, theMapBucket.get(BIO) );
+            bioMap.put(BIO, theMapBucket.get(BIO));
             bioMap.put(EDIT_ICON, theMapBucket.get(EDIT_ICON));
             imageBucket.add(0, bioMap);
 
@@ -426,11 +521,11 @@ public class ProfileActivity extends AppCompatActivity {
             return imageBucket;
         }
 
-        public void loadPortraitProfileImage(){
+        public void loadPortraitProfileImage() {
             Bitmap girlAvatar = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.girl_avatar, 100, 100);
             FrameLayout flProfilePic = (FrameLayout) profileActivity.findViewById(R.id.fl_profile_photo);
             // profile image
-            if(flProfilePic != null) {
+            if (flProfilePic != null) {
                 flProfilePic.setForeground(new BitmapDrawable(profileActivity.getResources(), girlAvatar));
             }
         }
@@ -442,7 +537,7 @@ public class ProfileActivity extends AppCompatActivity {
      * If used asynchronously, the configuration will change quicker during rotation but the images will load much slower.
      * however if not used asynchronously, the images will load quicker but will take longer to rotate.
      */
-    public static class ProfileLandscapeLayoutTask extends AsyncTask<ArrayList<Map<String, Bitmap>>, Map<String, Bitmap>, Map<String, Bitmap>>{
+    public static class ProfileLandscapeLayoutTask extends AsyncTask<ArrayList<Map<String, Bitmap>>, Map<String, Bitmap>, Map<String, Bitmap>> {
 
         ArrayList<Map<String, Bitmap>> imageBucket; // this will be sent in onPostExecute the ProfileActivity bucketList
 
@@ -477,7 +572,7 @@ public class ProfileActivity extends AppCompatActivity {
         ImageView imageVideos;
         ImageView imageContacts;
 
-        public ProfileLandscapeLayoutTask(Context context){
+        public ProfileLandscapeLayoutTask(Context context) {
 //            this.context = context;
             this.profileActivity = (ProfileActivity) context; // this is context of the ProfileActivity
         }
@@ -488,11 +583,11 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         // TODO implement the onProgressUpdate method and add a spinner to it.
+
         /***
-         *
          * @param imageList the argument for doInBackground method is an array of context objects.
-         *                we can use the first element in the context array or use the global context object.
-         *                in this case we are using the first element in the context array
+         *                  we can use the first element in the context array or use the global context object.
+         *                  in this case we are using the first element in the context array
          * @return
          */
         @Override
@@ -505,18 +600,19 @@ public class ProfileActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Map<String, Bitmap> drawables) {
             super.onPostExecute(drawables);
-            Toast.makeText(profileActivity, "onPostExecute is executed", Toast.LENGTH_LONG).show();
+//            Toast.makeText(profileActivity, "onPostExecute is executed", Toast.LENGTH_LONG).show();
             loadImages(drawables);
         }
 
         /**
          * This method initializes the views for the profile page. The images are then decoded, resized and added to
          * their respective view.
+         *
          * @param context
          * @return return a map of all the resized and decoded images. all images will be decoded and resized
-         *         before bind added to the map
+         * before bind added to the map
          */
-        public Map<String, Bitmap> initializeProfileImages(@Nullable Context context){
+        public Map<String, Bitmap> initializeProfileImages(@Nullable Context context) {
             Map<String, Bitmap> imageMap = new HashMap<>();
 
             // initialize the views for the profile page
@@ -580,70 +676,66 @@ public class ProfileActivity extends AppCompatActivity {
         } // end method initializeProfileImages
 
 
-
         /**
-         *
          * @param drawables this argument is the list of resized images. these images will be set to their respective view
          *                  which is the background or the icon(upload, edit, add etc...)
-         *
          */
-        public void loadImages( Map<String, Bitmap> drawables){
+        public void loadImages(Map<String, Bitmap> drawables) {
             // profile image
-            if(flProfilePic != null) {
+            if (flProfilePic != null) {
                 flProfilePic.setForeground(new BitmapDrawable(profileActivity.getResources(), drawables.get(PROFILE_PICTURE)));
             }
             // bio images
-            if(flProfileBio != null){
+            if (flProfileBio != null) {
                 flProfileBio.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(BIO)));
             }
-            if( imageBioEdit != null){
-                imageBioEdit.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(EDIT_ICON)) );
+            if (imageBioEdit != null) {
+                imageBioEdit.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(EDIT_ICON)));
             }
             // music images
-            if(flProfileMusic != null){
+            if (flProfileMusic != null) {
                 flProfileMusic.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(MUSIC)));
             }
             // pictures images
-            if(flProfilePictures != null){
+            if (flProfilePictures != null) {
                 flProfilePictures.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(PICTURES)));
             }
-            if(imagePictures != null ){
+            if (imagePictures != null) {
                 imagePictures.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(EDIT_ICON)));
                 // already added to cache
             }
 
             // message and chat
-            if(flProfileMessageChat != null){
+            if (flProfileMessageChat != null) {
                 flProfileMessageChat.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(MESSAGE_AND_CHAT)));
             }
-            if(imageMessageChat != null){
+            if (imageMessageChat != null) {
                 imageMessageChat.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(STAR_ICON)));
             }
             // vidoes
-            if(flProfileVideos != null){
+            if (flProfileVideos != null) {
                 flProfileVideos.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(VIDEOS)));
             }
-            if(imageVideos != null){
+            if (imageVideos != null) {
                 imageVideos.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(UPLOAD_ICON)));
             }
             // contacts
-            if(flProfileContacts != null){
+            if (flProfileContacts != null) {
                 flProfileContacts.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(CONTACTS)));
             }
-            if(imageContacts != null){
+            if (imageContacts != null) {
                 imageContacts.setImageDrawable(new BitmapDrawable(profileActivity.getResources(), drawables.get(ADD_PERSON_ICON)));
             }
             // register work
-            if(flProfileRegisterWork != null){
+            if (flProfileRegisterWork != null) {
                 flProfileRegisterWork.setBackground(new BitmapDrawable(profileActivity.getResources(), drawables.get(REGISTER_MATERIAL)));
             }
         }
 
         /***
-         *
          * @param drawables the drawables passed in here should already have been resized before adding them to cache
          */
-        private void loadImagesIntoCache(Map<String, Bitmap> drawables){
+        private void loadImagesIntoCache(Map<String, Bitmap> drawables) {
             ProfileActivity.addBitmapToMemoryCache(PROFILE_PICTURE, drawables.get(PROFILE_PICTURE));
             ProfileActivity.addBitmapToMemoryCache(BIO, drawables.get(BIO));
             ProfileActivity.addBitmapToMemoryCache(EDIT_ICON, drawables.get(EDIT_ICON));
@@ -659,22 +751,22 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         /**
-         *
          * @param map this is the map of resized images.
          *            we get the set of keys from the map and iterate through the map getting each image's size
          */
-        private void getTotalSizeOfAllImages( Map map){
+        private void getTotalSizeOfAllImages(Map map) {
+
             Map<String, Bitmap> imageList = map;
             Set imageListKeySet = imageList.keySet();
             Iterator iterator = imageListKeySet.iterator();
             int totalSizeOfAllImages = 0;
-            while(iterator.hasNext()){
-                totalSizeOfAllImages+= ( imageList.get(iterator.next()).getByteCount() ) / 1024;   // get the list of images and, using the iterator, get the next image, its byte count/size and convert it to megs.
+            while (iterator.hasNext()) {
+                totalSizeOfAllImages += (imageList.get(iterator.next()).getByteCount()) / 1024;   // get the list of images and, using the iterator, get the next image, its byte count/size and convert it to megs.
             }
             Log.d(TAG, "Size of all images: " + totalSizeOfAllImages);
         }
 
-        public static int whatIsTheImageSize(BitmapDrawable drawable, String imageName){
+        public static int whatIsTheImageSize(BitmapDrawable drawable, String imageName) {
             Log.d(TAG, "Drawable Size: " + imageName + " " + drawable.getBitmap().getByteCount() / 1024);
 
             return drawable.getBitmap().getByteCount() / 1024;

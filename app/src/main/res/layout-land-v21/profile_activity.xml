@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+<LinearLayout
+    android:id="@+id/ll_primary_profile_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -9,52 +15,15 @@
     <View style="@style/accent_bar"/>
 
     <!-- frame container-->
-    <LinearLayout
-        android:id="@+id/ll_profile_frame_container"
-        style="@style/ll_profile_frame_container">
+    <FrameLayout
+        android:id="@+id/fl_frame_to_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/fl_profile_photo"
-            style="@style/fl_profile_photo"/>
+        <include layout="@layout/partial_profile_activity_body"/>
 
-        <LinearLayout
-            android:id="@+id/ll_profile_rows"
-            style="@style/ll_profile_rows">
+        <include layout="@layout/component_hub"/>
 
-            <LinearLayout
-                android:id="@+id/ll_profile_top"
-                style="@style/ll_profile_top">
-
-                <include layout="@layout/partial_profile_bio"
-                    style="@style/partial_profile_bio"/>
-
-                <include layout="@layout/partial_profile_music"
-                    style="@style/partial_profile_music"/>
-
-                <include layout="@layout/partial_profile_pictures"
-                    style="@style/partial_profile_pictures_landscape"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_profile_bottom"
-                style="@style/ll_profile_bottom">
-
-                <include layout="@layout/partial_profile_msg_cht"
-                    style="@style/partial_profile_msg_cht"/>
-
-                <include layout="@layout/partial_profile_videos"
-                    style="@style/partial_profile_videos"/>
-
-                <include layout="@layout/partial_profile_contacts"
-                    style="@style/partial_profile_contacts"/>
-
-            </LinearLayout>
-
-            <include layout="@layout/partial_profile_register_work"
-                style="@style/partial_profile_register_work"/>
-            <View style="@style/accent_bar"/>
-        </LinearLayout>
-    </LinearLayout>
+    </FrameLayout>
 </LinearLayout>
-
+</FrameLayout>
