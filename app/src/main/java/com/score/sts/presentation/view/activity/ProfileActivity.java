@@ -331,7 +331,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         LinearLayout bottomSheet = (LinearLayout) findViewById(R.id.ll_bottom_bottom_sheet);
         BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
         behavior.setPeekHeight(200);
-        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
     }
 
