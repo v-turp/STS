@@ -25,6 +25,7 @@ import com.score.sts.presentation.view.fragment.SignUpDialogFragment;
 
 public class LandingActivity extends AppCompatActivity {
 
+    public static final String TAG = LandingActivity.class.getSimpleName();
     static DialogFragment signupDialog;
     LandingImageLoadHelper imageLoadHelper;
 

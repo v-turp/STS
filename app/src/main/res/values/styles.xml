@@ -320,7 +320,7 @@
     </style>
 
     <style name="fl_profile_photo">
-        <item name="android:background">@color/amber_900</item>
+        <!--<item name="android:background">@color/amber_900</item>-->
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">0dp</item>
