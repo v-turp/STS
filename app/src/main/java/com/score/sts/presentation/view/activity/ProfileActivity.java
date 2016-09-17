@@ -327,11 +327,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if (getIntent().hasExtra(SHOW_SNACK)) {
             snackbar.show();
         }
-        // TODO if this works then clean up the code. if not remove it
-        LinearLayout bottomSheet = (LinearLayout) findViewById(R.id.ll_bottom_bottom_sheet);
-        BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
-        behavior.setPeekHeight(200);
-        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        // TODO remove the evaluation once the setup is complete for portrait mode
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            LinearLayout bottomSheet = (LinearLayout) findViewById(R.id.ll_bottom_bottom_sheet);
+            BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+            behavior.setPeekHeight(200);
+            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        }
 
     }
 
