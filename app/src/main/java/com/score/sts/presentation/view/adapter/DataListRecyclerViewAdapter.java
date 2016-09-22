@@ -1,0 +1,71 @@
+package com.score.sts.presentation.view.adapter;
+
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerViewAccessibilityDelegate;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.score.sts.R;
+import com.score.sts.presentation.model.IContentDescription;
+import com.score.sts.presentation.view.component.DataList;
+
+import java.util.List;
+
+/**
+ * Created by Who Dat on 9/18/2016.
+ * This adapter will most likely be the base adapter
+ */
+public class DataListRecyclerViewAdapter extends RecyclerView.Adapter<DataListRecyclerViewAdapter.DataListViewHolder>{
+
+    private static final String TAG = DataListRecyclerViewAdapter.class.getSimpleName();
+    private List<IContentDescription> contentDescription;
+
+    public DataListRecyclerViewAdapter(){}
+
+    public DataListRecyclerViewAdapter(List<IContentDescription> contentDescription){
+        this.contentDescription = contentDescription;
+        Log.d(TAG, "Constructor called");
+    }
+
+    @Override
+    public DataListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Log.d(TAG, "onCreateViewHolder");
+        // inflate the item view and pass it to the view holder constructor
+        View viewItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_data_list, parent, false);
+        return new DataListViewHolder(viewItem);
+    }
+
+    @Override
+    public void onBindViewHolder(DataListViewHolder holder, int position) {
+        Log.d(TAG, "onBindViewHolder");
+        holder.positionNumber.setText(String.valueOf(contentDescription.get(position).getTrackPosition()));
+        holder.createdBy.setText(contentDescription.get(position).getTrackCreator());
+        holder.trackName.setText(contentDescription.get(position).getTrackName());
+        holder.trackLength.setText(String.valueOf(contentDescription.get(position).getTrackLength()));
+    }
+
+    @Override
+    public int getItemCount() {
+        Log.d(TAG, "getItemCount");
+        return contentDescription.size() ;
+    }
+
+    public static class DataListViewHolder extends RecyclerView.ViewHolder{
+
+        public TextView positionNumber;
+        public TextView trackName;
+        public TextView createdBy;
+        public TextView trackLength;
+
+        public DataListViewHolder(View itemView) {
+            super(itemView);
+            positionNumber = (TextView) itemView.findViewById(R.id.tv_position_number);
+            trackName = (TextView) itemView.findViewById(R.id.tv_track_name);
+            createdBy = (TextView) itemView.findViewById(R.id.tv_created_by);
+            trackLength = (TextView) itemView.findViewById(R.id.tv_track_length);
+        }
+    }
+}

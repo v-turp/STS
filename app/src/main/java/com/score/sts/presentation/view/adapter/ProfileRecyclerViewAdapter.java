@@ -131,8 +131,7 @@ public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecy
     public ProfileViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // inflate the item view and pass it to the view holder constructor
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.profile_item, parent, false);
-        ProfileViewHolder profileViewHolder = new ProfileViewHolder(view);
-        return profileViewHolder;
+        return new ProfileViewHolder(view);
     }
 
     @Override

@@ -26,14 +26,13 @@
             <com.score.sts.presentation.view.component.DataListHeader
                 android:id="@+id/dlh_dlh_header"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="300dp"/>
 
             <com.score.sts.presentation.view.component.DataList
                 android:id="@+id/dl_data_list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                />
 
         </LinearLayout>
 

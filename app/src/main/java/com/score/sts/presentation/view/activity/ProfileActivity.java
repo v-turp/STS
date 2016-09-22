@@ -28,15 +28,20 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.score.sts.R;
 import com.score.sts.presentation.BitmapUtil;
+import com.score.sts.presentation.model.IContentDescription;
+import com.score.sts.presentation.model.VideoContent;
+import com.score.sts.presentation.view.adapter.DataListRecyclerViewAdapter;
 import com.score.sts.presentation.view.adapter.ProfileRecyclerViewAdapter;
 import com.score.sts.presentation.view.component.HubCoordinator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -89,6 +94,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         // TODO create in the adapter a click listener for the circular reveal. this is for the portrait layout
         // layouts for circular reveal. this is for landscape layout.
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
+            DataListRecyclerViewAdapter dataListRecyclerViewAdapter =
+                    new DataListRecyclerViewAdapter(setMockDataForDataListView());
+            RecyclerView dataListRecyclerView = (RecyclerView) findViewById(R.id.rv_data_list);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ProfileActivity.this);
+            dataListRecyclerView.setLayoutManager(layoutManager);
+            dataListRecyclerView.setAdapter(dataListRecyclerViewAdapter);
+
             flBio = (FrameLayout) findViewById(R.id.fl_partial_profile_bio);
             flBio.setOnClickListener(this);
             flMusic = (FrameLayout) findViewById(R.id.fl_partial_profile_music);
@@ -335,6 +348,22 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
 
+    }
+
+    private List<IContentDescription> setMockDataForDataListView(){
+        List<IContentDescription> videoContentList = new ArrayList<>();
+        IContentDescription videoContentDescription;
+
+        for(int i = 500; videoContentList.size() < 5; i+=100) {
+            videoContentDescription = new VideoContent();
+            videoContentDescription.setTrackPosition(1);
+            videoContentDescription.setTrackName("Maryilyn Monroe");
+            videoContentDescription.setTrackCreator("Pharrell Williams");
+            videoContentDescription.setTrackLength(i);
+            videoContentList.add(videoContentDescription);
+        }
+
+        return videoContentList;
     }
 
     private Snackbar getFingerPrintSnackbarNotification() {
