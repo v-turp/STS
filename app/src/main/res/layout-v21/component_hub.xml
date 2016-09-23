@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:visibility="gone"
-    android:background="#ffff00"
+    android:background="@color/grey_700"
     android:id="@+id/cl_component_hub">
 
     <LinearLayout
@@ -20,6 +20,8 @@
             android:id="@+id/ll_bottom_sheet"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="95dp"
+            android:layout_marginRight="95dp"
             android:orientation="vertical"
             >
 
