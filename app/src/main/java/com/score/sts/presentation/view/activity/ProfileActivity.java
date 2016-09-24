@@ -350,18 +350,31 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
+    // TODO remove this method once the live data is available
     private List<IContentDescription> setMockDataForDataListView(){
         List<IContentDescription> videoContentList = new ArrayList<>();
-        IContentDescription videoContentDescription;
 
-        for(int i = 500; videoContentList.size() < 5; i+=100) {
-            videoContentDescription = new VideoContent();
-            videoContentDescription.setTrackPosition(1);
-            videoContentDescription.setTrackName("Maryilyn Monroe");
-            videoContentDescription.setTrackCreator("Pharrell Williams");
-            videoContentDescription.setTrackLength(i);
-            videoContentList.add(videoContentDescription);
-        }
+        IContentDescription videoContentDescription = new VideoContent(1, " Marylyn Monro", "Pharrell Williams", 500);
+        IContentDescription videoContentDescription1 = new VideoContent(2, " How You Do That There", "Master P", 600);
+        IContentDescription videoContentDescription2 = new VideoContent(3, " Whisper Song", "Yin Yang Twins", 323);
+        IContentDescription videoContentDescription3 = new VideoContent(4, " Commas", "Future", 453);
+        IContentDescription videoContentDescription4 = new VideoContent(5, " Jealous", "Labrynth", 305);
+        IContentDescription videoContentDescription5 = new VideoContent(6, " Save a horse ride a cowboy", "Big and Rich", 670);
+        IContentDescription videoContentDescription6 = new VideoContent(7, " Beat It", "Michael Jackson", 343);
+        IContentDescription videoContentDescription7 = new VideoContent(8, " Is this Love", "Bob Marley", 460);
+        IContentDescription videoContentDescription8= new VideoContent(9, " I Shot the Sheriff", "Bob Marley", 333);
+        IContentDescription videoContentDescription9 = new VideoContent(10, "Dear Mama", "Tupac", 224);
+
+        videoContentList.add(videoContentDescription);
+        videoContentList.add(videoContentDescription1);
+        videoContentList.add(videoContentDescription2);
+        videoContentList.add(videoContentDescription3);
+        videoContentList.add(videoContentDescription4);
+        videoContentList.add(videoContentDescription5);
+        videoContentList.add(videoContentDescription6);
+        videoContentList.add(videoContentDescription7);
+        videoContentList.add(videoContentDescription8);
+        videoContentList.add(videoContentDescription9);
 
         return videoContentList;
     }
