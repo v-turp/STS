@@ -22,17 +22,17 @@ public class HubCoordinator extends CoordinatorLayout {
 
     public HubCoordinator(Context context) {
         super(context);
-        init();
+//        init();
     }
 
     public HubCoordinator(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+//        init();
     }
 
     public HubCoordinator(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+//        init();
     }
 
     private void init(){

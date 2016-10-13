@@ -1,18 +1,15 @@
 package com.score.sts.presentation.view.activity;
 
-import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.util.LruCache;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,25 +20,18 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import com.score.sts.R;
 import com.score.sts.presentation.BitmapUtil;
-import com.score.sts.presentation.model.IContentDescription;
-import com.score.sts.presentation.model.VideoContent;
-import com.score.sts.presentation.view.adapter.DataListRecyclerViewAdapter;
 import com.score.sts.presentation.view.adapter.ProfileRecyclerViewAdapter;
-import com.score.sts.presentation.view.component.HubCoordinator;
+import com.score.sts.presentation.view.fragment.ComponentHubFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -95,13 +85,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         // layouts for circular reveal. this is for landscape layout.
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
-            DataListRecyclerViewAdapter dataListRecyclerViewAdapter =
-                    new DataListRecyclerViewAdapter(setMockDataForDataListView());
-            RecyclerView dataListRecyclerView = (RecyclerView) findViewById(R.id.rv_data_list);
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ProfileActivity.this);
-            dataListRecyclerView.setLayoutManager(layoutManager);
-            dataListRecyclerView.setAdapter(dataListRecyclerViewAdapter);
-
             flBio = (FrameLayout) findViewById(R.id.fl_partial_profile_bio);
             flBio.setOnClickListener(this);
             flMusic = (FrameLayout) findViewById(R.id.fl_partial_profile_music);
@@ -116,7 +99,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             flContacts.setOnClickListener(this);
         }
 
-        //--- setup recycler view
+        //--- setup recycler view for portrait layout in the Profile screen
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             rvProfile = (RecyclerView) findViewById(R.id.rvProfile);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ProfileActivity.this);
@@ -208,60 +191,45 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        CoordinatorLayout musicLayout = (CoordinatorLayout) findViewById(R.id.cl_component_hub);
-        FrameLayout layoutToCover = (FrameLayout) findViewById(R.id.fl_frame_to_cover);
+//        CoordinatorLayout componentHub = (CoordinatorLayout) findViewById(R.id.cl_component_hub);
+//        FrameLayout layoutToCover = (FrameLayout) findViewById(R.id.fl_frame_to_cover);
+        FragmentManager fm = getSupportFragmentManager();
         int id = view.getId();
 
         switch(id){
 
             case R.id.fl_partial_profile_bio:
                         Toast.makeText(this, "Bio was clicked", Toast.LENGTH_LONG).show();
-                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                        fm.beginTransaction().add(R.id.fl_fragment_container, new ComponentHubFragment()).commit();
                 break;
 
             case R.id.fl_partial_profile_music:
                         Toast.makeText(this, "Music was clicked", Toast.LENGTH_LONG).show();
-                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                        fm.beginTransaction().add(R.id.fl_fragment_container, new ComponentHubFragment()).commit();
                 break;
 
             case R.id.fl_partial_profile_pictures:
                         Toast.makeText(this, "Pictures was clicked", Toast.LENGTH_LONG).show();
-                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                        fm.beginTransaction().add(R.id.fl_fragment_container, new ComponentHubFragment()).commit();
                 break;
 
             case R.id.fl_partial_profile_msg_cht:
                         Toast.makeText(this, "Message/Chat was clicked", Toast.LENGTH_LONG).show();
-                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                        fm.beginTransaction().add(R.id.fl_fragment_container, new ComponentHubFragment()).commit();
                 break;
 
             case R.id.fl_partial_profile_videos:
                         Toast.makeText(this, "Videos was clicked", Toast.LENGTH_LONG).show();
-                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                        fm.beginTransaction().add(R.id.fl_fragment_container, new ComponentHubFragment()).commit();
                 break;
 
             case R.id.fl_partial_profile_contacts:
                         Toast.makeText(this, "Contacts was clicked", Toast.LENGTH_LONG).show();
-                        administerCircularReveal(layoutToCover, musicLayout, 1000);
+                        fm.beginTransaction().add(R.id.fl_fragment_container, new ComponentHubFragment()).commit();
                 break;
 
             default:
                 break;
-        }
-    }
-
-    // administers the circular reveal
-    private void administerCircularReveal(View viewToCover, View viewToReveal, int duration){
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
-            int cx = viewToCover.getWidth();
-            int cy = viewToCover.getHeight();
-
-            float finalRadius = (float) Math.hypot(cx, cy);
-            Animator anim = ViewAnimationUtils.createCircularReveal(viewToReveal, cx, cy, 0, finalRadius);
-            viewToReveal.setVisibility(View.VISIBLE);
-            anim.setDuration(duration);
-            anim.start();
         }
     }
 
@@ -342,41 +310,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
         // TODO remove the evaluation once the setup is complete for portrait mode
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            LinearLayout bottomSheet = (LinearLayout) findViewById(R.id.ll_bottom_bottom_sheet);
-            BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
-            behavior.setPeekHeight(200);
-            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+//            LinearLayout bottomSheet = (LinearLayout) findViewById(R.id.ll_bottom_bottom_sheet);
+//            BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+//            behavior.setPeekHeight(200);
+//            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
 
-    }
-
-    // TODO remove this method once the live data is available
-    private List<IContentDescription> setMockDataForDataListView(){
-        List<IContentDescription> videoContentList = new ArrayList<>();
-
-        IContentDescription videoContentDescription = new VideoContent(1, " Marylyn Monro", "Pharrell Williams", 500);
-        IContentDescription videoContentDescription1 = new VideoContent(2, " How You Do That There", "Master P", 600);
-        IContentDescription videoContentDescription2 = new VideoContent(3, " Whisper Song", "Yin Yang Twins", 323);
-        IContentDescription videoContentDescription3 = new VideoContent(4, " Commas", "Future", 453);
-        IContentDescription videoContentDescription4 = new VideoContent(5, " Jealous", "Labrynth", 305);
-        IContentDescription videoContentDescription5 = new VideoContent(6, " Save a horse ride a cowboy", "Big and Rich", 670);
-        IContentDescription videoContentDescription6 = new VideoContent(7, " Beat It", "Michael Jackson", 343);
-        IContentDescription videoContentDescription7 = new VideoContent(8, " Is this Love", "Bob Marley", 460);
-        IContentDescription videoContentDescription8= new VideoContent(9, " I Shot the Sheriff", "Bob Marley", 333);
-        IContentDescription videoContentDescription9 = new VideoContent(10, "Dear Mama", "Tupac", 224);
-
-        videoContentList.add(videoContentDescription);
-        videoContentList.add(videoContentDescription1);
-        videoContentList.add(videoContentDescription2);
-        videoContentList.add(videoContentDescription3);
-        videoContentList.add(videoContentDescription4);
-        videoContentList.add(videoContentDescription5);
-        videoContentList.add(videoContentDescription6);
-        videoContentList.add(videoContentDescription7);
-        videoContentList.add(videoContentDescription8);
-        videoContentList.add(videoContentDescription9);
-
-        return videoContentList;
     }
 
     private Snackbar getFingerPrintSnackbarNotification() {
