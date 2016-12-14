@@ -28,7 +28,8 @@
         android:layout_height="match_parent"
         android:textColor="@android:color/black"
         android:textStyle="bold"
-        android:layout_weight="0.39" />
+        android:layout_weight="0.34"
+        android:layout_marginRight="0dp"/>
 
     <TextView
         android:id="@+id/tv_track_length"
@@ -36,7 +37,8 @@
         android:layout_height="match_parent"
         android:textColor="@color/grey_500"
         android:layout_weight="0.30"
-        android:paddingLeft="45dp"
-        android:paddingStart="80dp" />
+        android:paddingLeft="25dp"
+        android:paddingStart="80dp"
+        android:layout_marginRight="15dp"/>
 
 </LinearLayout>

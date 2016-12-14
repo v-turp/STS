@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.score.sts">
 
-    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
     <application
         android:allowBackup="true"
@@ -32,6 +32,8 @@
         <activity android:name=".presentation.view.activity.ProfileActivity"/>
 
         <activity android:name=".presentation.view.activity.FingerprintActivity"/>
+
+        <activity android:name=".presentation.view.activity.ProfileDisplayActivity"/>
     </application>
 
 </manifest>

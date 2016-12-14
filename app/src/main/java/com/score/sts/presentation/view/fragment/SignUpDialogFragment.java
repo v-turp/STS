@@ -11,7 +11,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 
 import com.score.sts.R;
-import com.score.sts.presentation.view.activity.LandingActivity;
 import com.score.sts.presentation.view.activity.ProfileActivity;
 
 
@@ -48,6 +47,7 @@ public class SignUpDialogFragment extends DialogFragment {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             //---launch the profile page
+//                            Intent intent = ProfileActivity.getCallingIntent(getActivity());
                             Intent intent = ProfileActivity.getCallingIntent(getActivity());
                             intent.putExtra(ProfileActivity.SHOW_SNACK, true);
                             startActivity(intent);

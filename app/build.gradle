@@ -22,14 +22,50 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
     }
 
-    dataBinding{
+    dataBinding {
         enabled = false
+    }
+
+    flavorDimensions "alg" // TODO will be removed in a future version of Android Gradle Plugin, it has been replaced by 'dimension'
+//    dimension "alg"
+
+    productFlavors{
+
+        sts{
+            applicationId "com.alg.sts"
+            flavorDimension "alg"
+        }
+
+        skts{
+            applicationId "com.alg.skts"
+            flavorDimension "alg"
+        }
+
+        rmfmk{
+            applicationId "com.alg.rmfmk"
+            flavorDimension "alg"
+        }
+
+        reo{
+            applicationId "com.alg.reo"
+            flavorDimension "alg"
+        }
+
+        nfldl{
+            applicationId "com.alg.nfldl"
+            flavorDimension "alg"
+        }
+
+        mjl{
+            applicationId "com.alg.mjl"
+            flavorDimension "alg"
+        }
     }
 }
 

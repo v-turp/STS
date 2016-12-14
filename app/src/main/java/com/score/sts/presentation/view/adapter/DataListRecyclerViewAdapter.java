@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.score.sts.R;
 import com.score.sts.presentation.model.IContentDescription;
+import com.score.sts.presentation.model.IGeneralContentDescription;
 import com.score.sts.presentation.view.component.DataList;
 
 import java.util.List;
@@ -21,11 +22,11 @@ import java.util.List;
 public class DataListRecyclerViewAdapter extends RecyclerView.Adapter<DataListRecyclerViewAdapter.DataListViewHolder>{
 
     private static final String TAG = DataListRecyclerViewAdapter.class.getSimpleName();
-    private List<IContentDescription> contentDescription;
+    private List<IGeneralContentDescription> contentDescription;
 
     public DataListRecyclerViewAdapter(){}
 
-    public DataListRecyclerViewAdapter(List<IContentDescription> contentDescription){
+    public DataListRecyclerViewAdapter(List<IGeneralContentDescription> contentDescription){
         this.contentDescription = contentDescription;
         Log.d(TAG, "Constructor called");
     }
@@ -41,10 +42,10 @@ public class DataListRecyclerViewAdapter extends RecyclerView.Adapter<DataListRe
     @Override
     public void onBindViewHolder(DataListViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder");
-        holder.positionNumber.setText(String.valueOf(contentDescription.get(position).getTrackPosition()));
-        holder.createdBy.setText(contentDescription.get(position).getTrackCreator());
-        holder.trackName.setText(contentDescription.get(position).getTrackName());
-        holder.trackLength.setText(String.valueOf(contentDescription.get(position).getTrackLength()));
+        holder.positionNumber.setText(contentDescription.get(position).getColumnData1());
+        holder.createdBy.setText(contentDescription.get(position).getColumnData2());
+        holder.trackName.setText(contentDescription.get(position).getColumnData3());
+        holder.trackLength.setText(contentDescription.get(position).getColumnData4());
     }
 
     @Override
