@@ -214,7 +214,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         switch(id){
 
             case R.id.fl_partial_profile_bio:
-                        Toast.makeText(this, "Bio was clicked", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(this, "Bio was clicked", Toast.LENGTH_LONG).show();
                         ImageView sharedImage = (ImageView) findViewById(R.id.image_profile_bio_ic_edit);
                         this.findViewById(R.id.image_pictures_ic_edit).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(BIO)));
                         fm.beginTransaction()
@@ -226,27 +226,27 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 break;
 
             case R.id.fl_partial_profile_music:
-                        Toast.makeText(this, "Music was clicked", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(this, "Music was clicked", Toast.LENGTH_LONG).show();
                         fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
                 break;
 
             case R.id.fl_partial_profile_pictures:
-                        Toast.makeText(this, "Pictures was clicked", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(this, "Pictures was clicked", Toast.LENGTH_LONG).show();
                         fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
                 break;
 
             case R.id.fl_partial_profile_msg_cht:
-                        Toast.makeText(this, "Message/Chat was clicked", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(this, "Message/Chat was clicked", Toast.LENGTH_LONG).show();
                         fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
                 break;
 
             case R.id.fl_partial_profile_videos:
-                        Toast.makeText(this, "Videos was clicked", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(this, "Videos was clicked", Toast.LENGTH_LONG).show();
                         fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
                 break;
 
             case R.id.fl_partial_profile_contacts:
-                        Toast.makeText(this, "Contacts was clicked", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(this, "Contacts was clicked", Toast.LENGTH_LONG).show();
                         fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
                 break;
 

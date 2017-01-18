@@ -428,14 +428,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             star = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_star_border_white_18dp, 100, 100);
             personAdd = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_person_add_white_24dp, 100, 100);
             // image drawables
-            bmpReoLogo = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo_logo, 100, 100);
-            bmpNationalReoBanks = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo2, 100, 100);
-            bmpRegionalReoBanks = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo3, 100, 100);
-            bmpListings = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo1, 100, 100);
-            bmpReoSites = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo, 100, 100);
-            bmpVirtualAgents = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo5, 100, 100);
-            bmpDailyFinds = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo6, 100, 100);
-            bmpReoResources = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo7, 100, 100);
+            bmpReoLogo = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo_logo, 956, 300);
+            bmpNationalReoBanks = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo2, 956, 300);
+            bmpRegionalReoBanks = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo3, 300, 300);
+            bmpListings = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo1, 300, 300);
+            bmpReoSites = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo, 956, 300);
+            bmpVirtualAgents = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo5, 300, 300);
+            bmpDailyFinds = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo6, 300, 300);
+            bmpReoResources = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo7, 300, 300);
 
             // add the decoded and resized images to the map for storage
             // icon drawables
@@ -643,14 +643,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             star = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_star_border_white_18dp, 100, 100);
             personAdd = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_person_add_white_24dp, 100, 100);
             // image drawables /*NOTE TODO THIS IS WHERE THE IMAGES WILL CHANGE. THIS MAY NEED TO BE THE ONLY CHANGE*/
-            bmpReoLogo = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo_logo, 100, 100);
-            bmpListings = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo1, 100, 100);
-            bmpNationalReoBanks = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo2, 100, 100);
-            bmpRegionalReoBanks = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo3, 100, 100);
-            bmpReoSites = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo, 100, 100);
-            bmpVirtualAgents = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo5, 100, 100);
-            bmpDailyFinds = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo6, 100, 100);
-            bmpReoResources = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo7, 100, 100);
+            bmpReoLogo = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo_logo, 956, 300);
+            bmpListings = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo1, 300, 300);
+            bmpNationalReoBanks = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo2, 956, 300);
+            bmpRegionalReoBanks = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo3, 300, 300);
+            bmpReoSites = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo, 956, 300);
+            bmpVirtualAgents = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo5, 300, 300);
+            bmpDailyFinds = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo6, 300, 300);
+            bmpReoResources = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.reo7, 300, 300);
 
             // add the decoded and resized images to the map for storage
             // icon drawables

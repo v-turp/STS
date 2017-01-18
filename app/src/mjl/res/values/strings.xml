@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MJ Locator</string>
+    <string name="app_name">MJ Locater</string>
     <string name="title_activity_entry">MJ Locator</string>
     <string name="norml_news">NORML News</string>
-    <string name="dispensary_locations">Dispensary Locator</string>
+    <string name="dispensary_locations">Dispensary Locater</string>
     <string name="daily_deals">Daily Deals</string>
     <string name="accessories">Accessories</string>
-    <string name="doctors">Doctors</string>
+    <string name="doctors">MJ Doctors</string>
     <string name="strain_guide">Strain Guide</string>
     <string name="delivery_services">Delivery Services</string>
     <string name="recommended">Recommended</string>

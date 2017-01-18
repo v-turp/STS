@@ -15,7 +15,7 @@
             android:layout_height="match_parent"
             android:id="@+id/imageView2"
             android:scaleType="fitXY"
-            android:src="@drawable/bugatti"
+            android:src="@drawable/rmfmk2"
             android:layout_toLeftOf="@+id/textView2"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -33,7 +33,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="G I R L"
+                    android:text="@string/local_support_opportunities"
                     android:id="@+id/tv_album_title"
                     android:textSize="40dp"
                     android:textColor="@android:color/black"
@@ -46,7 +46,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pharrell Williams"
+                    android:text=""
                     android:id="@+id/textView3"
                     android:textColor="@android:color/black"
                     android:layout_centerVertical="true"
@@ -91,7 +91,7 @@
                     android:background="@color/orange_A100"
                     android:paddingTop="16dp"
                     android:paddingLeft="20dp"
-                    android:text="Released March, 2013"
+                    android:text="@string/volunteer_locally"
                     android:textColor="@color/grey_800"
                     android:id="@+id/textView2"
                     android:layout_alignParentBottom="true"

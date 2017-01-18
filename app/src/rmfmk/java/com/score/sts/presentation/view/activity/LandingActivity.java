@@ -166,7 +166,7 @@ public class LandingActivity extends AppCompatActivity {
 
             // logo
             if(logoFrameLsyout != null) {
-                logoFrameLsyout.setForeground(ContextCompat.getDrawable(landingActivity, R.drawable.rmfmk_logo));
+                logoFrameLsyout.setForeground(ContextCompat.getDrawable(landingActivity, R.drawable.rmfmk));
             }
 
             // login image and star
@@ -174,12 +174,12 @@ public class LandingActivity extends AppCompatActivity {
                 imageLoginStar.setImageDrawable(star);
             }
             if(imageLogin != null){
-                imageLogin.setImageResource(R.drawable.cat);
+                imageLogin.setImageResource(R.drawable.rmfmk1);
             }
 
             // signup
             if(imageSignup != null){
-                imageSignup.setImageResource(R.drawable.director);
+                imageSignup.setImageResource(R.drawable.rmfmk2);
             }
             if(imageSignupStar != null){
                 imageSignupStar.setImageDrawable(star);
@@ -187,7 +187,7 @@ public class LandingActivity extends AppCompatActivity {
 
             // register work
             if(imageRegisterWork != null){
-                imageRegisterWork.setImageResource(R.drawable.cello_player);
+                imageRegisterWork.setImageResource(R.drawable.rmfmk3);
             }
             if(imageRegisterWorkStar != null){
                 imageRegisterWorkStar.setImageDrawable(star);
@@ -196,14 +196,14 @@ public class LandingActivity extends AppCompatActivity {
             if(landingActivity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 // contacts
                 if (imageContacts != null) {
-                    imageContacts.setImageResource(R.drawable.king_alphonso);
+                    imageContacts.setImageResource(R.drawable.rmfmk4);
                 }
                 // bottom row columns 2 & 3 - could not think of a suitable name
                 if (imageRandom1 != null) {
-                    imageRandom1.setImageResource(R.drawable.motorcycle);
+                    imageRandom1.setImageResource(R.drawable.rmfmk5);
                 }
                 if(imageRandom2 != null){
-                    imageRandom2.setImageResource(R.drawable.benzo);
+                    imageRandom2.setImageResource(R.drawable.rmfmk6);
                 }
             }
 

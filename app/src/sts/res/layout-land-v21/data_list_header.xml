@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <ImageView
+        <!--<ImageView TODO i was testing with this one
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:id="@+id/image_profile_bio_ic_edit"
@@ -19,9 +19,9 @@
             android:layout_toLeftOf="@+id/textView2"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:transitionName="bioImage"/>
+            android:transitionName="bioImage"/>-->
 
-        <!--<ImageView TODO this is the original
+        <ImageView
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:id="@+id/imageView2"
@@ -29,7 +29,7 @@
             android:src="@drawable/bugatti"
             android:layout_toLeftOf="@+id/textView2"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />-->
+            android:layout_alignParentStart="true" />
 
         <!-- this is the layout on the right side of the image -->
         <LinearLayout

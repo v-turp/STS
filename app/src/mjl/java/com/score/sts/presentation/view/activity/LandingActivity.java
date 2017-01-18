@@ -3,6 +3,8 @@ package com.score.sts.presentation.view.activity;
 import android.animation.Animator;
 import android.app.DialogFragment;
 import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.score.sts.R;
+import com.score.sts.presentation.BitmapUtil;
 import com.score.sts.presentation.view.fragment.FingerprintDialogFragment;
 import com.score.sts.presentation.view.fragment.SignUpDialogFragment;
 
@@ -163,10 +166,9 @@ public class LandingActivity extends AppCompatActivity {
 
         // TODO check the cache directory and load images from cache if they are in cache
         public void loadLandingImages(){
-
             // logo
             if(logoFrameLsyout != null) {
-                logoFrameLsyout.setForeground(ContextCompat.getDrawable(landingActivity, R.drawable.mjl_logo));
+                logoFrameLsyout.setForeground(ContextCompat.getDrawable(landingActivity, R.drawable.mjl10));
             }
 
             // login image and star
@@ -174,12 +176,13 @@ public class LandingActivity extends AppCompatActivity {
                 imageLoginStar.setImageDrawable(star);
             }
             if(imageLogin != null){
-                imageLogin.setImageResource(R.drawable.mj_cert);
+                imageLogin.setImageBitmap( BitmapUtil.decodeBitmapFromResource(landingActivity.getResources(), R.drawable.mjl9, 300, 300) );
+//                imageLogin.setImageResource(R.drawable.mjl7);
             }
 
             // signup
             if(imageSignup != null){
-                imageSignup.setImageResource(R.drawable.mjl1);
+                imageSignup.setImageResource(R.drawable.mjl7);
             }
             if(imageSignupStar != null){
                 imageSignupStar.setImageDrawable(star);
@@ -187,7 +190,7 @@ public class LandingActivity extends AppCompatActivity {
 
             // register work
             if(imageRegisterWork != null){
-                imageRegisterWork.setImageResource(R.drawable.mjl2);
+                imageRegisterWork.setImageResource(R.drawable.mjl11);
             }
             if(imageRegisterWorkStar != null){
                 imageRegisterWorkStar.setImageDrawable(star);

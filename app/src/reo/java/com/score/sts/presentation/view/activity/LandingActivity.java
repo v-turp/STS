@@ -3,12 +3,14 @@ package com.score.sts.presentation.view.activity;
 import android.animation.Animator;
 import android.app.DialogFragment;
 import android.content.res.Configuration;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -167,6 +169,7 @@ public class LandingActivity extends AppCompatActivity {
             // logo
             if(logoFrameLsyout != null) {
                 logoFrameLsyout.setForeground(ContextCompat.getDrawable(landingActivity, R.drawable.reo_logo));
+                Log.d(TAG, "Logo*****Bottom:: " + logoFrameLsyout.getBottom() + "<<<<<>>>>> Side:: " + logoFrameLsyout.getRight());
             }
 
             // login image and star
@@ -175,11 +178,13 @@ public class LandingActivity extends AppCompatActivity {
             }
             if(imageLogin != null){
                 imageLogin.setImageResource(R.drawable.reo1);
+                Log.d(TAG, "Login*****Bottom:: " + logoFrameLsyout.getBottom() + "<<<<<>>>>> Side:: " + logoFrameLsyout.getRight());
             }
 
             // signup
             if(imageSignup != null){
                 imageSignup.setImageResource(R.drawable.reo7);
+                Log.d(TAG, "SignUp*****Bottom:: " + logoFrameLsyout.getBottom() + "<<<<<>>>>> Side:: " + logoFrameLsyout.getRight());
             }
             if(imageSignupStar != null){
                 imageSignupStar.setImageDrawable(star);
@@ -188,6 +193,7 @@ public class LandingActivity extends AppCompatActivity {
             // register work
             if(imageRegisterWork != null){
                 imageRegisterWork.setImageResource(R.drawable.reo2);
+                Log.d(TAG, "RegisterWork*****Bottom:: " + logoFrameLsyout.getBottom() + "<<<<<>>>>> Side:: " + logoFrameLsyout.getRight());
             }
             if(imageRegisterWorkStar != null){
                 imageRegisterWorkStar.setImageDrawable(star);
@@ -197,6 +203,7 @@ public class LandingActivity extends AppCompatActivity {
                 // contacts
                 if (imageContacts != null) {
                     imageContacts.setImageResource(R.drawable.reo6);
+                    Log.d(TAG, "ImageContacts*****Height:: " + imageContacts.getHeight() + "<<<<<>>>>> Width:: " + imageContacts.getWidth());
                 }
                 // bottom row columns 2 & 3 - could not think of a suitable name
                 if (imageRandom1 != null) {

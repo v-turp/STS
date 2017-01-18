@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">REO Listings</string>
+    <string name="app_name">REO Purchase</string>
     <string name="title_activity_entry">REO Listings</string>
     <string name="reo_resources">REO Resources</string>
     <string name="reo_listings">REO Listings</string>

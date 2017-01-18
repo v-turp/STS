@@ -179,7 +179,7 @@ public class LandingActivity extends AppCompatActivity {
 
             // signup
             if(imageSignup != null){
-                imageSignup.setImageResource(R.drawable.skts2);
+                imageSignup.setImageResource(R.drawable.skts);
             }
             if(imageSignupStar != null){
                 imageSignupStar.setImageDrawable(star);
@@ -187,7 +187,7 @@ public class LandingActivity extends AppCompatActivity {
 
             // register work
             if(imageRegisterWork != null){
-                imageRegisterWork.setImageResource(R.drawable.skts3);
+                imageRegisterWork.setImageResource(R.drawable.skts7);
             }
             if(imageRegisterWorkStar != null){
                 imageRegisterWorkStar.setImageDrawable(star);
@@ -200,10 +200,10 @@ public class LandingActivity extends AppCompatActivity {
                 }
                 // bottom row columns 2 & 3 - could not think of a suitable name
                 if (imageRandom1 != null) {
-                    imageRandom1.setImageResource(R.drawable.skts5);
+                    imageRandom1.setImageResource(R.drawable.skts6);
                 }
                 if(imageRandom2 != null){
-                    imageRandom2.setImageResource(R.drawable.skts6);
+                    imageRandom2.setImageResource(R.drawable.skts5);
                 }
             }
 

@@ -123,16 +123,16 @@ public class ComponentHubFragment extends Fragment {
         switch (buildFlavor){
             case Platform.SOUNDTRACKS_AND_SCORES:
                     //---sts mock data
-                    IGeneralContentDescription stsMockData  = new GeneralContentDescription("1", " Marylyn Monro", "Pharrell Williams", "500");
-                    IGeneralContentDescription stsMockData1 = new GeneralContentDescription("2", " How You Do That There", "Master P", "600");
-                    IGeneralContentDescription stsMockData2 = new GeneralContentDescription("3", " Whisper Song", "Yin Yang Twins", "323");
-                    IGeneralContentDescription stsMockData3 = new GeneralContentDescription("4", " Commas", "Future", "453");
-                    IGeneralContentDescription stsMockData4 = new GeneralContentDescription("5", " Jealous", "Labrynth", "305");
-                    IGeneralContentDescription stsMockData5 = new GeneralContentDescription("6", " Save a horse ride a cowboy", "Big and Rich", "670");
-                    IGeneralContentDescription stsMockData6 = new GeneralContentDescription("7", " Beat It", "Michael Jackson", "343");
-                    IGeneralContentDescription stsMockData7 = new GeneralContentDescription("8", " Is this Love", "Bob Marley", "460");
-                    IGeneralContentDescription stsMockData8 = new GeneralContentDescription("9", " I Shot the Sheriff", "Bob Marley", "333");
-                    IGeneralContentDescription stsMockData9 = new GeneralContentDescription("10", "Dear Mama", "Tupac", "224");
+                    IGeneralContentDescription stsMockData  = new GeneralContentDescription("1", "Pharrell Williams", " Marylyn Monro",  "500");
+                    IGeneralContentDescription stsMockData1 = new GeneralContentDescription("2", "Master P", " How You Do That There", "600");
+                    IGeneralContentDescription stsMockData2 = new GeneralContentDescription("3", "Yin Yang Twins", " Whisper Song", "323");
+                    IGeneralContentDescription stsMockData3 = new GeneralContentDescription("4", "Future", " Commas", "453");
+                    IGeneralContentDescription stsMockData4 = new GeneralContentDescription("5", "Labrynth", " Jealous", "305");
+                    IGeneralContentDescription stsMockData5 = new GeneralContentDescription("6", "Big and Rich", " Save a horse ride a cowboy", "670");
+                    IGeneralContentDescription stsMockData6 = new GeneralContentDescription("7", "Michael Jackson", " Beat It", "343");
+                    IGeneralContentDescription stsMockData7 = new GeneralContentDescription("8", "Bob Marley", " Is this Love", "460");
+                    IGeneralContentDescription stsMockData8 = new GeneralContentDescription("9", "Bob Marley", " I Shot the Sheriff", "333");
+                    IGeneralContentDescription stsMockData9 = new GeneralContentDescription("10", "Tupac", "Dear Mama", "224");
 
                     List<IGeneralContentDescription> stsMockDataList = new ArrayList<>();
 
@@ -214,11 +214,11 @@ public class ComponentHubFragment extends Fragment {
                 break;
             case Platform.RMFMK:
                     //---rmfmk mock data
-                    IGeneralContentDescription rmfmkMockData = new GeneralContentDescription("1", "1743 West Broak Ave", "Tim Marks", "3 Star Find");
-                    IGeneralContentDescription rmfmkMockData1 = new GeneralContentDescription("2", "4436 N Place", "Monica Chap", "4 Star Find");
-                    IGeneralContentDescription rmfmkMockData2 = new GeneralContentDescription("3", "11955 57th St", "Tina Winds", "2.5 Star Find");
-                    IGeneralContentDescription rmfmkMockData3 = new GeneralContentDescription("4", "9037 Harper Dr", "Mark Tao", "3 Star Find");
-                    IGeneralContentDescription rmfmkMockData4 = new GeneralContentDescription("5", "4586 El Monte Dr", "Chris Chang", "5 Star Find");
+                    IGeneralContentDescription rmfmkMockData = new GeneralContentDescription("1", "Veteran Care Day", "Disabled American Veterans", "June 1st");
+                    IGeneralContentDescription rmfmkMockData1 = new GeneralContentDescription("2", "Share Love Cleanup", "United Nations Children's Fund", "June 3rd");
+                    IGeneralContentDescription rmfmkMockData2 = new GeneralContentDescription("3", "Art Leader", "St. Jude's Children's Research Hospital", "June 5th");
+                    IGeneralContentDescription rmfmkMockData3 = new GeneralContentDescription("4", "Food Drive", "Mega Care", "June 8th");
+                    IGeneralContentDescription rmfmkMockData4 = new GeneralContentDescription("5", "School Tutors", "Role Model For Mankind", "June 10th");
 
                     rmfmkMockDataList.add(rmfmkMockData);
                     rmfmkMockDataList.add(rmfmkMockData1);

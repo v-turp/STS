@@ -70,6 +70,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     // setup cache
     private static LruCache<String, Bitmap> imageMemoryCache;
 
+    // image sizes
+    private static final int BASE_IMAGE_HEIGHT = R.dimen.base_image_height;
+    private static final int BASE_IMAGE_WIDTH = R.dimen.base_image_width;
+    private static final int BASE_ICON_WIDTH = R.dimen.base_icon_width;
+    private static final int BASE_ICON_HEIGHT = R.dimen.base_icon_height;
+    private static final int IMAGE_SUPER_WIDTH = R.dimen.image_super_width;
+
     // views for circular reveal
     FrameLayout flBio;
     FrameLayout flMusic;
@@ -421,23 +428,22 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
          */
         public Map<String, Bitmap> initializeProfileImages(@Nullable Context context) {
             Map<String, Bitmap> imageMap = new HashMap<>();
-
 //            flItemLayout = (FrameLayout) profileActivity.findViewById(R.id.fl_profile_item);
             // after decoding and resizing, initialize the images and add them to the cache
             // icon drawables
-            edit = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_edit_white_24dp, 100, 100);
-            upload = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_file_upload_white_24dp, 100, 100);
-            star = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_star_border_white_18dp, 100, 100);
-            personAdd = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_person_add_white_24dp, 100, 100);
+            edit = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_edit_white_24dp, BASE_ICON_WIDTH, BASE_ICON_HEIGHT);
+            upload = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_file_upload_white_24dp, BASE_ICON_WIDTH, BASE_ICON_HEIGHT);
+            star = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_star_border_white_18dp, BASE_ICON_WIDTH, BASE_ICON_HEIGHT);
+            personAdd = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_person_add_white_24dp, BASE_ICON_WIDTH, BASE_ICON_HEIGHT);
             // image drawables
-            bmpMjlLogo = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl3, 100, 100);
-            bmpDeliveryServices = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl2, 100, 100);
-            bmpDoctors = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl7, 100, 100);
-            bmpDispensaryLocator = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl1, 100, 100);
-            bmpStrainGuide = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl4, 100, 100);
-            bmpAccessories = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl5, 100, 100);
-            bmpDailyDeals = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl6, 100, 100);
-            bmpNormlNews = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl7, 100, 100);
+            bmpMjlLogo = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl12, IMAGE_SUPER_WIDTH, BASE_IMAGE_HEIGHT);
+            bmpDeliveryServices = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl2, IMAGE_SUPER_WIDTH, BASE_IMAGE_HEIGHT);
+            bmpDoctors = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl13, BASE_IMAGE_WIDTH, BASE_IMAGE_HEIGHT);
+            bmpDispensaryLocator = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl1, BASE_IMAGE_WIDTH, BASE_IMAGE_HEIGHT);
+            bmpStrainGuide = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl8, IMAGE_SUPER_WIDTH, BASE_IMAGE_HEIGHT);
+            bmpAccessories = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl5, BASE_IMAGE_WIDTH, BASE_IMAGE_HEIGHT);
+            bmpDailyDeals = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl6, BASE_IMAGE_WIDTH, BASE_IMAGE_HEIGHT);
+            bmpNormlNews = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl11, IMAGE_SUPER_WIDTH, BASE_IMAGE_HEIGHT);
 
             // add the decoded and resized images to the map for storage
             // icon drawables
@@ -527,7 +533,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         public void loadPortraitProfileImage() {
-            Bitmap mjRx = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl3, 100, 100);
+            Bitmap mjRx = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl12, IMAGE_SUPER_WIDTH, BASE_IMAGE_HEIGHT);
             FrameLayout flProfilePic = (FrameLayout) profileActivity.findViewById(R.id.fl_profile_photo);
             // profile image
             if (flProfilePic != null) {
@@ -645,19 +651,19 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
             // after decoding and resizing, initialize the images and add them to the cache
             // icon drawables
-            edit = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_edit_white_24dp, 100, 100);
-            upload = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_file_upload_white_24dp, 100, 100);
-            star = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_star_border_white_18dp, 100, 100);
-            personAdd = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_person_add_white_24dp, 100, 100);
+            edit = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_edit_white_24dp, BASE_IMAGE_WIDTH, BASE_ICON_HEIGHT);
+            upload = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_file_upload_white_24dp, BASE_IMAGE_WIDTH, BASE_ICON_HEIGHT);
+            star = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_star_border_white_18dp, BASE_IMAGE_WIDTH, BASE_ICON_HEIGHT);
+            personAdd = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_person_add_white_24dp, BASE_IMAGE_WIDTH, BASE_ICON_HEIGHT);
             // image drawables /*NOTE TODO THIS IS WHERE THE IMAGES WILL CHANGE. THIS MAY NEED TO BE THE ONLY CHANGE*/
-            bmpMjlLogo = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl3, 100, 100);
-            bmpDispensaryLocator = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl1, 100, 100);
-            bmpDeliveryServices = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl2, 100, 100);
-            bmpDoctors = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl7, 100, 100);
-            bmpStrainGuide = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl4, 100, 100);
-            bmpAccessories = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl5, 100, 100);
-            bmpDailyDeals = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl6, 100, 100);
-            bmpNormlNews = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl7, 100, 100);
+            bmpMjlLogo = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl12, IMAGE_SUPER_WIDTH, BASE_IMAGE_HEIGHT);
+            bmpDispensaryLocator = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl1, BASE_IMAGE_WIDTH, BASE_IMAGE_HEIGHT);
+            bmpDeliveryServices = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl2, IMAGE_SUPER_WIDTH, BASE_IMAGE_HEIGHT);
+            bmpDoctors = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl13, BASE_IMAGE_WIDTH, BASE_IMAGE_HEIGHT);
+            bmpStrainGuide = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl8, IMAGE_SUPER_WIDTH, BASE_IMAGE_HEIGHT);
+            bmpAccessories = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl5, BASE_IMAGE_WIDTH, BASE_IMAGE_HEIGHT);
+            bmpDailyDeals = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl6, BASE_IMAGE_WIDTH, BASE_IMAGE_HEIGHT);
+            bmpNormlNews = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.mjl11, IMAGE_SUPER_WIDTH, BASE_IMAGE_HEIGHT);
 
             // add the decoded and resized images to the map for storage
             // icon drawables
