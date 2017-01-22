@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NFL Draft League</string>
+    <string name="title_activity_entry">NFL Draft League</string>
+    <string name="draft_kings">Draft Kings</string>
+    <string name="league_friends">League Friends</string>
+    <string name="draft_day">Draft Day</string>
+    <string name="fan_duel">FanDuel</string>
+    <string name="fantasy_draft">Fantasy Draft</string>
+    <string name="yahoo_news">Yahoo News</string>
+    <string name="my_league">My League</string>
+    <string name="rank">Rank</string>
+    <string name="team">Team</string>
+    <string name="total_points">Total Points</string>
+    <string name="last_three_weeks">Last Three Weeks</string>
+    <string name="leader_board">Leader Board</string>
+</resources>

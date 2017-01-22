@@ -1,0 +1,22 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/image_register_work"
+        style="@style/image_register_work" />
+
+    <LinearLayout style="@style/ll_register_work">
+
+        <TextView
+            android:id="@+id/text_register_work"
+            android:text="@string/memes"
+            style="@style/text_register_work"/>
+
+        <ImageView
+            android:id="@+id/ivRegisterWorkStar"
+            style="@style/register_work_star" />
+    </LinearLayout>
+
+</FrameLayout>

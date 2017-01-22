@@ -1,0 +1,31 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fl_partial_profile_msg_cht">
+    <!--android:background="@drawable/star_wars"-->
+    <!--TODO the background image will need to be removed because the image is resized and loaded dynamically -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:background="@color/grey_900">
+
+        <TextView
+            android:id="@+id/tv_message_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/snaps" />
+
+        <ImageView
+            android:id="@+id/image_profile_message_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="195dp"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+</FrameLayout>

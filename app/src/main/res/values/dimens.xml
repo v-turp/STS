@@ -61,4 +61,12 @@
     <dimen name="signup_dialog_entries_bottom_margin">4dp</dimen>
     <dimen name="signup_dialog_entries_alt_bottom_margin">16dp</dimen>
 
+    <!-- Image width and height -->
+    <dimen name="base_image_width">300dp</dimen>
+    <dimen name="base_image_height">300dp</dimen>
+    <dimen name="image_super_width">956dp</dimen>
+
+    <!-- Icon width and height -->
+    <dimen name="base_icon_width">100dp</dimen>
+    <dimen name="base_icon_height">100dp</dimen>
 </resources>
