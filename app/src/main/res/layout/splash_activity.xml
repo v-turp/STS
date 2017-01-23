@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.view.activity.SplashActivity">
+    tools:context="com.score.mjl.SplashActivity">
 
     <ImageView
         android:id="@+id/ivLandingLogo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/sts_logo_original"
+        android:src="@drawable/smirk1"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"/>
 

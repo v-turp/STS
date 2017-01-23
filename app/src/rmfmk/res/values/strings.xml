@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Role Model For Mankind</string>
+    <string name="title_activity_entry">Role Model for Mankind</string>
+    <string name="my_project">My Project</string>
+    <string name="volunteer">Volunteer</string>
+    <string name="my_team">My Team</string>
+    <string name="local_support">Local Support</string>
+    <string name="donate">Donate</string>
+    <string name="tithe">Tithe</string>
+    <string name="national_support">National Support</string>
+    <string name="organization">Organization</string>
+    <string name="project">Project</string>
+    <string name="date">Date</string>
+    <string name="local_support_opportunities">Local Support Opportunities</string>
+    <string name="volunteer_locally">Volunteer Locally</string>
+</resources>

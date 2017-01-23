@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">REO Purchase</string>
+    <string name="title_activity_entry">REO Listings</string>
+    <string name="reo_resources">REO Resources</string>
+    <string name="reo_listings">REO Listings</string>
+    <string name="national_reo_banks">National REO Banks</string>
+    <string name="regional_reo_banks">Regional REO Banks</string>
+    <string name="reo_sites">REO Sites</string>
+    <string name="virtual_agents">Virtual Agents</string>
+    <string name="daily_finds">Daily Finds</string>
+    <string name="listing">Listing</string>
+    <string name="reo_agent">REO Agent</string>
+    <string name="five_star_finds">Five Star Finds</string>
+    <string name="gold_mine">Gold Mine</string>
+    <string name="local_foreclosures">Local Foreclosures</string>
+</resources>

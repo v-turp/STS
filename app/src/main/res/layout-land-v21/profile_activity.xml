@@ -21,9 +21,15 @@
         android:layout_height="match_parent">
 
         <include layout="@layout/partial_profile_activity_body"/>
-
-        <include layout="@layout/component_hub"/>
+        <FrameLayout
+            android:id="@+id/fl_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <!--<include layout="@layout/component_hub"/>-->
 
     </FrameLayout>
+
 </LinearLayout>
+
+
 </FrameLayout>
