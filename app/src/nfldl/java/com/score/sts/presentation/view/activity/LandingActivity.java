@@ -166,7 +166,7 @@ public class LandingActivity extends AppCompatActivity {
 
             // logo
             if(logoFrameLsyout != null) {
-                logoFrameLsyout.setForeground(ContextCompat.getDrawable(landingActivity, R.drawable.draftday_logo));
+                logoFrameLsyout.setForeground(ContextCompat.getDrawable(landingActivity, R.drawable.ifl15));
             }
 
             // login image and star
@@ -174,7 +174,7 @@ public class LandingActivity extends AppCompatActivity {
                 imageLoginStar.setImageDrawable(star);
             }
             if(imageLogin != null){
-                imageLogin.setImageResource(R.drawable.nfldl5);
+                imageLogin.setImageResource(R.drawable.nfldl1);
             }
 
             // signup
@@ -187,7 +187,7 @@ public class LandingActivity extends AppCompatActivity {
 
             // register work
             if(imageRegisterWork != null){
-                imageRegisterWork.setImageResource(R.drawable.nfldl1);
+                imageRegisterWork.setImageResource(R.drawable.ifl6);
             }
             if(imageRegisterWorkStar != null){
                 imageRegisterWorkStar.setImageDrawable(star);
@@ -196,11 +196,11 @@ public class LandingActivity extends AppCompatActivity {
             if(landingActivity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 // contacts
                 if (imageContacts != null) {
-                    imageContacts.setImageResource(R.drawable.nfldl2);
+                    imageContacts.setImageResource(R.drawable.ifl12);
                 }
                 // bottom row columns 2 & 3 - could not think of a suitable name
                 if (imageRandom1 != null) {
-                    imageRandom1.setImageResource(R.drawable.nfldl4);
+                    imageRandom1.setImageResource(R.drawable.ifl11);
                 }
                 if(imageRandom2 != null){
                     imageRandom2.setImageResource(R.drawable.nfldl6);

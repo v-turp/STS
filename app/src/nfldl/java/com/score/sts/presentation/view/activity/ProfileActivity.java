@@ -428,14 +428,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             star = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_star_border_white_18dp, 100, 100);
             personAdd = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_person_add_white_24dp, 100, 100);
             // image drawables
-            bmpNfldlLogo = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl2, 956, 300);
-            bmpFanDuel = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl7, 300, 300);
-            bmpFantasyDraft = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl5, 300, 300);
+            bmpNfldlLogo = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl1, 956, 300);
+            bmpFanDuel = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ifl14, 300, 300);
+            bmpFantasyDraft = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ifl6, 300, 300);
             bmpDraftKings = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl9, 300, 300);
-            bmpDraftDay = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl4, 300, 300);
-            bmpMyLeage = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl3, 100, 100);
-            bmpLeagueFriends = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl, 300, 300);
-            bmpYahooNews = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl3, 300, 300);
+            bmpDraftDay = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ifl8, 300, 300);
+            bmpMyLeage = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ifl12, 100, 100);
+            bmpLeagueFriends = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ifl2, 300, 300);
+            bmpYahooNews = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ifl7, 300, 300);
 
             // add the decoded and resized images to the map for storage
             // icon drawables
@@ -525,7 +525,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         public void loadPortraitProfileImage() {
-            Bitmap mjRx = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl2, 956, 300);
+            Bitmap mjRx = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl1, 956, 300);
             FrameLayout flProfilePic = (FrameLayout) profileActivity.findViewById(R.id.fl_profile_photo);
             // profile image
             if (flProfilePic != null) {
@@ -643,14 +643,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             star = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_star_border_white_18dp, 100, 100);
             personAdd = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ic_person_add_white_24dp, 100, 100);
             // image drawables /*NOTE TODO THIS IS WHERE THE IMAGES WILL CHANGE. THIS MAY NEED TO BE THE ONLY CHANGE*/
-            bmpNfldlLogo = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl2, 956, 300);
+            bmpNfldlLogo = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl1, 956, 300);
             bmpDraftKings = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl9, 300, 300);
-            bmpFanDuel = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl7, 300, 300);
-            bmpFantasyDraft = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl5, 300, 300);
-            bmpDraftDay = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl4, 300, 300);
-            bmpMyLeage = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl3, 100, 100);
-            bmpLeagueFriends = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl, 300, 300);
-            bmpYahooNews = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.nfldl3, 300, 300);
+            bmpFanDuel = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ifl14, 300, 300);
+            bmpFantasyDraft = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ifl6, 300, 300);
+            bmpDraftDay = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ifl8, 300, 300);
+            bmpMyLeage = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ifl12, 100, 100);
+            bmpLeagueFriends = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ifl2, 300, 300);
+            bmpYahooNews = BitmapUtil.decodeBitmapFromResource(profileActivity.getResources(), R.drawable.ifl7, 300, 300);
 
             // add the decoded and resized images to the map for storage
             // icon drawables
