@@ -8,6 +8,10 @@
     <string name="fan_duel">FanDuel</string>
     <string name="fantasy_draft">Fantasy Draft</string>
     <string name="yahoo_news">Yahoo News</string>
+    <string name="cif_news">CIF News</string>
+    <string name="league_stats">League Stats</string>
+    <string name="highlights">Highlights</string>
+    <string name="cif_draft_day">Draft Day</string>
     <string name="my_league">My League</string>
     <string name="rank">Rank</string>
     <string name="team">Team</string>

@@ -11,7 +11,7 @@
 
         <TextView
             android:id="@+id/text_register_work"
-            android:text="@string/yahoo_news"
+            android:text="@string/cif_news"
             style="@style/text_register_work"/>
 
         <ImageView
