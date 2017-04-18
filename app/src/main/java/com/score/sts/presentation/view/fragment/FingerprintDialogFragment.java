@@ -80,68 +80,65 @@ public class FingerprintDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fingerprint_dialog_fragment, container, false);
 
         // TODO create a listener for the fingerprint icon
-        View.OnClickListener fingerprintListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {//---the view passed in here is th same view that set the listener.
+        View.OnClickListener fingerprintListener = v -> {
 
-                //====TODO NOTE: this recognition change is placed here temporarily until I get the authentication working=======
-                ImageView imageView = (ImageView) view.getRootView().findViewById(R.id.image_fingerprint);
-                TextView textView = (TextView) view.getRootView().findViewById(R.id.text_touch_sensor);
+            //====TODO NOTE: this recognition change is placed here temporarily until I get the authentication working=======
+            ImageView imageView = (ImageView) v.getRootView().findViewById(R.id.image_fingerprint);
+            TextView textView = (TextView) v.getRootView().findViewById(R.id.text_touch_sensor);
 
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    textView.setText(R.string.fingerprint_recognized);
-                    imageView.setImageResource(R.drawable.ic_done_white_24dp);
-                    imageView.setBackground(getResources().getDrawable(R.drawable.fingerprint_background_circle_authenticated, null));
-                    textView.setTextColor(getResources().getColor(R.color.teal_600, null));
-                }
-                  Log.d(TAG, "ImageView id is view id? " + (tempIdOfimageFingerprint == view.getId())  );
-                //=====TODO NOTE: this is the end of the fingerprint recognition change code=========
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                textView.setText(R.string.fingerprint_recognized);
+                imageView.setImageResource(R.drawable.ic_done_white_24dp);
+                imageView.setBackground(getResources().getDrawable(R.drawable.fingerprint_background_circle_authenticated, null));
+                textView.setTextColor(getResources().getColor(R.color.teal_600, null));
+            }
+            Log.d(TAG, "ImageView id is view id? " + (tempIdOfimageFingerprint == v.getId())  );
+            //=====TODO NOTE: this is the end of the fingerprint recognition change code=========
 
 
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    // get access to the FingerprintManager and KeyguardManager
-                    keyguardManager = (KeyguardManager) getActivity().getSystemService(Context.KEYGUARD_SERVICE);
-                    fingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
-                }else{
-                    // TODO inform the user that their device is not equipped with fingerprint technology
-                    // TODO and tell them to use their password and/or disable fingerprint image
-                    Toast.makeText(getActivity().getApplicationContext(), "Your device is not equipped with fingerpring technology", Toast.LENGTH_LONG).show();
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                // get access to the FingerprintManager and KeyguardManager
+                keyguardManager = (KeyguardManager) getActivity().getSystemService(Context.KEYGUARD_SERVICE);
+                fingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
+            }else{
+                // TODO inform the user that their device is not equipped with fingerprint technology
+                // TODO and tell them to use their password and/or disable fingerprint image
+                Toast.makeText(getActivity().getApplicationContext(), "Your device is not equipped with fingerpring technology", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            // check to see if lockscreen is secured by pin, password or pattern
+            if(!keyguardManager.isKeyguardSecure()){
+                Toast.makeText(getActivity().getApplicationContext(), "Lock screen security is not enabled", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            // check to see if Fingerprint permission is granted
+            if(ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(getActivity().getApplicationContext(), "Fingerprint permission is not granted", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            // check to see if there is a registered fingerprint on the device
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (!fingerprintManager.hasEnrolledFingerprints()) {
+                    Log.d(TAG, "Fingerprint Enrolled? " + fingerprintManager.hasEnrolledFingerprints());
+                    Toast.makeText(getActivity().getApplicationContext(), "No registered fingerprints on your device", Toast.LENGTH_LONG).show();
                     return;
-                }
-
-                // check to see if lockscreen is secured by pin, password or pattern
-                if(!keyguardManager.isKeyguardSecure()){
-                    Toast.makeText(getActivity().getApplicationContext(), "Lock screen security is not enabled", Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-                // check to see if Fingerprint permission is granted
-                if(ActivityCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED){
-                    Toast.makeText(getActivity().getApplicationContext(), "Fingerprint permission is not granted", Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-                // check to see if there is a registered fingerprint on the device
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (!fingerprintManager.hasEnrolledFingerprints()) {
-                        Log.d(TAG, "Fingerprint Enrolled? " + fingerprintManager.hasEnrolledFingerprints());
-                        Toast.makeText(getActivity().getApplicationContext(), "No registered fingerprints on your device", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                }
-
-                generateKey();
-                if(cipherInit()){
-                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        cryptoObject = new FingerprintManager.CryptoObject(cipher);
-                        FingerprintHandler fingerprintHandler = new FingerprintHandler(getActivity().getApplicationContext());
-                        fingerprintHandler.startAuth(fingerprintManager, cryptoObject);
-                        // for versions < 23  and not in the original example
-                        startAuth(fingerprintManager, cryptoObject, getAuthenticationCallback(getActivity().getApplicationContext()));
-                    }
                 }
             }
-        };
+
+            generateKey();
+            if(cipherInit()){
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    cryptoObject = new FingerprintManager.CryptoObject(cipher);
+                    FingerprintHandler fingerprintHandler = new FingerprintHandler(getActivity().getApplicationContext());
+                    fingerprintHandler.startAuth(fingerprintManager, cryptoObject);
+                    // for versions < 23  and not in the original example
+                    startAuth(fingerprintManager, cryptoObject, getAuthenticationCallback(getActivity().getApplicationContext()));
+                }
+            }
+        }; // end onClickListener
 
         final ImageView imageFingerprint = (ImageView) view.findViewById(R.id.image_fingerprint);
         tempIdOfimageFingerprint = imageFingerprint.getId();
@@ -287,4 +284,9 @@ public class FingerprintDialogFragment extends DialogFragment {
         }
 
     }
+
+    // TODO use a lambda for this listener
+    View.OnClickListener lambdaListener = view ->{
+
+    };
 }

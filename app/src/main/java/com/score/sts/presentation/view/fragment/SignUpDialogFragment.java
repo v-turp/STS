@@ -43,21 +43,15 @@ public class SignUpDialogFragment extends DialogFragment {
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
 
         alertDialog.setView(layoutInflater.inflate(R.layout.sign_up_dialog_fragment, null))
-                    .setPositiveButton(JOIN, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                    .setPositiveButton(JOIN, (dialog, which)->{
                             //---launch the profile page
 //                            Intent intent = ProfileActivity.getCallingIntent(getActivity());
                             Intent intent = ProfileActivity.getCallingIntent(getActivity());
                             intent.putExtra(ProfileActivity.SHOW_SNACK, true);
                             startActivity(intent);
                             dialog.dismiss();
-                        }
-                    }).setNegativeButton(CANCEL, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                    }).setNegativeButton(CANCEL, (dialog, which)->{
                             dialog.dismiss();
-                        }
                     });
         return alertDialog.create();
     }

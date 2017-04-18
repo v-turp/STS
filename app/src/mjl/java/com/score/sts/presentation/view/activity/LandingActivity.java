@@ -94,11 +94,8 @@ public class LandingActivity extends AppCompatActivity {
         /*static DialogFragment*/ signupDialog = new SignUpDialogFragment();
         final ImageView imageSignUp = (ImageView) findViewById(R.id.image_signup);
         if (imageSignUp != null) {
-            imageSignUp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            imageSignUp.setOnClickListener( v -> {
                     signupDialog.show(getFragmentManager(), "sign up fragment");
-                }
             });
         }
     } // end method showCreateAccountDialog
@@ -107,12 +104,9 @@ public class LandingActivity extends AppCompatActivity {
         final DialogFragment fingerprintLoginDialog = new FingerprintDialogFragment();
         ImageView imageLogin = (ImageView) findViewById(R.id.image_login);
         if(imageLogin != null){
-            imageLogin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            imageLogin.setOnClickListener( v -> {
                     fingerprintLoginDialog.show(getFragmentManager(), "fingerprint fragment");
                     setCircularReveal(findViewById(R.id.flLogoFrameContainer));
-                }
             });
         }
 
