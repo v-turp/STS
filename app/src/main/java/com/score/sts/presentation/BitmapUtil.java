@@ -12,7 +12,7 @@ import android.util.Log;
  */
 public class BitmapUtil {
 
-    public static final String TAG = BitmapUtil.class.getSimpleName();
+    private static final String TAG = BitmapUtil.class.getSimpleName();
     private static LruCache<String, Bitmap> imageMemoryCache;
     public BitmapUtil(){}
 

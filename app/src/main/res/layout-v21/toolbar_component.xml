@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/toolbar_global"
     android:layout_width="match_parent"
     android:layout_height="@dimen/app_bar_default_height_portrait"
     android:paddingLeft="@dimen/app_bar_default_left_padding"
     android:paddingRight="@dimen/app_bar_default_right_padding"
-    android:elevation="@dimen/base_elevation"
-    >
+    android:elevation="@dimen/base_elevation">
 
     <LinearLayout
         android:layout_width="match_parent"

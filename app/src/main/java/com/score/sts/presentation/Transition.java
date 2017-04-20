@@ -9,8 +9,6 @@ import android.transition.ChangeTransform;
 import android.transition.TransitionSet;
 import android.util.AttributeSet;
 
-import java.lang.annotation.Target;
-
 /**
  * Created by Who Dat on 10/29/2016.
  */

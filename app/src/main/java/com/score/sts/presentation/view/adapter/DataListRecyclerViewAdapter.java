@@ -1,7 +1,6 @@
 package com.score.sts.presentation.view.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerViewAccessibilityDelegate;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.score.sts.R;
-import com.score.sts.presentation.model.IContentDescription;
 import com.score.sts.presentation.model.IGeneralContentDescription;
-import com.score.sts.presentation.view.component.DataList;
 
 import java.util.List;
 

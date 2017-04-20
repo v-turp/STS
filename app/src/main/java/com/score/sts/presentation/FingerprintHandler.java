@@ -9,8 +9,6 @@ import android.os.CancellationSignal;
 import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
 
-import java.security.Permission;
-
 /**
  * Created by Who Dat on 5/19/2016.
  */

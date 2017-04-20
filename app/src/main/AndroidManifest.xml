@@ -30,11 +30,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.view.activity.ProfileActivity"/>
-
-        <activity android:name=".presentation.view.activity.FingerprintActivity"/>
-
-        <activity android:name=".presentation.view.activity.ProfileDisplayActivity"/>
+        <activity android:name=".presentation.view.activity.ProfileActivity" />
+        <activity android:name=".presentation.view.activity.FingerprintActivity" />
+        <activity android:name=".presentation.view.activity.ProfileDisplayActivity" />
+        <activity android:name=".presentation.view.activity.chat.ChatActivity"></activity>
     </application>
 
 </manifest>

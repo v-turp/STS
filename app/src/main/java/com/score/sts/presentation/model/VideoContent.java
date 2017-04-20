@@ -1,7 +1,5 @@
 package com.score.sts.presentation.model;
 
-import android.provider.MediaStore;
-
 /**
  * Created by Who Dat on 9/18/2016.
  * This is an object for Video content that will

@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.score.sts.R;
-import com.score.sts.presentation.view.fragment.ComponentHubFragment;
 import com.score.sts.presentation.view.fragment.ProfileHomeFragment;
 
 public class ProfileDisplayActivity extends AppCompatActivity {

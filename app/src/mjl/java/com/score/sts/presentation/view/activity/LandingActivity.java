@@ -3,8 +3,6 @@ package com.score.sts.presentation.view.activity;
 import android.animation.Animator;
 import android.app.DialogFragment;
 import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
