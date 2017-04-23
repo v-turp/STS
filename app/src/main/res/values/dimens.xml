@@ -69,4 +69,7 @@
     <!-- Icon width and height -->
     <dimen name="base_icon_width">100dp</dimen>
     <dimen name="base_icon_height">100dp</dimen>
+
+    <!-- Chat -->
+    <dimen name="chat_window_left_side_width">218dp</dimen>
 </resources>

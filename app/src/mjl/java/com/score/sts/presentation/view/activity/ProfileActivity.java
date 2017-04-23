@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.score.sts.presentation.BitmapUtil;
 import com.score.sts.presentation.Platform;
 import com.score.sts.presentation.Transition;
+import com.score.sts.presentation.view.activity.chat.ChatActivity;
 import com.score.sts.presentation.view.adapter.ProfileRecyclerViewAdapter;
 import com.score.sts.presentation.view.fragment.ComponentHubFragment;
 import com.score.sts.R;
@@ -244,7 +245,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
             case R.id.fl_partial_profile_msg_cht:
 //                        Toast.makeText(this, "Message/Chat was clicked", Toast.LENGTH_LONG).show();
-                        fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
+//                        fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
+                        startActivity(new Intent(this, ChatActivity.class));
                 break;
 
             case R.id.fl_partial_profile_videos:
