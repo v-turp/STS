@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/red_500"
     tools:context=".presentation.view.component.chat.ChatActivity">
 
     <!-- left side -->
     <ImageView
         android:id="@+id/iv_chat_host"
         android:layout_width="@dimen/chat_window_left_side_width"
-        android:layout_height="83dp"
+        android:layout_height="@dimen/chat_host_height"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/bugatti"
@@ -23,7 +24,6 @@
         android:orientation="vertical"
         android:background="@android:color/white"
         android:layout_below="@+id/iv_chat_host"
-        android:layout_above="@+id/rv_chat_history"
         android:layout_toLeftOf="@+id/vp_chat_carousel"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
@@ -34,10 +34,10 @@
         android:layout_height="283dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_below="@+id/ll_chat_status"
         android:layout_toLeftOf="@+id/vp_chat_carousel"
         android:background="@color/blue_900"
-        android:foregroundGravity="bottom|left"
-        android:layout_below="@+id/iv_chat_host" />
+        android:foregroundGravity="bottom|left" />
 
     <!-- right side -->
     <android.support.v4.view.ViewPager
@@ -60,6 +60,8 @@
         android:layout_below="@+id/vp_chat_carousel"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/iv_chat_host"
+        android:layout_toEndOf="@+id/iv_chat_host" />
 
 </RelativeLayout>
