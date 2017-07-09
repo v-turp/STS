@@ -71,5 +71,8 @@
     <dimen name="base_icon_height">100dp</dimen>
 
     <!-- Chat -->
-    <dimen name="chat_window_left_side_width">218dp</dimen>
+    <dimen name="chat_window_left_side_width">300dp</dimen>
+    <dimen name="chat_window_right_side_width">400dp</dimen>
+    <dimen name="chat_carousel_height">200dp</dimen>
+    <dimen name="chat_session_area_height">20dp</dimen>
 </resources>
