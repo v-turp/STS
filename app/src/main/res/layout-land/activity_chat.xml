@@ -14,8 +14,7 @@
         android:layout_height="@dimen/chat_host_height"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/bugatti"
-        android:layout_alignBottom="@+id/vp_chat_carousel" />
+        android:background="@drawable/bugatti"/>
 
     <LinearLayout
         android:id="@+id/ll_chat_status"
