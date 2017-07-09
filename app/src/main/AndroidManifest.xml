@@ -33,7 +33,7 @@
         <activity android:name=".presentation.view.activity.ProfileActivity" />
         <activity android:name=".presentation.view.activity.FingerprintActivity" />
         <activity android:name=".presentation.view.activity.ProfileDisplayActivity" />
-        <activity android:name=".presentation.view.activity.chat.ChatActivity"></activity>
+        <activity android:name=".presentation.view.component.chat.ChatActivity"></activity>
     </application>
 
 </manifest>

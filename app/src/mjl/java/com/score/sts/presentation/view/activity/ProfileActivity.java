@@ -29,7 +29,7 @@ import android.widget.Toast;
 import com.score.sts.presentation.BitmapUtil;
 import com.score.sts.presentation.Platform;
 import com.score.sts.presentation.Transition;
-import com.score.sts.presentation.view.activity.chat.ChatActivity;
+import com.score.sts.presentation.view.component.chat.ChatActivity;
 import com.score.sts.presentation.view.adapter.ProfileRecyclerViewAdapter;
 import com.score.sts.presentation.view.fragment.ComponentHubFragment;
 import com.score.sts.R;
