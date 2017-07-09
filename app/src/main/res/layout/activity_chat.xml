@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/red_500"
+    android:background="@android:color/darker_gray"
     tools:context=".presentation.view.component.chat.ChatActivity">
 
     <!-- left side -->
@@ -14,7 +14,7 @@
         android:layout_height="@dimen/chat_host_height"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/bugatti"/>
+        android:background="@drawable/girl_avatar"/>
 
     <LinearLayout
         android:id="@+id/ll_chat_status"

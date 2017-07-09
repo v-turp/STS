@@ -28,10 +28,10 @@ public class ItemFragment extends Fragment {
     private int screenHeight;
 
     private int[] imageArray = new int[]{
-            R.color.primary_accent_color, R.color.primary_base_color, R.color.fingerprint_background_color_authenticated, // these colors are different from the sample
-            android.R.color.holo_blue_dark, android.R.color.holo_red_dark, android.R.color.holo_green_dark,
-            android.R.color.holo_green_light, android.R.color.holo_purple, android.R.color.holo_blue_bright,
-            android.R.color.holo_orange_light};
+            R.drawable.benzo, R.drawable.director, R.drawable.boy, // these colors are different from the sample
+            R.drawable.cello_player, R.drawable.default_avatar, R.drawable.cat,
+            R.drawable.king_alphonso, R.drawable.bugatti, R.drawable.girl_avatar,
+            R.drawable.pics};
 
 
     public static Fragment newInstance(ChatActivity context, int pos, float scale){
