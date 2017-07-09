@@ -75,4 +75,5 @@
     <dimen name="chat_window_right_side_width">400dp</dimen>
     <dimen name="chat_carousel_height">200dp</dimen>
     <dimen name="chat_session_area_height">20dp</dimen>
+    <dimen name="chat_status_height">24dp</dimen>
 </resources>

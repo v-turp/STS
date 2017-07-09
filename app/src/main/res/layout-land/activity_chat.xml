@@ -19,7 +19,7 @@
     <LinearLayout
         android:id="@+id/ll_chat_status"
         android:layout_width="@dimen/chat_window_left_side_width"
-        android:layout_height="240dp"
+        android:layout_height="@dimen/chat_status_height"
         android:orientation="vertical"
         android:background="@android:color/white"
         android:layout_below="@+id/iv_chat_host"
@@ -53,12 +53,11 @@
 
     <LinearLayout
         android:id="@+id/ll_chat_session_area"
-        android:layout_width="20dp"
+        android:layout_width="@dimen/chat_window_right_side_width"
         android:layout_height="@dimen/chat_session_area_height"
         android:orientation="horizontal"
         android:background="@color/blue_grey_500"
         android:layout_below="@+id/vp_chat_carousel"
-        android:layout_toRightOf="@id/rv_chat_history"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
