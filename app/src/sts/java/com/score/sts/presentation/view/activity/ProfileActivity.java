@@ -31,6 +31,7 @@ import com.score.sts.presentation.BitmapUtil;
 import com.score.sts.presentation.Platform;
 import com.score.sts.presentation.Transition;
 import com.score.sts.presentation.view.adapter.ProfileRecyclerViewAdapter;
+import com.score.sts.presentation.view.component.chat.ChatActivity;
 import com.score.sts.presentation.view.fragment.ComponentHubFragment;
 
 import java.util.ArrayList;
@@ -237,7 +238,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
             case R.id.fl_partial_profile_msg_cht:
 //                        Toast.makeText(this, "Message/Chat was clicked", Toast.LENGTH_LONG).show();
-                        fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
+                        Intent chatIntent = new Intent(this, ChatActivity.class);
+                        startActivity(chatIntent);
                 break;
 
             case R.id.fl_partial_profile_videos:
