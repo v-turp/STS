@@ -89,8 +89,11 @@
         android:layout_width="@dimen/chat_window_right_side_width"
         android:layout_height="@dimen/chat_status_height"
         android:background="@android:color/white"
+        android:textColor="@android:color/black"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/rv_chat_contact_list"
-        android:id="@+id/textInputEditText" />
+        android:id="@+id/textInputEditText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

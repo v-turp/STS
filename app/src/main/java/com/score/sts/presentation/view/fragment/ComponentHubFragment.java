@@ -48,7 +48,8 @@ public class ComponentHubFragment extends Fragment {
 
         // setup the recyclerview with the adapter and sample data
         RecyclerView dataListRecyclerView = (RecyclerView) view.findViewById(R.id.rv_data_list);
-        DataListRecyclerViewAdapter dataListRecyclerViewAdapter = new DataListRecyclerViewAdapter(setMockDataForDataListView(getArguments().getString(Platform.FLAVOR)));
+        DataListRecyclerViewAdapter
+                dataListRecyclerViewAdapter = new DataListRecyclerViewAdapter(setMockDataForDataListView(getArguments().getString(Platform.FLAVOR)));
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         dataListRecyclerView.setLayoutManager(layoutManager);
         dataListRecyclerView.setAdapter(dataListRecyclerViewAdapter);
@@ -122,16 +123,26 @@ public class ComponentHubFragment extends Fragment {
         switch (buildFlavor){
             case Platform.SOUNDTRACKS_AND_SCORES:
                     //---sts mock data
-                    IGeneralContentDescription stsMockData  = new GeneralContentDescription("1", "Pharrell Williams", " Marylyn Monro",  "500");
-                    IGeneralContentDescription stsMockData1 = new GeneralContentDescription("2", "Master P", " How You Do That There", "600");
-                    IGeneralContentDescription stsMockData2 = new GeneralContentDescription("3", "Yin Yang Twins", " Whisper Song", "323");
-                    IGeneralContentDescription stsMockData3 = new GeneralContentDescription("4", "Future", " Commas", "453");
-                    IGeneralContentDescription stsMockData4 = new GeneralContentDescription("5", "Labrynth", " Jealous", "305");
-                    IGeneralContentDescription stsMockData5 = new GeneralContentDescription("6", "Big and Rich", " Save a horse ride a cowboy", "670");
-                    IGeneralContentDescription stsMockData6 = new GeneralContentDescription("7", "Michael Jackson", " Beat It", "343");
-                    IGeneralContentDescription stsMockData7 = new GeneralContentDescription("8", "Bob Marley", " Is this Love", "460");
-                    IGeneralContentDescription stsMockData8 = new GeneralContentDescription("9", "Bob Marley", " I Shot the Sheriff", "333");
-                    IGeneralContentDescription stsMockData9 = new GeneralContentDescription("10", "Tupac", "Dear Mama", "224");
+                    IGeneralContentDescription stsMockData  =
+                            new GeneralContentDescription("1", getString(R.string.taylor_swift), getString(R.string.t_swift_look_what_u_made_me_do),  "5:00");
+                    IGeneralContentDescription stsMockData1 =
+                            new GeneralContentDescription("2", getString(R.string.cardi_b), getString(R.string.cardi_b_bodak_yellow), "6:00");
+                    IGeneralContentDescription stsMockData2 =
+                            new GeneralContentDescription("3", getString(R.string.logic_ft_alessia_and_khalid), "???", "3:23");
+                    IGeneralContentDescription stsMockData3 =
+                            new GeneralContentDescription("4", getString(R.string.l_fonsi_d_yankee_ft_jb), getString(R.string.l_fonsi_d_yankee_despacito), "4:53");
+                    IGeneralContentDescription stsMockData4 =
+                            new GeneralContentDescription("5", getString(R.string.sam_smith), getString(R.string.s_smith_2_good_at_gb), "3:05");
+                    IGeneralContentDescription stsMockData5 =
+                            new GeneralContentDescription("6", getString(R.string.dj_khaled_ri_b_tiller), getString(R.string.dj_khaled_ri_d_tiller_wild_thoughts),"6:43");
+                    IGeneralContentDescription stsMockData6 =
+                            new GeneralContentDescription("7", getString(R.string.french_mon_ft_sw_lee), getString(R.string.french_mon_ft_sw_lee_unforgettable),"3:43");
+                    IGeneralContentDescription stsMockData7 =
+                            new GeneralContentDescription("8", getString(R.string.charlie_puth), getString(R.string.charlie_puth_attention), "4:60");
+                    IGeneralContentDescription stsMockData8 =
+                            new GeneralContentDescription("9", getString(R.string.imagine_dragons), getString(R.string.imagine_dragons_believer), "3:33");
+                    IGeneralContentDescription stsMockData9 =
+                            new GeneralContentDescription("10", getString(R.string.shawn_mendes), getString(R.string.shawn_mendes_theres_nothing_holding), "2:24");
 
                     List<IGeneralContentDescription> stsMockDataList = new ArrayList<>();
 
