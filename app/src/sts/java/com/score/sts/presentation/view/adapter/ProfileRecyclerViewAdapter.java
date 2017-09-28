@@ -57,7 +57,7 @@ public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecy
                         holder.frameLayout.setBackground(new BitmapDrawable(context.getResources(), profileStation.get(position).get(ProfileActivity.BIO)));
                         holder.imageView.setImageDrawable(new BitmapDrawable(context.getResources(), profileStation.get(position).get(ProfileActivity.EDIT_ICON)));
                     }
-                    holder.textView.setText(R.string.profile_music_fragment);
+                    holder.textView.setText(R.string.profile_purchase);
                 break;
 
             case 1:
