@@ -468,7 +468,7 @@ public class ProfileHomeFragment extends Fragment implements View.OnClickListene
         //TODO only used for debugging to get the size of the pics
         Bitmap girlAvatar;
         Bitmap boy;
-        Bitmap rmfmkTshirt;
+        Bitmap debugBmpBitcoinPurchase;
         Bitmap rmfmk;
         Bitmap starWars;
         Bitmap bugatti;
@@ -558,7 +558,7 @@ public class ProfileHomeFragment extends Fragment implements View.OnClickListene
             girlAvatar = BitmapUtil.decodeBitmapFromResource(profileDisplayActivity.getResources(), R.drawable.girl_avatar, 100, 100);
             boy = BitmapUtil.decodeBitmapFromResource(profileDisplayActivity.getResources(), R.drawable.boy, 100, 100);
             rmfmk = BitmapUtil.decodeBitmapFromResource(profileDisplayActivity.getResources(), R.drawable.rmfmk, 100, 100);
-            rmfmkTshirt = BitmapUtil.decodeBitmapFromResource(profileDisplayActivity.getResources(), R.drawable.bitcoin_accepted_here, 100, 100);
+            debugBmpBitcoinPurchase = BitmapUtil.decodeBitmapFromResource(profileDisplayActivity.getResources(), R.drawable.bitcoin_accepted_here, 100, 100);
             starWars = BitmapUtil.decodeBitmapFromResource(profileDisplayActivity.getResources(), R.drawable.star_wars, 100, 100);
             bugatti = BitmapUtil.decodeBitmapFromResource(profileDisplayActivity.getResources(), R.drawable.bugatti, 100, 100);
             pics = BitmapUtil.decodeBitmapFromResource(profileDisplayActivity.getResources(), R.drawable.pics, 100, 100);
@@ -574,7 +574,7 @@ public class ProfileHomeFragment extends Fragment implements View.OnClickListene
             imageMap.put(PROFILE_PICTURE, girlAvatar);
             imageMap.put(MUSIC, boy);
             imageMap.put(PICTURES, rmfmk);
-            imageMap.put(BIO, rmfmkTshirt);
+            imageMap.put(BIO, debugBmpBitcoinPurchase);
             imageMap.put(MESSAGE_AND_CHAT, starWars);
             imageMap.put(VIDEOS, bugatti);
             imageMap.put(CONTACTS, pics);
