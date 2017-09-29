@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.score.sts.R;
 import com.score.sts.presentation.model.IGeneralContentDescription;
@@ -57,6 +58,9 @@ public class DataListRecyclerViewAdapter extends RecyclerView.Adapter<DataListRe
         public TextView trackName;
         public TextView createdBy;
         public TextView trackLength;
+        View.OnClickListener listenerChangeArtistImage = (View v) -> {
+            Toast.makeText(v.getContext(), "The Item was clicked", Toast.LENGTH_LONG).show();
+        };
 
         public DataListViewHolder(View itemView) {
             super(itemView);
@@ -64,6 +68,7 @@ public class DataListRecyclerViewAdapter extends RecyclerView.Adapter<DataListRe
             trackName = (TextView) itemView.findViewById(R.id.tv_track_name);
             createdBy = (TextView) itemView.findViewById(R.id.tv_created_by);
             trackLength = (TextView) itemView.findViewById(R.id.tv_track_length);
+            trackLength.setOnClickListener(listenerChangeArtistImage); // TODO remove this listener assignment after testing
         }
     }
 }
