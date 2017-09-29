@@ -1,13 +1,12 @@
 package com.score.sts.presentation.view.adapter;
 
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.score.sts.R;
 import com.score.sts.presentation.model.IGeneralContentDescription;
@@ -52,7 +51,7 @@ public class DataListRecyclerViewAdapter extends RecyclerView.Adapter<DataListRe
         holder.createdBy.setText(contentDescription.get(position).getColumnData2());
         holder.trackName.setText(contentDescription.get(position).getColumnData3());
         holder.trackLength.setText(contentDescription.get(position).getColumnData4());
-        holder.trackLength.setOnClickListener(itemListener);
+        holder.llFeaturedArtist.setOnClickListener(itemListener);
     }
 
     @Override
@@ -67,6 +66,7 @@ public class DataListRecyclerViewAdapter extends RecyclerView.Adapter<DataListRe
         public TextView trackName;
         public TextView createdBy;
         public TextView trackLength;
+        public LinearLayout llFeaturedArtist;
 
         public DataListViewHolder(View itemView) {
             super(itemView);
@@ -74,6 +74,7 @@ public class DataListRecyclerViewAdapter extends RecyclerView.Adapter<DataListRe
             trackName = (TextView) itemView.findViewById(R.id.tv_track_name);
             createdBy = (TextView) itemView.findViewById(R.id.tv_created_by);
             trackLength = (TextView) itemView.findViewById(R.id.tv_track_length);
+            llFeaturedArtist = (LinearLayout) itemView.findViewById(R.id.ll_data_list_container);
         }
     }
 }
