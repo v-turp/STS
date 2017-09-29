@@ -1,5 +1,6 @@
 package com.score.sts.presentation.view.adapter;
 
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,10 +22,17 @@ public class DataListRecyclerViewAdapter extends RecyclerView.Adapter<DataListRe
 
     private static final String TAG = DataListRecyclerViewAdapter.class.getSimpleName();
     private List<IGeneralContentDescription> contentDescription;
+    private View.OnClickListener itemListener;
 
     public DataListRecyclerViewAdapter(){}
 
     public DataListRecyclerViewAdapter(List<IGeneralContentDescription> contentDescription){
+        this.contentDescription = contentDescription;
+        Log.d(TAG, "Constructor called");
+    }
+
+    public DataListRecyclerViewAdapter(List<IGeneralContentDescription> contentDescription, View.OnClickListener itemListener){
+        this.itemListener = itemListener;
         this.contentDescription = contentDescription;
         Log.d(TAG, "Constructor called");
     }
@@ -44,6 +52,7 @@ public class DataListRecyclerViewAdapter extends RecyclerView.Adapter<DataListRe
         holder.createdBy.setText(contentDescription.get(position).getColumnData2());
         holder.trackName.setText(contentDescription.get(position).getColumnData3());
         holder.trackLength.setText(contentDescription.get(position).getColumnData4());
+        holder.trackLength.setOnClickListener(itemListener);
     }
 
     @Override
@@ -58,9 +67,6 @@ public class DataListRecyclerViewAdapter extends RecyclerView.Adapter<DataListRe
         public TextView trackName;
         public TextView createdBy;
         public TextView trackLength;
-        View.OnClickListener listenerChangeArtistImage = (View v) -> {
-            Toast.makeText(v.getContext(), "The Item was clicked", Toast.LENGTH_LONG).show();
-        };
 
         public DataListViewHolder(View itemView) {
             super(itemView);
@@ -68,7 +74,6 @@ public class DataListRecyclerViewAdapter extends RecyclerView.Adapter<DataListRe
             trackName = (TextView) itemView.findViewById(R.id.tv_track_name);
             createdBy = (TextView) itemView.findViewById(R.id.tv_created_by);
             trackLength = (TextView) itemView.findViewById(R.id.tv_track_length);
-            trackLength.setOnClickListener(listenerChangeArtistImage); // TODO remove this listener assignment after testing
         }
     }
 }
