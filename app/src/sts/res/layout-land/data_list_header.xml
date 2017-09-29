@@ -28,7 +28,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="198dp"
-                android:layout_weight="0.93">
+                android:layout_weight="0.93"
+                android:background="@drawable/imagine_dragons">
 
                 <TextView
                     android:layout_width="wrap_content"
