@@ -4,7 +4,7 @@ package com.score.sts.presentation.model;
  * Created by Who Dat on 11/28/2016.
  * This class is for the different flavors of the application
  * whose data does not fit a specific category in the
- * list of the ComponentHubFragment
+ * list of the FeatureListFragment
  */
 public class GeneralContentDescription implements IGeneralContentDescription {
 

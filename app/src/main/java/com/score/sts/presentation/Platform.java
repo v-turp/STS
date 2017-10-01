@@ -5,7 +5,7 @@ package com.score.sts.presentation;
  * This emum is strictly used to define the
  * platform/flavor type so that the correct
  * data will be passed to the
- * ComponentHubFragment in the list
+ * FeatureListFragment in the list
  */
 public class Platform {
 

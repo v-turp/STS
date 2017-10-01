@@ -4,7 +4,7 @@ package com.score.sts.presentation.model;
  * Created by Who Dat on 11/28/2016.
  * this interface is created strictly for adding flavors
  * that have varying data types that will populate the data
- * list of the ComponentHubFragment
+ * list of the FeatureListFragment
  */
 public interface IGeneralContentDescription {
     String getColumnData1();

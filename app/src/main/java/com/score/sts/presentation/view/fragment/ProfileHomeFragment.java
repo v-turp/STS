@@ -213,16 +213,16 @@ public class ProfileHomeFragment extends Fragment{
     }
 
     View.OnClickListener onClickListener = (View v) ->{
-        ComponentHubFragment componentHubFragment = new ComponentHubFragment();
+        FeatureListFragment featureListFragment = new FeatureListFragment();
         FragmentManager fm = getActivity().getSupportFragmentManager();
         int id = v.getId();
 
         // TODO use this for testing until the transition is satisfactory
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            componentHubFragment.setReenterTransition(new Fade());
-            componentHubFragment.setEnterTransition(new Fade());
-            componentHubFragment.setSharedElementReturnTransition(new Transition());
-            componentHubFragment.setSharedElementEnterTransition(new Transition());
+            featureListFragment.setReenterTransition(new Fade());
+            featureListFragment.setEnterTransition(new Fade());
+            featureListFragment.setSharedElementReturnTransition(new Transition());
+            featureListFragment.setSharedElementEnterTransition(new Transition());
         }
         switch(id){
 
@@ -231,7 +231,7 @@ public class ProfileHomeFragment extends Fragment{
                 ImageView bioView = (ImageView) getActivity().findViewById(R.id.image_profile_bio_ic_edit);
                 Toast.makeText(getActivity(), "Bio was clicked", Toast.LENGTH_LONG).show();
                 fm.beginTransaction()
-                        .replace(R.id.phf, componentHubFragment )
+                        .replace(R.id.phf, featureListFragment)
                         .addSharedElement(bioView, "bioView")
                         .commit();
                 // TODO remove this when finished testing. this is only used so i don't have to go back and forth to the loadImagesFromCache method
@@ -241,34 +241,34 @@ public class ProfileHomeFragment extends Fragment{
             case R.id.fl_partial_profile_music:
                 Toast.makeText(getActivity(), "Music was clicked", Toast.LENGTH_LONG).show();
                 fm.beginTransaction()
-                        .replace(R.id.phf, componentHubFragment )
+                        .replace(R.id.phf, featureListFragment)
                         .commit();;
                 break;
 
             case R.id.fl_partial_profile_pictures:
                 Toast.makeText(getActivity(), "Pictures was clicked", Toast.LENGTH_LONG).show();
                 fm.beginTransaction()
-                        .replace(R.id.phf, componentHubFragment )
+                        .replace(R.id.phf, featureListFragment)
                         .commit();
                 break;
 
             case R.id.fl_partial_profile_msg_cht:
                 Toast.makeText(getActivity(), "Message/Chat was clicked", Toast.LENGTH_LONG).show();
                 fm.beginTransaction()
-                        .replace(R.id.phf, componentHubFragment )
+                        .replace(R.id.phf, featureListFragment)
                         .commit();
                 break;
 
             case R.id.fl_partial_profile_videos:
                 Toast.makeText(getActivity(), "Videos was clicked", Toast.LENGTH_LONG).show();
                 fm.beginTransaction()
-                        .replace(R.id.phf, componentHubFragment )
+                        .replace(R.id.phf, featureListFragment)
                         .commit();
                 break;
 
             case R.id.fl_partial_profile_contacts:
                 Toast.makeText(getActivity(), "Contacts was clicked", Toast.LENGTH_LONG).show();
-                fm.beginTransaction().add(R.id.fl_fragment_container, new ComponentHubFragment()).commit();
+                fm.beginTransaction().add(R.id.fl_fragment_container, new FeatureListFragment()).commit();
                 break;
 
             default:

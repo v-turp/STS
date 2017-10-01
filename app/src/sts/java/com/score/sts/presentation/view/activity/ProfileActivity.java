@@ -33,7 +33,7 @@ import com.score.sts.presentation.Platform;
 import com.score.sts.presentation.Transition;
 import com.score.sts.presentation.view.adapter.ProfileRecyclerViewAdapter;
 import com.score.sts.presentation.view.component.chat.ChatActivity;
-import com.score.sts.presentation.view.fragment.ComponentHubFragment;
+import com.score.sts.presentation.view.fragment.FeatureListFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -218,21 +218,22 @@ public class ProfileActivity extends AppCompatActivity{
     }
 
     View.OnClickListener profileCategoryListener = (View view) ->{
+        Log.d(TAG, "onClick()");
         CoordinatorLayout componentHub = (CoordinatorLayout) findViewById(R.id.cl_component_hub);
 //        FrameLayout layoutToCover = (FrameLayout) findViewById(R.id.fl_frame_to_cover);
-        ComponentHubFragment componentHubFragment = new ComponentHubFragment();
+        FeatureListFragment featureListFragment = new FeatureListFragment();
         Bundle bundle = new Bundle();
         bundle.putString(Platform.FLAVOR, Platform.SOUNDTRACKS_AND_SCORES);
-        componentHubFragment.setArguments(bundle);
+        featureListFragment.setArguments(bundle);
         FragmentManager fm = getSupportFragmentManager();
         int id = view.getId();
 
         // TODO use this for testing until the transition is satisfactory
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            componentHubFragment.setReenterTransition(new Fade());
-            componentHubFragment.setEnterTransition(new Fade());
-            componentHubFragment.setSharedElementReturnTransition(new Transition());
-            componentHubFragment.setSharedElementEnterTransition(new Transition());
+            featureListFragment.setReenterTransition(new Fade());
+            featureListFragment.setEnterTransition(new Fade());
+            featureListFragment.setSharedElementReturnTransition(new Transition());
+            featureListFragment.setSharedElementEnterTransition(new Transition());
         }
         switch(id){
 
@@ -241,7 +242,7 @@ public class ProfileActivity extends AppCompatActivity{
                 ImageView sharedImage = (ImageView) findViewById(R.id.image_profile_bio_ic_edit);
                 this.findViewById(R.id.image_pictures_ic_edit).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(BIO)));
                 fm.beginTransaction()
-                        .add(R.id.fl_fragment_container, componentHubFragment )
+                        .add(R.id.fl_fragment_container, featureListFragment)
                         .addSharedElement(sharedImage, "profileImage")
                         .commit();
                 unregisterListeners();
@@ -251,12 +252,12 @@ public class ProfileActivity extends AppCompatActivity{
 
             case R.id.fl_partial_profile_music:
 //                        Toast.makeText(this, "Music was clicked", Toast.LENGTH_LONG).show();
-                fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
+                fm.beginTransaction().add(R.id.fl_fragment_container, featureListFragment).commit();
                 break;
 
             case R.id.fl_partial_profile_pictures:
 //                        Toast.makeText(this, "Pictures was clicked", Toast.LENGTH_LONG).show();
-                fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
+                fm.beginTransaction().add(R.id.fl_fragment_container, featureListFragment).commit();
                 break;
 
             case R.id.fl_partial_profile_msg_cht:
@@ -267,12 +268,12 @@ public class ProfileActivity extends AppCompatActivity{
 
             case R.id.fl_partial_profile_videos:
 //                        Toast.makeText(this, "Videos was clicked", Toast.LENGTH_LONG).show();
-                fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
+                fm.beginTransaction().add(R.id.fl_fragment_container, featureListFragment).commit();
                 break;
 
             case R.id.fl_partial_profile_contacts:
 //                        Toast.makeText(this, "Contacts was clicked", Toast.LENGTH_LONG).show();
-                fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
+                fm.beginTransaction().add(R.id.fl_fragment_container, featureListFragment).commit();
                 break;
 
             default:

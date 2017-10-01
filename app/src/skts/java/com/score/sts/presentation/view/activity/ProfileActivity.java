@@ -200,7 +200,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         ComponentHubFragment componentHubFragment = new ComponentHubFragment();
         Bundle bundle = new Bundle();
         bundle.putString(Platform.FLAVOR, Platform.SMIRK_TA_SELF);
-        componentHubFragment.setArguments(bundle); // this is to pass the string to the ComponentHubFragment to allow it to display the correct data in the list
+        componentHubFragment.setArguments(bundle); // this is to pass the string to the FeatureListFragment to allow it to display the correct data in the list
         FragmentManager fm = getSupportFragmentManager();
         int id = view.getId();
 

@@ -18,14 +18,11 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.score.sts.R;
 import com.score.sts.presentation.Platform;
 import com.score.sts.presentation.model.GeneralContentDescription;
-import com.score.sts.presentation.model.IContentDescription;
 import com.score.sts.presentation.model.IGeneralContentDescription;
-import com.score.sts.presentation.model.VideoContent;
 import com.score.sts.presentation.view.adapter.DataListRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -34,9 +31,9 @@ import java.util.List;
 /**
  * Created by Who Dat on 10/3/2016.
  */
-public class ComponentHubFragment extends Fragment {
+public class FeatureListFragment extends Fragment {
 
-    private static final String TAG = ComponentHubFragment.class.getSimpleName();
+    private static final String TAG = FeatureListFragment.class.getSimpleName();
     private Platform buildFlavor;
 
     @Override
