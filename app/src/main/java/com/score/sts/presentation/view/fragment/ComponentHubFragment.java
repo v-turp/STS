@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.score.sts.R;
 import com.score.sts.presentation.Platform;
@@ -95,7 +96,6 @@ public class ComponentHubFragment extends Fragment {
     // TODO remove this method once the live data is available
     public List<IGeneralContentDescription> setMockDataForDataListView(String buildFlavor){
 
-        List<IContentDescription> videoContentList = new ArrayList<>();
         List<IGeneralContentDescription> mjLocatorMockDataList = new ArrayList<>();
         List<IGeneralContentDescription> nfldlMockDataList = new ArrayList<>();
         List<IGeneralContentDescription> reoMockDataList = new ArrayList<>();
@@ -103,28 +103,6 @@ public class ComponentHubFragment extends Fragment {
         List<IGeneralContentDescription> sktsMockDataList = new ArrayList<>();
 
         List<IGeneralContentDescription> listData = new ArrayList<>();
-        //---sts mock data
-        IContentDescription videoContentDescription = new VideoContent(1, " Marylyn Monro", "Pharrell Williams", 500);
-        IContentDescription videoContentDescription1 = new VideoContent(2, " How You Do That There", "Master P", 600);
-        IContentDescription videoContentDescription2 = new VideoContent(3, " Whisper Song", "Yin Yang Twins", 323);
-        IContentDescription videoContentDescription3 = new VideoContent(4, " Commas", "Future", 453);
-        IContentDescription videoContentDescription4 = new VideoContent(5, " Jealous", "Labrynth", 305);
-        IContentDescription videoContentDescription5 = new VideoContent(6, " Save a horse ride a cowboy", "Big and Rich", 670);
-        IContentDescription videoContentDescription6 = new VideoContent(7, " Beat It", "Michael Jackson", 343);
-        IContentDescription videoContentDescription7 = new VideoContent(8, " Is this Love", "Bob Marley", 460);
-        IContentDescription videoContentDescription8 = new VideoContent(9, " I Shot the Sheriff", "Bob Marley", 333);
-        IContentDescription videoContentDescription9 = new VideoContent(10, "Dear Mama", "Tupac", 224);
-
-        videoContentList.add(videoContentDescription);
-        videoContentList.add(videoContentDescription1);
-        videoContentList.add(videoContentDescription2);
-        videoContentList.add(videoContentDescription3);
-        videoContentList.add(videoContentDescription4);
-        videoContentList.add(videoContentDescription5);
-        videoContentList.add(videoContentDescription6);
-        videoContentList.add(videoContentDescription7);
-        videoContentList.add(videoContentDescription8);
-        videoContentList.add(videoContentDescription9);
 
         switch (buildFlavor){
             case Platform.SOUNDTRACKS_AND_SCORES:
