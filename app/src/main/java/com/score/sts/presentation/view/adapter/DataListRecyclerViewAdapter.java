@@ -1,5 +1,6 @@
 package com.score.sts.presentation.view.adapter;
 
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.score.sts.R;
 import com.score.sts.presentation.model.IGeneralContentDescription;
+import com.score.sts.presentation.view.fragment.FeatureListFragment;
 
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class DataListRecyclerViewAdapter extends RecyclerView.Adapter<DataListRe
     private static final String TAG = DataListRecyclerViewAdapter.class.getSimpleName();
     private List<IGeneralContentDescription> contentDescription;
     private View.OnClickListener itemListener;
+    FeatureListFragment.FeatureListHandler featureListHandler;
 
     public DataListRecyclerViewAdapter(){}
 
@@ -33,6 +36,13 @@ public class DataListRecyclerViewAdapter extends RecyclerView.Adapter<DataListRe
     public DataListRecyclerViewAdapter(List<IGeneralContentDescription> contentDescription, View.OnClickListener itemListener){
         this.itemListener = itemListener;
         this.contentDescription = contentDescription;
+        Log.d(TAG, "Constructor called");
+    }
+
+    public DataListRecyclerViewAdapter(List<IGeneralContentDescription> contentDescription, View.OnClickListener itemListener, FeatureListFragment.FeatureListHandler featureHandler){
+        this.itemListener = itemListener;
+        this.contentDescription = contentDescription;
+        this.featureListHandler = featureHandler;
         Log.d(TAG, "Constructor called");
     }
 
@@ -52,6 +62,7 @@ public class DataListRecyclerViewAdapter extends RecyclerView.Adapter<DataListRe
         holder.trackName.setText(contentDescription.get(position).getColumnData3());
         holder.trackLength.setText(contentDescription.get(position).getColumnData4());
         holder.llFeaturedArtist.setOnClickListener(itemListener);
+        featureListHandler.sendEmptyMessage(1);
     }
 
     @Override

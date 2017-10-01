@@ -4,6 +4,8 @@ import android.animation.Animator;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
@@ -35,6 +37,7 @@ public class FeatureListFragment extends Fragment {
 
     private static final String TAG = FeatureListFragment.class.getSimpleName();
     private Platform buildFlavor;
+    private FeatureListHandler featureListHandler;
 
     @Override
     public void onAttach(Context context) {
@@ -52,7 +55,7 @@ public class FeatureListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.component_hub, container, false);
-
+        featureListHandler = new FeatureListHandler();
         View.OnClickListener onClickListener = (View v) ->{
             view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.benzo));
         };
@@ -60,7 +63,7 @@ public class FeatureListFragment extends Fragment {
         // setup the recyclerview with the adapter and sample data
         RecyclerView dataListRecyclerView = (RecyclerView) view.findViewById(R.id.rv_data_list);
         DataListRecyclerViewAdapter
-                dataListRecyclerViewAdapter = new DataListRecyclerViewAdapter(setMockDataForDataListView(getArguments().getString(Platform.FLAVOR)), onClickListener);
+                dataListRecyclerViewAdapter = new DataListRecyclerViewAdapter(setMockDataForDataListView(getArguments().getString(Platform.FLAVOR)), onClickListener, featureListHandler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         dataListRecyclerView.setLayoutManager(layoutManager);
         dataListRecyclerView.setAdapter(dataListRecyclerViewAdapter);
@@ -137,6 +140,15 @@ public class FeatureListFragment extends Fragment {
         this.buildFlavor = buildFlavor;
     }
 
+
+    public class FeatureListHandler extends Handler{
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Log.d("FeatureListFragment", "Answer from the handler");
+        }
+    }
     // TODO remove this method once the live data is available
     public List<IGeneralContentDescription> setMockDataForDataListView(String buildFlavor){
 
