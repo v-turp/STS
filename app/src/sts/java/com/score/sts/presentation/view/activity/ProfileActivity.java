@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.util.LruCache;
@@ -40,7 +41,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
+public class ProfileActivity extends AppCompatActivity{
 
     private static final String TAG = ProfileActivity.class.getSimpleName();
     public static final String SHOW_SNACK = "signup complete";
@@ -91,17 +92,17 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
             flBio = (FrameLayout) findViewById(R.id.fl_partial_profile_bio);
-            flBio.setOnClickListener(this);
+            flBio.setOnClickListener(profileCategoryListener);
             flMusic = (FrameLayout) findViewById(R.id.fl_partial_profile_music);
-            flMusic.setOnClickListener(this);
+            flMusic.setOnClickListener(profileCategoryListener);
             flPictures = (FrameLayout) findViewById(R.id.fl_partial_profile_pictures);
-            flPictures.setOnClickListener(this);
+            flPictures.setOnClickListener(profileCategoryListener);
             flMessageChat = (FrameLayout) findViewById(R.id.fl_partial_profile_msg_cht);
-            flMessageChat.setOnClickListener(this);
+            flMessageChat.setOnClickListener(profileCategoryListener);
             flVideos = (FrameLayout) findViewById(R.id.fl_partial_profile_videos);
-            flVideos.setOnClickListener(this);
+            flVideos.setOnClickListener(profileCategoryListener);
             flContacts = (FrameLayout) findViewById(R.id.fl_partial_profile_contacts);
-            flContacts.setOnClickListener(this);
+            flContacts.setOnClickListener(profileCategoryListener);
         }
 
         //--- setup recycler view for portrait layout in the Profile screen
@@ -150,6 +151,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         Log.d(TAG, "Max Memory Size: " + Runtime.getRuntime().maxMemory() / 1024);
         init();
+        Log.d(TAG, "onCreate()");
     }
 
     @Override
@@ -163,6 +165,20 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             rvProfile.setAdapter(profileRecyclerViewAdapter);
             loadPortraitProfileImageFromCache();
         }
+        Log.d(TAG, "onStart()");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume()");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterListeners();
+        Log.d(TAG, "onPause()");
     }
 
     @Override
@@ -176,6 +192,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             portraitLayoutTask.cancel(true);
             portraitLayoutTask = null; // release resources
         }
+        Log.d(TAG, "onStop()");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy()");
     }
 
     @Override
@@ -194,9 +217,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    @Override
-    public void onClick(View view) {
-//        CoordinatorLayout componentHub = (CoordinatorLayout) findViewById(R.id.cl_component_hub);
+    View.OnClickListener profileCategoryListener = (View view) ->{
+        CoordinatorLayout componentHub = (CoordinatorLayout) findViewById(R.id.cl_component_hub);
 //        FrameLayout layoutToCover = (FrameLayout) findViewById(R.id.fl_frame_to_cover);
         ComponentHubFragment componentHubFragment = new ComponentHubFragment();
         Bundle bundle = new Bundle();
@@ -216,46 +238,47 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
             case R.id.fl_partial_profile_bio:
 //                        Toast.makeText(this, "Bio was clicked", Toast.LENGTH_LONG).show();
-                        ImageView sharedImage = (ImageView) findViewById(R.id.image_profile_bio_ic_edit);
-                        this.findViewById(R.id.image_pictures_ic_edit).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(BIO)));
-                        fm.beginTransaction()
+                ImageView sharedImage = (ImageView) findViewById(R.id.image_profile_bio_ic_edit);
+                this.findViewById(R.id.image_pictures_ic_edit).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(BIO)));
+                fm.beginTransaction()
                         .add(R.id.fl_fragment_container, componentHubFragment )
                         .addSharedElement(sharedImage, "profileImage")
                         .commit();
+                unregisterListeners();
                 // TODO remove this when finished testing. this is only used so i don't have to go back and forth to the loadImagesFromCache method
 //                findViewById(R.id.fl_partial_profile_bio).setBackground(new BitmapDrawable(getResources(), getBitmapFromMemCache(BIO)));
                 break;
 
             case R.id.fl_partial_profile_music:
 //                        Toast.makeText(this, "Music was clicked", Toast.LENGTH_LONG).show();
-                        fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
+                fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
                 break;
 
             case R.id.fl_partial_profile_pictures:
 //                        Toast.makeText(this, "Pictures was clicked", Toast.LENGTH_LONG).show();
-                        fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
+                fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
                 break;
 
             case R.id.fl_partial_profile_msg_cht:
 //                        Toast.makeText(this, "Message/Chat was clicked", Toast.LENGTH_LONG).show();
-                        Intent chatIntent = new Intent(this, ChatActivity.class);
-                        startActivity(chatIntent);
+                Intent chatIntent = new Intent(this, ChatActivity.class);
+                startActivity(chatIntent);
                 break;
 
             case R.id.fl_partial_profile_videos:
 //                        Toast.makeText(this, "Videos was clicked", Toast.LENGTH_LONG).show();
-                        fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
+                fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
                 break;
 
             case R.id.fl_partial_profile_contacts:
 //                        Toast.makeText(this, "Contacts was clicked", Toast.LENGTH_LONG).show();
-                        fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
+                fm.beginTransaction().add(R.id.fl_fragment_container, componentHubFragment).commit();
                 break;
 
             default:
                 break;
         }
-    }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -296,6 +319,16 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     public static Bitmap getBitmapFromMemCache(String key) {
         return imageMemoryCache.get(key);
+    }
+
+    //---unregister the listeners when the fragment is launched otherwise the screen behind the bottom sheet will still receive clicks
+    private void unregisterListeners() {
+        flBio.setOnClickListener(null);
+        flMusic.setOnClickListener(null);
+        flPictures.setOnClickListener(null);
+        flMessageChat.setOnClickListener(null);
+        flVideos.setOnClickListener(null);
+        flContacts.setOnClickListener(null);
     }
 
     /**
@@ -355,7 +388,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
-    public static class ProfilePortraitLayoutTask extends AsyncTask<Void, Void, Map<String, Bitmap>> {
+    public static class ProfilePortraitLayoutTask extends AsyncTask<Void, Void, Map<String, Bitmap>>  {
 
         ArrayList<Map<String, Bitmap>> imageBucket; // this will be sent in onPostExecute the ProfileActivity bucketList
 

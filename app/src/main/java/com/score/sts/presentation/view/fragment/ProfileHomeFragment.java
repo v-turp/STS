@@ -40,7 +40,7 @@ import java.util.Set;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProfileHomeFragment extends Fragment implements View.OnClickListener{
+public class ProfileHomeFragment extends Fragment{
 
     private static final String TAG = ProfileHomeFragment.class.getSimpleName();
     public static final String PROFILE_PICTURE = "profile picture";
@@ -79,8 +79,21 @@ public class ProfileHomeFragment extends Fragment implements View.OnClickListene
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.d(TAG, "onAttach()");
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate()");
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView()");
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile_home, container, false);
     }
@@ -94,17 +107,17 @@ public class ProfileHomeFragment extends Fragment implements View.OnClickListene
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 
             flBio = (FrameLayout) getActivity().findViewById(R.id.fl_partial_profile_bio);
-            flBio.setOnClickListener(this);
+            flBio.setOnClickListener(onClickListener);
             flMusic = (FrameLayout) getActivity().findViewById(R.id.fl_partial_profile_music);
-            flMusic.setOnClickListener(this);
+            flMusic.setOnClickListener(onClickListener);
             flPictures = (FrameLayout) getActivity().findViewById(R.id.fl_partial_profile_pictures);
-            flPictures.setOnClickListener(this);
+            flPictures.setOnClickListener(onClickListener);
             flMessageChat = (FrameLayout) getActivity().findViewById(R.id.fl_partial_profile_msg_cht);
-            flMessageChat.setOnClickListener(this);
+            flMessageChat.setOnClickListener(onClickListener);
             flVideos = (FrameLayout) getActivity().findViewById(R.id.fl_partial_profile_videos);
-            flVideos.setOnClickListener(this);
+            flVideos.setOnClickListener(onClickListener);
             flContacts = (FrameLayout) getActivity().findViewById(R.id.fl_partial_profile_contacts);
-            flContacts.setOnClickListener(this);
+            flContacts.setOnClickListener(onClickListener);
         }
 
         //--- setup recycler view for portrait layout in the Profile screen
@@ -152,6 +165,7 @@ public class ProfileHomeFragment extends Fragment implements View.OnClickListene
         }
 
         Log.d(TAG, "Max Memory Size: " + Runtime.getRuntime().maxMemory() / 1024);
+        Log.d(TAG, "onActivityCreated()");
     }
 
     @Override
@@ -165,10 +179,40 @@ public class ProfileHomeFragment extends Fragment implements View.OnClickListene
             rvProfile.setAdapter(profileRecyclerViewAdapter);
             loadPortraitProfileImageFromCache();
         }
+        Log.d(TAG, "onStart()");
     }
 
     @Override
-    public void onClick(View v) {
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume()");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterListeners();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.d(TAG, "onDetach");
+    }
+
+    View.OnClickListener onClickListener = (View v) ->{
         ComponentHubFragment componentHubFragment = new ComponentHubFragment();
         FragmentManager fm = getActivity().getSupportFragmentManager();
         int id = v.getId();
@@ -182,9 +226,9 @@ public class ProfileHomeFragment extends Fragment implements View.OnClickListene
         }
         switch(id){
 
-              case R.id.fl_partial_profile_bio:
-                  // TODO set the image for the bio image view
-                  ImageView bioView = (ImageView) getActivity().findViewById(R.id.image_profile_bio_ic_edit);
+            case R.id.fl_partial_profile_bio:
+                // TODO set the image for the bio image view
+                ImageView bioView = (ImageView) getActivity().findViewById(R.id.image_profile_bio_ic_edit);
                 Toast.makeText(getActivity(), "Bio was clicked", Toast.LENGTH_LONG).show();
                 fm.beginTransaction()
                         .replace(R.id.phf, componentHubFragment )
@@ -230,7 +274,8 @@ public class ProfileHomeFragment extends Fragment implements View.OnClickListene
             default:
                 break;
         }
-    }
+    };
+
 
     public static void addBitmapToMemoryCache(String key, Bitmap bitmap) {
         if (getBitmapFromMemCache(key) == null) {
@@ -240,6 +285,16 @@ public class ProfileHomeFragment extends Fragment implements View.OnClickListene
 
     public static Bitmap getBitmapFromMemCache(String key) {
         return imageMemoryCache.get(key);
+    }
+
+    //---unregister the listeners when the fragment is launched otherwise the screen behind the bottom sheet will still receive clicks
+    private void unregisterListeners() {
+        flBio.setOnClickListener(null);
+        flMusic.setOnClickListener(null);
+        flPictures.setOnClickListener(null);
+        flMessageChat.setOnClickListener(null);
+        flVideos.setOnClickListener(null);
+        flContacts.setOnClickListener(null);
     }
 
     /**
