@@ -25,6 +25,7 @@ import com.score.sts.R;
 import com.score.sts.presentation.Platform;
 import com.score.sts.presentation.model.GeneralContentDescription;
 import com.score.sts.presentation.model.IGeneralContentDescription;
+import com.score.sts.presentation.model.TrackInfo;
 import com.score.sts.presentation.view.adapter.DataListRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class FeatureListFragment extends Fragment {
     private static final String TAG = FeatureListFragment.class.getSimpleName();
     private Platform buildFlavor;
     private FeatureListHandler featureListHandler;
+    private View view;
 
     @Override
     public void onAttach(Context context) {
@@ -54,16 +56,13 @@ public class FeatureListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.component_hub, container, false);
+        view = inflater.inflate(R.layout.component_hub, container, false);
         featureListHandler = new FeatureListHandler();
-        View.OnClickListener onClickListener = (View v) ->{
-            view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.benzo));
-        };
 
         // setup the recyclerview with the adapter and sample data
         RecyclerView dataListRecyclerView = (RecyclerView) view.findViewById(R.id.rv_data_list);
         DataListRecyclerViewAdapter
-                dataListRecyclerViewAdapter = new DataListRecyclerViewAdapter(setMockDataForDataListView(getArguments().getString(Platform.FLAVOR)), onClickListener, featureListHandler);
+                dataListRecyclerViewAdapter = new DataListRecyclerViewAdapter(setMockDataForDataListView(getArguments().getString(Platform.FLAVOR)), featureListHandler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         dataListRecyclerView.setLayoutManager(layoutManager);
         dataListRecyclerView.setAdapter(dataListRecyclerViewAdapter);
@@ -146,7 +145,8 @@ public class FeatureListFragment extends Fragment {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            Log.d("FeatureListFragment", "Answer from the handler");
+            Log.d("FeatureListFragment", msg.getData().getString(TrackInfo.CREATED_BY.toString()));
+            view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.bugatti));
         }
     }
     // TODO remove this method once the live data is available
