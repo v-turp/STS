@@ -150,35 +150,35 @@ public class FeatureListFragment extends Fragment {
             int positionNumber = Integer.valueOf(msg.getData().getString(TrackInfo.POSITION_NUMBER.toString()));
 
             switch(positionNumber){
-                case 0:
-                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.benzo));
-                    break;
                 case 1:
-                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.cat));
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.taylor_swift  ));
                     break;
                 case 2:
-                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.cello_player));
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.cardi_b));
                     break;
                 case 3:
-                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.default_avatar));
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.logic));
                     break;
                 case 4:
-                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.king_alphonso));
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.luis_fonsi));
                     break;
                 case 5:
-                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.bitcoin_fab));
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.sam_smith));
                     break;
                 case 6:
-                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.motorcycle));
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.dj_khaled));
                     break;
                 case 7:
-                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.director));
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.french_montana));
                     break;
                 case 8:
-                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.accept_btc));
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.charlie_puth));
                     break;
                 case 9:
                     view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.imagine_dragons));
+                    break;
+                case 10:
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.shawn_mendes));
                     break;
               default:
                   view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.bugatti));
@@ -205,7 +205,7 @@ public class FeatureListFragment extends Fragment {
                     IGeneralContentDescription stsMockData1 =
                             new GeneralContentDescription("2", getString(R.string.cardi_b), getString(R.string.cardi_b_bodak_yellow), "6:00");
                     IGeneralContentDescription stsMockData2 =
-                            new GeneralContentDescription("3", getString(R.string.logic_ft_alessia_and_khalid), "???", "3:23");
+                            new GeneralContentDescription("3", getString(R.string.logic_ft_alessia_and_khalid), "1-800-273-8255", "3:23");
                     IGeneralContentDescription stsMockData3 =
                             new GeneralContentDescription("4", getString(R.string.l_fonsi_d_yankee_ft_jb), getString(R.string.l_fonsi_d_yankee_despacito), "4:53");
                     IGeneralContentDescription stsMockData4 =
