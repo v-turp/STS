@@ -145,8 +145,45 @@ public class FeatureListFragment extends Fragment {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            Log.d("FeatureListFragment", msg.getData().getString(TrackInfo.CREATED_BY.toString()));
-            view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.bugatti));
+//            Log.d("FeatureListFragment", msg.getData().getString(TrackInfo.CREATED_BY.toString()));
+
+            int positionNumber = Integer.valueOf(msg.getData().getString(TrackInfo.POSITION_NUMBER.toString()));
+
+            switch(positionNumber){
+                case 0:
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.benzo));
+                    break;
+                case 1:
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.cat));
+                    break;
+                case 2:
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.cello_player));
+                    break;
+                case 3:
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.default_avatar));
+                    break;
+                case 4:
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.king_alphonso));
+                    break;
+                case 5:
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.bitcoin_fab));
+                    break;
+                case 6:
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.motorcycle));
+                    break;
+                case 7:
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.director));
+                    break;
+                case 8:
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.accept_btc));
+                    break;
+                case 9:
+                    view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.imagine_dragons));
+                    break;
+              default:
+                  view.findViewById(R.id.rl_data_list_header_primary_area).setBackground(ContextCompat.getDrawable(view.getContext(), R.drawable.bugatti));
+                  break;
+            }
         }
     }
     // TODO remove this method once the live data is available

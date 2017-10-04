@@ -81,7 +81,7 @@ public class DataListRecyclerViewAdapter extends RecyclerView.Adapter<DataListRe
     OnItemClickListener itemClickListener = (IGeneralContentDescription generalContentDescription) ->{
         msgListInfo = featureListHandler.obtainMessage();
         bndlListInfo = new Bundle();
-        bndlListInfo.putString(TrackInfo.CREATED_BY.toString(), generalContentDescription.getColumnData2());
+        bndlListInfo.putString(TrackInfo.POSITION_NUMBER.toString(), generalContentDescription.getColumnData1());
         msgListInfo.setData(bndlListInfo);
         featureListHandler.sendMessage(msgListInfo);
     };
